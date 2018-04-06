@@ -4,7 +4,7 @@ This repository is used for the Software Engeneering course at the HTWG Konstanz
 
 # Contributors
 * Lucas Schmidt (LukeCaruzo)
-* Bilal Rachichi (bilalra)
+* Bilal Rachachi (bilalra)
 
 # Details
 * SS 2018
