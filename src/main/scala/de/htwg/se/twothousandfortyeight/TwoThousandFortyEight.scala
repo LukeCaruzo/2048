@@ -20,6 +20,7 @@ object TwoThousandFortyEight {
 
     val grid = Grid()
     grid.insert(1, 2, new Tile(64))
+    grid.insert(3, 1, new Tile(32))
     println(grid.toString)
   }
 }
