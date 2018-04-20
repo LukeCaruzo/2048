@@ -1,7 +1,5 @@
 package de.htwg.se.twothousandfortyeight.model
 
-class Score(cscore: Int = 0) {
-  var score: Int = cscore
+case class Score(score: Int = 0) {
 
-  override def toString: String = score.toString
 }

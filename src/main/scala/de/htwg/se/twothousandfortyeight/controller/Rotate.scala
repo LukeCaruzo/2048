@@ -1,5 +1,5 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-class Rotate {
+case class Rotate() {
 
 }
