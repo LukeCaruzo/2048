@@ -2,6 +2,8 @@ package de.htwg.se.twothousandfortyeight.model
 
 import java.util
 
+import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
+
 case class Grid() {
   var tiles = new Array[Tile](16)
 
@@ -159,10 +161,10 @@ case class Grid() {
 
       if (i < 3 && oldLine(i).value == oldLine(i + 1).value) {
         num *= 2
-        // SET SCORE (in main game): score += num
+        TwoThousandFortyEight.score.score += num
         var goal = 2048
         if (num == goal) {
-          //SET WIN (in main game): win = true
+          TwoThousandFortyEight.win = true
         }
 
         i = i + 1
@@ -179,8 +181,8 @@ case class Grid() {
     }
   }
 
-  def fillWithEmptyTiles(list: util.List[Tile], s: Int): Unit = {
-    while (list.size != s) {
+  def fillWithEmptyTiles(list: util.List[Tile], size: Int): Unit = {
+    while (list.size != size) {
       list.add(new Tile)
     }
   }
