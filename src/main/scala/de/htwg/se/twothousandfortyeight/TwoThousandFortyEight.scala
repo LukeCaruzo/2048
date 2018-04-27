@@ -1,16 +1,15 @@
 package de.htwg.se.twothousandfortyeight
 
-import de.htwg.se.twothousandfortyeight.model.Player
-import de.htwg.se.twothousandfortyeight.model.Grid
+import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
 
 object TwoThousandFortyEight {
   var win = false
   var lose = false
-  var score = 0
+  var score = new Score
   var grid = new Grid
 
   def resetAll(): Unit = {
-    score = 0
+    score.resetScore
     win = false
     lose = false
     grid.resetGrid
