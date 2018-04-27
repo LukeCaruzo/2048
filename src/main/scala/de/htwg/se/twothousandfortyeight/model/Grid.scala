@@ -41,7 +41,7 @@ case class Grid() {
       val line = getLine(i)
       val merged = mergeLine(moveLine(line))
       setLine(i, merged)
-      if (!needAddTile && !compare(line, merged)) {
+      if (!needAddTile && !compareGrid(line, merged)) {
         needAddTile = true
       }
     }
@@ -52,24 +52,24 @@ case class Grid() {
   }
 
   def right(): Unit = {
-    tiles = rotate(180)
+    tiles = rotateGrid(180)
     left()
-    tiles = rotate(180)
+    tiles = rotateGrid(180)
   }
 
   def up(): Unit = {
-    tiles = rotate(270)
+    tiles = rotateGrid(270)
     left()
-    tiles = rotate(90)
+    tiles = rotateGrid(90)
   }
 
   def down(): Unit = {
-    tiles = rotate(90)
+    tiles = rotateGrid(90)
     left()
-    tiles = rotate(270)
+    tiles = rotateGrid(270)
   }
 
-  def canMove: Boolean = {
+  def isTileMoveable: Boolean = {
     if (!isFull) {
       return true
     }
@@ -86,7 +86,7 @@ case class Grid() {
     return false
   }
 
-  def compare(line1: Array[Tile], line2: Array[Tile]): Boolean = {
+  def compareGrid(line1: Array[Tile], line2: Array[Tile]): Boolean = {
     if (line1 == line2) {
       return true
     } else if (line1.length != line2.length) {
@@ -102,7 +102,7 @@ case class Grid() {
     return true
   }
 
-  def rotate(angle: Int): Array[Tile] = {
+  def rotateGrid(angle: Int): Array[Tile] = {
     val newTiles = new Array[Tile](16)
     var x = 3
     var y = 3
@@ -139,19 +139,13 @@ case class Grid() {
     } else {
       val newLine = new Array[Tile](4)
 
-      ensureSize(list, 4)
+      fillWithEmptyTiles(list, 4)
 
       for (i <- 0 to 3) {
         newLine(i) = list.removeFirst()
       }
 
       return newLine
-    }
-  }
-
-  def ensureSize(list: util.List[Tile], s: Int): Unit = {
-    while (list.size != s) {
-      list.add(new Tile)
     }
   }
 
@@ -180,8 +174,14 @@ case class Grid() {
     if (list.size() == 0) {
       return oldLine
     } else {
-      ensureSize(list, 4)
+      fillWithEmptyTiles(list, 4)
       return list.toArray(new Array[Tile](4))
+    }
+  }
+
+  def fillWithEmptyTiles(list: util.List[Tile], s: Int): Unit = {
+    while (list.size != s) {
+      list.add(new Tile)
     }
   }
 
