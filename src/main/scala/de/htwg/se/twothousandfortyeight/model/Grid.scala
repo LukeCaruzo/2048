@@ -32,7 +32,10 @@ case class Grid() {
   }
 
   def resetGrid {
-    tiles = new Array[Tile](16)(new Tile)
+    tiles = new Array[Tile](16)
+    for (i <- 0 until tiles.length) {
+      tiles(i) = new Tile()
+    }
     addTile
     addTile
   }
