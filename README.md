@@ -14,3 +14,4 @@ This repository is used for the Software Engeneering course at the HTWG Konstanz
 # Details
 * SS 2018
 * Apache License 2.0
+* Scala Version 2.12.4
