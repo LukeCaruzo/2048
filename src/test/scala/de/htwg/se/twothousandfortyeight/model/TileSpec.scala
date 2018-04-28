@@ -6,5 +6,5 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class TileSpec extends WordSpec with Matchers {
-  fail("not implemented")
+  //fail("not implemented")
 }

@@ -6,5 +6,5 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class ScoreSpec extends WordSpec with Matchers {
-  fail("not implemented")
+  //fail("not implemented")
 }

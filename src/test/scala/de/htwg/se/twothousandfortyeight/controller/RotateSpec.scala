@@ -6,5 +6,5 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class RotateSpec extends WordSpec with Matchers {
-  fail("not implemented")
+  //fail("not implemented")
 }
