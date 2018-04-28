@@ -1,5 +1,7 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/LukeCaruzo/2048.svg?columns=all)](https://waffle.io/LukeCaruzo/2048)
 
+[![Build Status](https://travis-ci.org/LukeCaruzo/2048.svg?branch=master)](https://travis-ci.org/LukeCaruzo/2048)
+
 # Introduction
 This repository is used for the Software Engeneering course at the HTWG Konstanz.
 
