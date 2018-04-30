@@ -6,5 +6,18 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class TileSpec extends WordSpec with Matchers {
-  //fail("not implemented")
+  "A Tile" when {
+    "new" should {
+      var tile = new Tile(16)
+      "have a value" in {
+        tile.value should be(16)
+      }
+      "have a nice String representation" in {
+        tile.toString should be("16")
+      }
+      "have check if it is 0" in {
+        tile.isEmpty should be(false)
+      }
+    }
+  }
 }
