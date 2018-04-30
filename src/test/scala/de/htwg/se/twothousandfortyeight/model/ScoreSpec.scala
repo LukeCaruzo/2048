@@ -6,5 +6,16 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class ScoreSpec extends WordSpec with Matchers {
-  //fail("not implemented")
+  "Score" when {
+    "new" should {
+      var score = new Score()
+      "have a initial value" in {
+        score.score should be(0)
+      }
+      score.resetScore()
+      "should reset" in {
+        score.score should be(0)
+      }
+    }
+  }
 }
