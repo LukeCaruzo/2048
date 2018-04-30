@@ -1,7 +1,9 @@
 package de.htwg.se.twothousandfortyeight.model
 
-case class Score(var score: Int = 0) {
+case class Score(var value: Int = 0) {
   def resetScore(): Unit = {
-    score = 0
+    this.value = 0
   }
+
+  override def toString: String = value.toString
 }

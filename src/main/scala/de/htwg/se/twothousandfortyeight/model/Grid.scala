@@ -164,7 +164,7 @@ case class Grid() {
 
       if (i < 3 && oldLine(i).value == oldLine(i + 1).value) {
         num *= 2
-        TwoThousandFortyEight.score.score += num
+        TwoThousandFortyEight.score.value += num
         var goal = 2048
         if (num == goal) {
           TwoThousandFortyEight.win = true
