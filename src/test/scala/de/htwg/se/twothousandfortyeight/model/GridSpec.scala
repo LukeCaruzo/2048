@@ -8,7 +8,8 @@ import org.scalatest.junit.JUnitRunner
 class GridSpec extends WordSpec with Matchers {
   "A Grid" when {
     "new" should {
-      var grid = new Grid()
+      var grid = new Grid
+      var  grid2 = new Grid
       "have a initial tiles" in {
         grid.tiles should be(new Array[Tile](16))
       }
@@ -20,6 +21,24 @@ class GridSpec extends WordSpec with Matchers {
         grid.resetGrid
         grid.getAvailableSpace.toString should be("[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]")
       }
+      "have a compareGrid method case a true result" in {
+        var line1 = grid.tiles
+        var line2 = grid.tiles
+        grid.compareGrid(line1,line2) should be (true)
+
+      }
+      "have a compareGrid method case a false result" in {
+        grid2.resetGrid
+        var line1 = grid.tiles
+        var line3 = grid2.tiles
+        grid.compareGrid(line1,line3) should be (false)
+
+      }
+      "have a Moveline() method " in {
+        grid2.getLine(0).length.toString should be ("4")
+
+      }
+
     }
   }
 }
