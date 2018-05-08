@@ -6,7 +6,7 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.model.{Grid, Score, Tile}
 
 object Turn {
-  def left(grid: Grid, score: Score): Unit = {
+  def left(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     var needATile = false
 
     for (i <- 0 to 3) {
@@ -21,25 +21,25 @@ object Turn {
     }
 
     if (needATile) {
-      grid.addTile(Math.random(), Math.random())
+      grid.addTile(random1, random2)
     }
   }
 
-  def right(grid: Grid, score: Score): Unit = {
+  def right(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     grid.tiles = grid.rotate(180)
-    left(grid, score)
+    left(grid, score, random1, random2)
     grid.tiles = grid.rotate(180)
   }
 
-  def up(grid: Grid, score: Score): Unit = {
+  def up(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     grid.tiles = grid.rotate(270)
-    left(grid, score)
+    left(grid, score, random1, random2)
     grid.tiles = grid.rotate(90)
   }
 
-  def down(grid: Grid, score: Score): Unit = {
+  def down(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     grid.tiles = grid.rotate(90)
-    left(grid, score)
+    left(grid, score, random1, random2)
     grid.tiles = grid.rotate(270)
   }
 
@@ -116,20 +116,20 @@ object Turn {
     return true
   }
 
-  def makeTurn(key: String): Unit = {
+  def makeTurn(key: String, random1: Double, random2: Double): Unit = {
     if (!TwoThousandFortyEight.grid.canBeMoved) {
       TwoThousandFortyEight.lose = true
     }
 
     if (!TwoThousandFortyEight.win && !TwoThousandFortyEight.lose) {
       if (key == "a") {
-        left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score)
+        left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
       } else if (key == "d") {
-        right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score)
+        right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
       } else if (key == "s") {
-        down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score)
+        down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
       } else if (key == "w") {
-        up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score)
+        up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
       }
     }
 

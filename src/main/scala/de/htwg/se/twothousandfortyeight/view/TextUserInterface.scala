@@ -34,7 +34,7 @@ case class TextUserInterface() {
           break
         }
 
-        Turn.makeTurn(key)
+        Turn.makeTurn(key, Math.random(), Math.random())
 
         System.out.println(TwoThousandFortyEight.grid.toString)
         System.out.println("Your Score: " + TwoThousandFortyEight.score.toString)
