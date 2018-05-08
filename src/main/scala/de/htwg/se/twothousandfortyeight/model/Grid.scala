@@ -11,10 +11,10 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   addTile(random3, random4)
 
   def addTile(random1: Double, random2: Double): Unit = {
-    val list = getAvailableSpace
+    val availableSpace = getAvailableSpace
     if (!getAvailableSpace.isEmpty) {
-      val index = (random1 * list.size).asInstanceOf[Int] % list.size
-      val emptyTile = list(index)
+      val index = (random1 * availableSpace.length).asInstanceOf[Int] % availableSpace.length
+      val emptyTile = availableSpace(index)
       emptyTile.value = if (random2 < 0.9) 2 else 4
     }
   }

@@ -31,6 +31,12 @@ class TurnSpec extends WordSpec with Matchers {
         grid.tiles should be(Array(new Tile(0), new Tile(4), new Tile(2), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(4), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0)))
         score.value should be(4)
       }
+      "have a moveSingleLine method" in {
+        Turn.moveSingleLine(grid.getSingleLine(1)) should be(Array(new Tile(2), new Tile(4), new Tile(0), new Tile(0)))
+      }
+      "have a mergeSingleLine method" in {
+        Turn.mergeSingleLine(score, grid.getSingleLine(1)) should be(Array(new Tile(2), new Tile(0), new Tile(0), new Tile(0)))
+      }
     }
   }
 }
