@@ -12,4 +12,5 @@ class TurnSpec extends WordSpec with Matchers {
       val grid = new Grid(0.3, 0.5, 0.7, 0.2)
       // TODO: Continue Tests
     }
+  }
 }
