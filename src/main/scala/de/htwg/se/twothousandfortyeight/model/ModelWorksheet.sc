@@ -1,12 +1,5 @@
 import de.htwg.se.twothousandfortyeight.model.Grid
 
-var grid = new Grid()
+var grid1 = new Grid(0.3, 0.96, 0.23, 0.53)
 
-grid.resetGrid
-grid.getAvailableSpace.toString
-grid.tiles
-var grid2 = new Grid
-grid2.resetGrid
-grid2.tiles
-
-grid2.getLine(0)
+grid1.toString

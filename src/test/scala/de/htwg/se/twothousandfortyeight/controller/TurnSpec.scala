@@ -5,6 +5,6 @@ import org.scalatest._
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class RotateSpec extends WordSpec with Matchers {
+class TurnSpec extends WordSpec with Matchers {
   //fail("not implemented")
 }

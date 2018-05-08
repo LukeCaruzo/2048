@@ -2,24 +2,24 @@ package de.htwg.se.twothousandfortyeight.model
 
 import java.util
 
-case class Grid() {
+case class Grid(random1: Double = Math.random(), random2: Double = Math.random(), random3: Double = Math.random(), random4: Double = Math.random()) {
   var tiles = new Array[Tile](16)
   for (i <- 0 until tiles.length) {
     tiles(i) = new Tile()
   }
-  addTile(Math.random())
-  addTile(Math.random())
+  addTile(random1, random2)
+  addTile(random3, random4)
 
-  def addTile(random: Double): Unit = {
+  def addTile(random1: Double, random2: Double): Unit = {
     val list = getAvailableSpace
     if (!getAvailableSpace.isEmpty) {
-      val index = (random * list.size).asInstanceOf[Int] % list.size
-      val emptyTile = list.get(index)
-      emptyTile.value = if (random < 0.9) 2 else 4
+      val index = (random1 * list.size).asInstanceOf[Int] % list.size
+      val emptyTile = list(index)
+      emptyTile.value = if (random2 < 0.9) 2 else 4
     }
   }
 
-  def getAvailableSpace(): util.ArrayList[Tile] = {
+  def getAvailableSpace(): Array[Tile] = {
     val list = new util.ArrayList[Tile](16)
     for (t <- this.tiles) {
       if (t.isEmpty) {
@@ -27,13 +27,17 @@ case class Grid() {
       }
     }
 
-    return list
+    val array = new Array[Tile](list.size)
+    for (i <- 0 until list.size) {
+      array(i) = list.get(i)
+    }
+
+    return array
   }
 
   def isFull: Boolean = getAvailableSpace.size == 0
 
   def getPositionOfTile(x: Int, y: Int): Tile = tiles(x + y * 4)
-
 
   def canBeMoved: Boolean = {
     if (!isFull) {
@@ -91,7 +95,6 @@ case class Grid() {
   def setSingleLine(index: Int, re: Array[Tile]): Unit = {
     System.arraycopy(re, 0, tiles, index * 4, 4)
   }
-
 
   override def toString: String = {
     val s = new StringBuilder

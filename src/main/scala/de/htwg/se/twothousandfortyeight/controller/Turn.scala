@@ -21,7 +21,7 @@ object Turn {
     }
 
     if (needATile) {
-      grid.addTile(Math.random)
+      grid.addTile(Math.random(), Math.random())
     }
   }
 
