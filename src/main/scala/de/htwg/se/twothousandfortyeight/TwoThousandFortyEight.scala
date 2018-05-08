@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
+import de.htwg.se.twothousandfortyeight.view.TextUserInterface
 
 object TwoThousandFortyEight {
   var win = false
@@ -8,15 +9,9 @@ object TwoThousandFortyEight {
   var score = new Score
   var grid = new Grid
 
-  def resetAll(): Unit = {
-    score.resetScore
-    win = false
-    lose = false
-    grid.resetGrid
-  }
-
   def main(args: Array[String]): Unit = {
-    val student = Player("Lucas/Bilal")
-    println("Hello, " + student.name)
+    val student = new Player("Lucas/Bilal")
+
+    new TextUserInterface(student)
   }
 }

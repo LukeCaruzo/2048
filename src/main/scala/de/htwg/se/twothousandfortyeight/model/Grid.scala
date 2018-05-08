@@ -4,49 +4,46 @@ import java.util
 
 case class Grid() {
   var tiles = new Array[Tile](16)
+  for (i <- 0 until tiles.length) {
+    tiles(i) = new Tile()
+  }
+  addTile(Math.random())
+  addTile(Math.random())
 
-  def addTile(): Unit = {
+  def addTile(random: Double): Unit = {
     val list = getAvailableSpace
     if (!getAvailableSpace.isEmpty) {
-      var emptyTile = list.get((Math.random * list.size).asInstanceOf[Int] % list.size)
-      emptyTile.value = if (Math.random < 0.5) 2 else 4
+      val index = (random * list.size).asInstanceOf[Int] % list.size
+      val emptyTile = list.get(index)
+      emptyTile.value = if (random < 0.9) 2 else 4
     }
   }
 
-  def getAvailableSpace: util.ArrayList[Tile] = {
+  def getAvailableSpace(): util.ArrayList[Tile] = {
     val list = new util.ArrayList[Tile](16)
-    for (t <- tiles) {
+    for (t <- this.tiles) {
       if (t.isEmpty) {
         list.add(t)
       }
     }
+
     return list
   }
 
-  def isFull = getAvailableSpace.size == 0
+  def isFull: Boolean = getAvailableSpace.size == 0
 
-  def positionOfTile(x: Int, y: Int): Tile = {
-    return tiles(x + y * 4)
-  }
+  def getPositionOfTile(x: Int, y: Int): Tile = tiles(x + y * 4)
 
-  def resetGrid {
-    tiles = new Array[Tile](16)
-    for (i <- 0 until tiles.length) {
-      tiles(i) = new Tile()
-    }
-    addTile
-    addTile
-  }
 
-  def isTileMoveable: Boolean = {
+  def canBeMoved: Boolean = {
     if (!isFull) {
       return true
     }
 
     for (x <- 0 to 3) {
       for (y <- 0 to 3) {
-        var tile = positionOfTile(x, y)
-        if ((x < 3 && (tile.value == positionOfTile(x + 1, y).value)) || ((y < 3) && (tile.value == positionOfTile(x, y + 1).value))) {
+        var tile = getPositionOfTile(x, y)
+        if ((x < 3 && tile.value == getPositionOfTile(x + 1, y).value) || ((y < 3) && tile.value == getPositionOfTile(x, y + 1).value)) {
           return true
         }
       }
@@ -55,56 +52,61 @@ case class Grid() {
     return false
   }
 
-  def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
-    if (line1 == line2) {
-      return true
-    } else if (line1.length != line2.length) {
-      return false
+  def rotate(angle: Int): Array[Tile] = {
+    val newTiles = new Array[Tile](16)
+    var offsetX = 3
+    var offsetY = 3
+
+    if (angle == 90) {
+      offsetY = 0
+    } else if (angle == 270) {
+      offsetX = 0
     }
 
-    for (i <- 0 to line1.length) {
-      if (line1(i).value != line2(i).value) {
-        return false
+    val rad = Math.toRadians(angle)
+    val cos = Math.cos(rad).toInt
+    val sin = Math.sin(rad).toInt
+
+    for (x <- 0 to 3) {
+      for (y <- 0 to 3) {
+        val newX = (x * cos) - (y * sin) + offsetX
+        val newY = (x * sin) + (y * cos) + offsetY
+        newTiles(newX + newY * 4) = getPositionOfTile(x, y)
       }
     }
 
-    return true
+    return newTiles
   }
 
-  def getLine(index: Int): Array[Tile] = {
-    var result = new Array[Tile](4)
+  def getSingleLine(index: Int): Array[Tile] = {
+    val result = new Array[Tile](4)
+
     for (i <- 0 to 3) {
-      result(i) = positionOfTile(i, index)
+      result(i) = getPositionOfTile(i, index)
     }
 
     return result
   }
 
-  def setLine(index: Int, reset: Array[Tile]): Unit = {
-    System.arraycopy(reset, 0, tiles, index * 4, 4)
+  def setSingleLine(index: Int, re: Array[Tile]): Unit = {
+    System.arraycopy(re, 0, tiles, index * 4, 4)
   }
 
-  def rotateGrid(angle: Int): Array[Tile] = {
-    val newTiles = new Array[Tile](16)
-    var x = 3
-    var y = 3
-    if (angle == 90) {
-      y = 0
-    } else if (angle == 270) {
-      x = 0
-    }
 
-    val radians = Math.toRadians(angle)
-    val cosOfRad = Math.cos(radians).toInt
-    val sinOfRad = Math.sin(radians).toInt
+  override def toString: String = {
+    val s = new StringBuilder
+
     for (i <- 0 to 3) {
+      val tiles = getSingleLine(i)
       for (j <- 0 to 3) {
-        val newX = (x * cosOfRad) - (y * sinOfRad) + x
-        val newY = (x * sinOfRad) + (y * cosOfRad) + y
-        newTiles(newX + newY * 4) = this.positionOfTile(x, y)
+        s.append(tiles(j))
+      }
+
+      if (i != 3) {
+        s.append(System.getProperty("line.separator"))
       }
     }
 
-    return newTiles
+    return s.toString
   }
 }

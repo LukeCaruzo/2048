@@ -12,10 +12,6 @@ class ScoreSpec extends WordSpec with Matchers {
       "have a initial value" in {
         score.value should be(100)
       }
-      "reset" in {
-        score.resetScore()
-        score.value should be(0)
-      }
     }
   }
 }
