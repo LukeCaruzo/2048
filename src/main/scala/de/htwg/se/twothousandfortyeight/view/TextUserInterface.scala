@@ -17,7 +17,6 @@ case class TextUserInterface() {
     println("Your Score: " + TwoThousandFortyEight.score.toString)
 
     val scanner = new Scanner(System.in)
-
     breakable {
       while (true) {
         if (TwoThousandFortyEight.win) {
@@ -28,7 +27,7 @@ case class TextUserInterface() {
           break
         }
 
-        var key = scanner.next
+        val key = scanner.next
 
         if (key == "exit") {
           break
@@ -40,7 +39,6 @@ case class TextUserInterface() {
         System.out.println("Your Score: " + TwoThousandFortyEight.score.toString)
       }
     }
-
     scanner.close
   }
 }

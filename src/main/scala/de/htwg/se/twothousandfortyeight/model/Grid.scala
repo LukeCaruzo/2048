@@ -12,27 +12,26 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
 
   def addTile(random1: Double, random2: Double): Unit = {
     val availableSpace = getAvailableSpace
-    if (!getAvailableSpace.isEmpty) {
-      val index = (random1 * availableSpace.length).asInstanceOf[Int] % availableSpace.length
-      val emptyTile = availableSpace(index)
+    if (!availableSpace.isEmpty) {
+      val emptyTile = availableSpace((random1 * availableSpace.length).asInstanceOf[Int] % availableSpace.length)
       emptyTile.value = if (random2 < 0.9) 2 else 4
     }
   }
 
   def getAvailableSpace(): Array[Tile] = {
-    val list = new util.ArrayList[Tile](16)
-    for (t <- this.tiles) {
-      if (t.isEmpty) {
-        list.add(t)
+    val tilesList = new util.ArrayList[Tile](16)
+    for (tile <- this.tiles) {
+      if (tile.isEmpty) {
+        tilesList.add(tile)
       }
     }
 
-    val array = new Array[Tile](list.size)
-    for (i <- 0 until list.size) {
-      array(i) = list.get(i)
+    val tilesArray = new Array[Tile](tilesList.size)
+    for (i <- 0 until tilesList.size) {
+      tilesArray(i) = tilesList.get(i)
     }
 
-    return array
+    return tilesArray
   }
 
   def isFull: Boolean = getAvailableSpace.size == 0
@@ -58,24 +57,24 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
 
   def rotate(angle: Int): Array[Tile] = {
     val newTiles = new Array[Tile](16)
-    var offsetX = 3
-    var offsetY = 3
+    var oX = 3
+    var oY = 3
 
     if (angle == 90) {
-      offsetY = 0
+      oY = 0
     } else if (angle == 270) {
-      offsetX = 0
+      oX = 0
     }
 
-    val rad = Math.toRadians(angle)
-    val cos = Math.cos(rad).toInt
-    val sin = Math.sin(rad).toInt
+    val radians = Math.toRadians(angle)
+    val cos = Math.cos(radians).toInt
+    val sin = Math.sin(radians).toInt
 
     for (x <- 0 to 3) {
       for (y <- 0 to 3) {
-        val newX = (x * cos) - (y * sin) + offsetX
-        val newY = (x * sin) + (y * cos) + offsetY
-        newTiles(newX + newY * 4) = getPositionOfTile(x, y)
+        val nX = (x * cos) - (y * sin) + oX
+        val nY = (x * sin) + (y * cos) + oY
+        newTiles(nX + nY * 4) = getPositionOfTile(x, y)
       }
     }
 
@@ -83,13 +82,13 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def getSingleLine(index: Int): Array[Tile] = {
-    val result = new Array[Tile](4)
+    val singleLine = new Array[Tile](4)
 
     for (i <- 0 to 3) {
-      result(i) = getPositionOfTile(i, index)
+      singleLine(i) = getPositionOfTile(i, index)
     }
 
-    return result
+    return singleLine
   }
 
   def setSingleLine(index: Int, re: Array[Tile]): Unit = {
@@ -97,19 +96,19 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   override def toString: String = {
-    val s = new StringBuilder
+    val sb = new StringBuilder
 
     for (i <- 0 to 3) {
       val tiles = getSingleLine(i)
       for (j <- 0 to 3) {
-        s.append(tiles(j))
+        sb.append(tiles(j))
       }
 
       if (i != 3) {
-        s.append(System.getProperty("line.separator"))
+        sb.append(System.getProperty("line.separator"))
       }
     }
 
-    return s.toString
+    return sb.toString
   }
 }

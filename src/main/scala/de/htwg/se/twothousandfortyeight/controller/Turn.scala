@@ -7,20 +7,20 @@ import de.htwg.se.twothousandfortyeight.model.{Grid, Score, Tile}
 
 object Turn {
   def left(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
-    var needATile = false
+    var needsATile = false
 
     for (i <- 0 to 3) {
-      val line = grid.getSingleLine(i)
-      val moved = moveSingleLine(line)
-      val merged = mergeSingleLine(score, moved)
-      grid.setSingleLine(i, merged)
+      val singleLine = grid.getSingleLine(i)
+      val movedLine = moveSingleLine(singleLine)
+      val mergedLine = mergeSingleLine(score, movedLine)
+      grid.setSingleLine(i, mergedLine)
 
-      if (!needATile && !compareLines(line, merged)) {
-        needATile = true
+      if (!needsATile && !compareLines(singleLine, mergedLine)) {
+        needsATile = true
       }
     }
 
-    if (needATile) {
+    if (needsATile) {
       grid.addTile(random1, random2)
     }
   }
@@ -44,24 +44,24 @@ object Turn {
   }
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
-    var list = new util.LinkedList[Tile]
+    val helperList = new util.LinkedList[Tile]
     for (i <- 0 to 3) {
       if (!oldLine(i).isEmpty) {
-        list.addLast(oldLine(i))
+        helperList.addLast(oldLine(i))
       }
     }
 
-    if (list.size() == 0) {
+    if (helperList.size() == 0) {
       return oldLine
     } else {
       val newLine = new Array[Tile](4)
 
-      while (list.size != 4) {
-        list.add(new Tile())
+      while (helperList.size != 4) {
+        helperList.add(new Tile())
       }
 
       for (i <- 0 to 3) {
-        newLine(i) = list.removeFirst()
+        newLine(i) = helperList.removeFirst()
       }
 
       return newLine
@@ -69,7 +69,7 @@ object Turn {
   }
 
   def mergeSingleLine(score: Score, oldLine: Array[Tile]): Array[Tile] = {
-    val list = new util.LinkedList[Tile]
+    val helperList = new util.LinkedList[Tile]
 
     var i = 0
     while (i < 4 && !oldLine(i).isEmpty) {
@@ -85,18 +85,18 @@ object Turn {
         i = i + 1
       }
 
-      list.add(new Tile(oldValue))
+      helperList.add(new Tile(oldValue))
       i = i + 1
     }
 
-    if (list.size() == 0) {
+    if (helperList.size() == 0) {
       return oldLine
     } else {
-      while (list.size != 4) {
-        list.add(new Tile())
+      while (helperList.size != 4) {
+        helperList.add(new Tile())
       }
 
-      return list.toArray(new Array[Tile](4))
+      return helperList.toArray(new Array[Tile](4))
     }
   }
 
