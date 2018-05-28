@@ -117,18 +117,22 @@ object Turn {
   }
 
   def makeTurn(key: String, random1: Double, random2: Double): Unit = {
+    if (key == "exit") {
+      sys.exit()
+    }
+
     if (!TwoThousandFortyEight.grid.canBeMoved) {
       TwoThousandFortyEight.lose = true
     }
 
     if (!TwoThousandFortyEight.win && !TwoThousandFortyEight.lose) {
-      if (key == "a") {
+      if (key == "left") {
         left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "d") {
+      } else if (key == "right") {
         right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "s") {
+      } else if (key == "down") {
         down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "w") {
+      } else if (key == "up") {
         up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
       }
     }
