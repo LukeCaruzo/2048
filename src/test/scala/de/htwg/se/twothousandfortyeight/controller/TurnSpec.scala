@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller
 
+import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.model.{Grid, Score, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
@@ -7,8 +8,8 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class TurnSpec extends WordSpec with Matchers {
-  "A Grid" when {
-    "new" should {
+  "A Turn" when {
+    "used" should {
       val grid = new Grid(0.3, 0.5, 0.7, 0.2)
       val score = new Score
       "have a left method" in {
@@ -40,6 +41,26 @@ class TurnSpec extends WordSpec with Matchers {
       "have a compareLines method" in {
         Turn.compareLines(grid.getSingleLine(1), grid.getSingleLine(1)) should be(true)
         Turn.compareLines(grid.getSingleLine(1), grid.getSingleLine(2)) should be(false)
+      }
+      "have a makeTurn method" in {
+        Turn.makeTurn("up", 0.4, 0.7)
+        Turn.makeTurn("down", 0.4, 0.7)
+        Turn.makeTurn("left", 0.4, 0.7)
+        Turn.makeTurn("right", 0.4, 0.7)
+        TwoThousandFortyEight.grid.tiles = Array(new Tile(2), new Tile(4), new Tile(8), new Tile(16), new Tile(32), new Tile(64), new Tile(128), new Tile(256), new Tile(512), new Tile(1024), new Tile(2048), new Tile(4096), new Tile(64), new Tile(32), new Tile(16), new Tile(1024))
+        Turn.makeTurn("left", 0.4, 0.7)
+        TwoThousandFortyEight.lose should be(true)
+      }
+      "have a left method with need for tile" in {
+        grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
+        Turn.left(grid, score, 0.5, 0.3)
+        grid.tiles should be(Array(new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(2), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0)))
+        score.value should be(16388)
+      }
+      "have a mergeSingleLine method with win" in {
+        grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
+        Turn.mergeSingleLine(score, grid.getSingleLine(1)) should be(Array(new Tile(2048), new Tile(2048), new Tile(0), new Tile(0)))
+        TwoThousandFortyEight.win should be(true)
       }
     }
   }

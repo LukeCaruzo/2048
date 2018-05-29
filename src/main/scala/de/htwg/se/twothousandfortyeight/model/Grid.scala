@@ -45,7 +45,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
 
     for (x <- 0 to 3) {
       for (y <- 0 to 3) {
-        var tile = getPositionOfTile(x, y)
+        val tile = getPositionOfTile(x, y)
         if ((x < 3 && tile.value == getPositionOfTile(x + 1, y).value) || ((y < 3) && tile.value == getPositionOfTile(x, y + 1).value)) {
           return true
         }

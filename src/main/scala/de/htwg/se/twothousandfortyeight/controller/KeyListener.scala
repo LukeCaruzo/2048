@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.controller
 
 import java.util.Scanner
 
-case class KeyListener() {
+object KeyListener {
   def processKey(): String = {
     val key = new Scanner(System.in).next
 

@@ -11,8 +11,6 @@ case class TextUserInterface() {
     println(TwoThousandFortyEight.grid.toString)
     println("Your Score: " + TwoThousandFortyEight.score.toString)
 
-    val keyListener = new KeyListener()
-
     while (true) {
       if (TwoThousandFortyEight.win) {
         println("You won!")
@@ -22,7 +20,7 @@ case class TextUserInterface() {
         sys.exit()
       }
 
-      val key = keyListener.processKey()
+      val key = KeyListener.processKey()
 
       Turn.makeTurn(key, Math.random(), Math.random())
 
