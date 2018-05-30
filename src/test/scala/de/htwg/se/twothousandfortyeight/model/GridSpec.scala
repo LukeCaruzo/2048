@@ -9,7 +9,6 @@ class GridSpec extends WordSpec with Matchers {
   "A Grid" when {
     "new" should {
       val grid = new Grid(0.3, 0.5, 0.7, 0.2)
-
       "have a initial tiles" in {
         grid.tiles should be(Array(new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0)))
       }

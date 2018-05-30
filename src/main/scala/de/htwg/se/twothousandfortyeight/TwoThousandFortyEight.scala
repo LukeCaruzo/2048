@@ -1,7 +1,7 @@
 package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
-import de.htwg.se.twothousandfortyeight.view.TextUserInterface
+import de.htwg.se.twothousandfortyeight.view.GUI.GraphicalUserInterface
 
 object TwoThousandFortyEight {
   var win = false
@@ -12,6 +12,7 @@ object TwoThousandFortyEight {
   def main(args: Array[String]): Unit = {
     val student = new Player("Lucas/Bilal")
 
-    new TextUserInterface(student)
+    //new TextUserInterface(student)
+    new GraphicalUserInterface(student)
   }
 }

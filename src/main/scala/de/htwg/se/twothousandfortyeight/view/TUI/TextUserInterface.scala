@@ -1,13 +1,16 @@
-package de.htwg.se.twothousandfortyeight.view
+package de.htwg.se.twothousandfortyeight.view.TUI
+
+import java.util.Scanner
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.controller.{KeyListener, Turn}
+import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.Player
 
-case class TextUserInterface() {
+class TextUserInterface {
   def this(player: Player) {
     this()
     println("Hello " + player.toString + ". Game started!")
+    println()
     println(TwoThousandFortyEight.grid.toString)
     println("Your Score: " + TwoThousandFortyEight.score.toString)
 
@@ -20,12 +23,31 @@ case class TextUserInterface() {
         sys.exit()
       }
 
-      val key = KeyListener.processKey()
+      val key = processKey()
 
       Turn.makeTurn(key, Math.random(), Math.random())
 
       println(TwoThousandFortyEight.grid.toString)
       println("Your Score: " + TwoThousandFortyEight.score.toString)
+    }
+  }
+
+  def processKey(): String = {
+    val key = new Scanner(System.in).next
+
+    if (key == "w") {
+      return "up"
+    } else if (key == "a") {
+      return "left"
+    } else if (key == "s") {
+      return "down"
+    } else if (key == "d") {
+      return "right"
+    } else if (key == "exit") {
+      return "exit"
+    } else {
+      println("Wrong key, retry!")
+      return processKey()
     }
   }
 }

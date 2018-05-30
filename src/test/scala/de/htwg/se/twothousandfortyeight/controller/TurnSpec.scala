@@ -41,6 +41,7 @@ class TurnSpec extends WordSpec with Matchers {
       "have a compareLines method" in {
         Turn.compareLines(grid.getSingleLine(1), grid.getSingleLine(1)) should be(true)
         Turn.compareLines(grid.getSingleLine(1), grid.getSingleLine(2)) should be(false)
+        Turn.compareLines(grid.getSingleLine(1), Array(new Tile(2), new Tile(4), new Tile(0))) should be(false)
       }
       "have a makeTurn method" in {
         Turn.makeTurn("up", 0.4, 0.7)
@@ -51,7 +52,7 @@ class TurnSpec extends WordSpec with Matchers {
         Turn.makeTurn("left", 0.4, 0.7)
         TwoThousandFortyEight.lose should be(true)
       }
-      "have a left method with need for tile" in {
+      "have a left method with no need for tile" in {
         grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
         Turn.left(grid, score, 0.5, 0.3)
         grid.tiles should be(Array(new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(2), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0)))
