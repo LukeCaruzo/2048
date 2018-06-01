@@ -1,7 +1,7 @@
 package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
-import de.htwg.se.twothousandfortyeight.view.GUI.GraphicalUserInterface
+import de.htwg.se.twothousandfortyeight.view.gui.GraphicalUserInterface
 
 object TwoThousandFortyEight {
   var win = false

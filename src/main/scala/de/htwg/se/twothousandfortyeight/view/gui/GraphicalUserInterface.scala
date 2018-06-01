@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.view.GUI
+package de.htwg.se.twothousandfortyeight.view.gui
 
 import java.awt.Dimension
 

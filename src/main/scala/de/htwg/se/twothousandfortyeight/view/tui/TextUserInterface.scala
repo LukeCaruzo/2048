@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.view.TUI
+package de.htwg.se.twothousandfortyeight.view.tui
 
 import java.util.Scanner
 

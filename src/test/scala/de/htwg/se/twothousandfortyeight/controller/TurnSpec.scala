@@ -53,10 +53,10 @@ class TurnSpec extends WordSpec with Matchers {
         TwoThousandFortyEight.lose should be(true)
       }
       "have a left method with no need for tile" in {
-        grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
+        grid.tiles = Array(new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0))
         Turn.left(grid, score, 0.5, 0.3)
-        grid.tiles should be(Array(new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0), new Tile(2048), new Tile(2048), new Tile(2), new Tile(0), new Tile(2048), new Tile(2048), new Tile(0), new Tile(0)))
-        score.value should be(16388)
+        grid.tiles should be(Array(new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0)))
+        score.value should be(4)
       }
       "have a mergeSingleLine method with win" in {
         grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
