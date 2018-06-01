@@ -26,7 +26,7 @@ object Utils {
   def getBackGroundColor(tile: Tile): Color = {
     tile.value match {
       case 2 =>
-        return new Color(0xc6d100)
+        return new Color(0xfff835)
       case 4 =>
         return new Color(0xaed100)
       case 8 =>

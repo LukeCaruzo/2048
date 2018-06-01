@@ -22,7 +22,7 @@ class UtilsSpec extends WordSpec with Matchers {
       }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)
-        Utils.getBackGroundColor(tile2) should be(new Color(0xc6d100))
+        Utils.getBackGroundColor(tile2) should be(new Color(0xfff835))
         val tile4 = new Tile(4)
         Utils.getBackGroundColor(tile4) should be(new Color(0xaed100))
         val tile8 = new Tile(8)
