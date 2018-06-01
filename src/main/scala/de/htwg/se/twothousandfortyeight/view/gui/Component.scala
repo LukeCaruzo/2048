@@ -24,7 +24,7 @@ class Component extends JPanel with KeyListener {
   }
 
   override def keyTyped(e: KeyEvent): Unit = {
-    Turn.makeTurn(processKey(e.getExtendedKeyCode.toString), Math.random(), Math.random())
+    Turn.makeTurn(processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
 
     repaint()
   }
@@ -33,16 +33,16 @@ class Component extends JPanel with KeyListener {
 
   override def keyReleased(e: KeyEvent): Unit = {}
 
-  def processKey(key: String): String = {
-    if (key == "87") {
+  def processKey(key1: Int, key2: Char): String = {
+    if (key1 == 87 || key2 == "w") {
       return "up"
-    } else if (key == "65") {
+    } else if (key1 == 65 || key2 == "a") {
       return "left"
-    } else if (key == "83") {
+    } else if (key1 == 83 || key2 == "s") {
       return "down"
-    } else if (key == "68") {
+    } else if (key1 == 68 || key2 == "d") {
       return "right"
-    } else if (key == "27") {
+    } else if (key1 == 27) {
       return "exit"
     } else {
       return ""

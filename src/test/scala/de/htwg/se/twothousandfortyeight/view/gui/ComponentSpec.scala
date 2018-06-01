@@ -13,12 +13,12 @@ class ComponentSpec extends WordSpec with Matchers {
     "new" should {
       val component = new Component
       "have a processKey method" in {
-        component.processKey("87") should be("up")
-        component.processKey("83") should be("down")
-        component.processKey("68") should be("right")
-        component.processKey("65") should be("left")
-        component.processKey("27") should be("exit")
-        component.processKey("72474") should be("")
+        component.processKey(87, 'w') should be("up")
+        component.processKey(83, 's') should be("down")
+        component.processKey(68, 'd') should be("right")
+        component.processKey(65, 'a') should be("left")
+        component.processKey(27, ' ') should be("exit")
+        component.processKey(32, ' ') should be("")
       }
       "have a getForegroundColor method" in {
         val tile = new Tile(2)
