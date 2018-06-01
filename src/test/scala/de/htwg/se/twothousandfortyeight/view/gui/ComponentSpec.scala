@@ -31,6 +31,27 @@ class ComponentSpec extends WordSpec with Matchers {
         component.getBackGroundColor(tile4) should be(new Color(0xaed100))
         val tile8 = new Tile(8)
         component.getBackGroundColor(tile8) should be(new Color(0x7dd100))
+        val tile16 = new Tile(16)
+        component.getBackGroundColor(tile16) should be(new Color(0x50d100))
+        val tile32 = new Tile(32)
+        component.getBackGroundColor(tile32) should be(new Color(0x00d1a0))
+        val tile64 = new Tile(64)
+        component.getBackGroundColor(tile64) should be(new Color(0x005ad1))
+        val tile128 = new Tile(128)
+        component.getBackGroundColor(tile128) should be(new Color(0x4c00d1))
+        val tile256 = new Tile(256)
+        component.getBackGroundColor(tile256) should be(new Color(0xb500d1))
+        val tile512 = new Tile(512)
+        component.getBackGroundColor(tile512) should be(new Color(0xd10099))
+        val tile1024 = new Tile(1024)
+        component.getBackGroundColor(tile1024) should be(new Color(0xd1005e))
+        val tile2048 = new Tile(2048)
+        component.getBackGroundColor(tile2048) should be(new Color(0xd10000))
+        val tile0 = new Tile(0)
+        component.getBackGroundColor(tile0) should be(new Color(0x707070))
+
+
+
       }
     }
   }

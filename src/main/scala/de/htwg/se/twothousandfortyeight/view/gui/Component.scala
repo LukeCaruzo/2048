@@ -8,8 +8,6 @@ import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.{Player, Tile}
 import javax.swing._
 
-import scala.swing._
-
 class Component extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FONT_NAME = "Helvetica"
