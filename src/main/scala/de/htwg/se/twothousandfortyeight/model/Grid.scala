@@ -2,8 +2,10 @@ package de.htwg.se.twothousandfortyeight.model
 
 import java.util
 
+import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
+
 case class Grid(random1: Double = Math.random(), random2: Double = Math.random(), random3: Double = Math.random(), random4: Double = Math.random()) {
-  var tiles = new Array[Tile](16)
+  var tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE * FIELD_SIZE
   for (i <- 0 until tiles.length) {
     tiles(i) = new Tile()
   }
@@ -19,7 +21,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def getAvailableSpace(): Array[Tile] = {
-    val tilesList = new util.ArrayList[Tile](16)
+    val tilesList = new util.ArrayList[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE * FIELD_SIZE
     for (tile <- this.tiles) {
       if (tile.isEmpty) {
         tilesList.add(tile)
@@ -36,15 +38,15 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
 
   def isFull: Boolean = getAvailableSpace.size == 0
 
-  def getPositionOfTile(x: Int, y: Int): Tile = tiles(x + y * 4)
+  def getPositionOfTile(x: Int, y: Int): Tile = tiles(x + y * TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE
 
   def canBeMoved: Boolean = {
     if (!isFull) {
       return true
     }
 
-    for (x <- 0 to 3) {
-      for (y <- 0 to 3) {
+    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
+      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
         val tile = getPositionOfTile(x, y)
         if ((x < 3 && tile.value == getPositionOfTile(x + 1, y).value) || ((y < 3) && tile.value == getPositionOfTile(x, y + 1).value)) {
           return true
@@ -56,9 +58,9 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def rotate(angle: Int): Array[Tile] = {
-    val newTiles = new Array[Tile](16)
-    var oX = 3
-    var oY = 3
+    val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE * FIELD_SIZE
+    var oX = TwoThousandFortyEight.FIELD_SIZE - 1 // FIELD_SIZE - 1
+    var oY = TwoThousandFortyEight.FIELD_SIZE - 1 // FIELD_SIZE - 1
 
     if (angle == 90) {
       oY = 0
@@ -70,11 +72,11 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     val cos = Math.cos(radians).toInt
     val sin = Math.sin(radians).toInt
 
-    for (x <- 0 to 3) {
-      for (y <- 0 to 3) {
+    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
+      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
         val nX = (x * cos) - (y * sin) + oX
         val nY = (x * sin) + (y * cos) + oY
-        newTiles(nX + nY * 4) = getPositionOfTile(x, y)
+        newTiles(nX + nY * TwoThousandFortyEight.FIELD_SIZE) = getPositionOfTile(x, y) // FIELD_SIZE
       }
     }
 
@@ -82,9 +84,9 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def getSingleLine(index: Int): Array[Tile] = {
-    val singleLine = new Array[Tile](4)
+    val singleLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE
 
-    for (i <- 0 to 3) {
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
       singleLine(i) = getPositionOfTile(i, index)
     }
 
@@ -92,19 +94,19 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def setSingleLine(index: Int, re: Array[Tile]): Unit = {
-    System.arraycopy(re, 0, tiles, index * 4, 4)
+    System.arraycopy(re, 0, tiles, index * TwoThousandFortyEight.FIELD_SIZE, TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE
   }
 
   override def toString: String = {
     val sb = new StringBuilder
 
-    for (i <- 0 to 3) {
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
       val tiles = getSingleLine(i)
-      for (j <- 0 to 3) {
+      for (j <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
         sb.append(tiles(j))
       }
 
-      if (i != 3) {
+      if (i != (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
         sb.append(System.getProperty("line.separator"))
       }
     }

@@ -4,6 +4,7 @@ import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
 import de.htwg.se.twothousandfortyeight.view.gui.GraphicalUserInterface
 
 object TwoThousandFortyEight {
+  val FIELD_SIZE = 4
   var win = false
   var lose = false
   var score = new Score

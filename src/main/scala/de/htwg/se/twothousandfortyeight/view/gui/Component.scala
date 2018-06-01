@@ -11,8 +11,8 @@ import javax.swing._
 class Component extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FONT_NAME = "Helvetica"
-  val TILE_SIZE = 128
-  val TILES_BORDER = 32
+  val TILE_SIZE = 512 / TwoThousandFortyEight.FIELD_SIZE
+  val TILES_BORDER = 128 / TwoThousandFortyEight.FIELD_SIZE
   var player = new Player("")
 
   def this(player: Player) {
@@ -55,9 +55,9 @@ class Component extends JPanel with KeyListener {
     graphics.setColor(BACKGROUND_COLOR)
     graphics.fillRect(0, 0, this.getSize().width, this.getSize().height)
 
-    for (x <- 0 to 3) {
-      for (y <- 0 to 3) {
-        drawTile(graphics, TwoThousandFortyEight.grid.tiles(x + y * 4), x, y);
+    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+        drawTile(graphics, TwoThousandFortyEight.grid.tiles(x + y * TwoThousandFortyEight.FIELD_SIZE), x, y);
       }
     }
   }
@@ -75,7 +75,16 @@ class Component extends JPanel with KeyListener {
     graphics.fillRoundRect(xO, yO, TILE_SIZE, TILE_SIZE, 28, 28)
     graphics.setColor(getForegroundColor(tile))
 
-    val size = if (valueOfTile < 100) 72 else if (valueOfTile < 1000) 64 else 58
+    var size = 0
+
+    if (valueOfTile < 100) {
+      size = 288 / TwoThousandFortyEight.FIELD_SIZE
+    } else if (valueOfTile < 1000) {
+      size = 256 / TwoThousandFortyEight.FIELD_SIZE
+    } else {
+      size = 232 / TwoThousandFortyEight.FIELD_SIZE
+    }
+
     val font = new Font(FONT_NAME, Font.BOLD, size)
     graphics.setFont(font)
 

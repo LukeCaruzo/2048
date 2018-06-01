@@ -9,7 +9,7 @@ object Turn {
   def left(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     var needsATile = false
 
-    for (i <- 0 to 3) {
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
       val singleLine = grid.getSingleLine(i)
       val movedLine = moveSingleLine(singleLine)
       val mergedLine = mergeSingleLine(score, movedLine)
@@ -45,7 +45,7 @@ object Turn {
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
     val helperList = new util.LinkedList[Tile]
-    for (i <- 0 to 3) {
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
       if (!oldLine(i).isEmpty) {
         helperList.addLast(oldLine(i))
       }
@@ -54,13 +54,13 @@ object Turn {
     if (helperList.size() == 0) {
       return oldLine
     } else {
-      val newLine = new Array[Tile](4)
+      val newLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE
 
-      while (helperList.size != 4) {
+      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) { // FIELD_SIZE
         helperList.add(new Tile())
       }
 
-      for (i <- 0 to 3) {
+      for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
         newLine(i) = helperList.removeFirst()
       }
 
@@ -72,9 +72,9 @@ object Turn {
     val helperList = new util.LinkedList[Tile]
 
     var i = 0
-    while (i < 4 && !oldLine(i).isEmpty) {
+    while (i < TwoThousandFortyEight.FIELD_SIZE && !oldLine(i).isEmpty) { // FIELD_SIZE
       var oldValue = oldLine(i).value
-      if (i < 3 && oldLine(i).value == oldLine(i + 1).value) {
+      if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) { // FIELD_SIZE - 1
         oldValue *= 2
         score.value += oldValue
 
@@ -92,11 +92,11 @@ object Turn {
     if (helperList.size() == 0) {
       return oldLine
     } else {
-      while (helperList.size != 4) {
+      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) { // FIELD_SIZE
         helperList.add(new Tile())
       }
 
-      return helperList.toArray(new Array[Tile](4))
+      return helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)) // FIELD_SIZE
     }
   }
 

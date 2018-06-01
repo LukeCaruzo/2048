@@ -4,8 +4,8 @@ import java.awt.Color
 
 import de.htwg.se.twothousandfortyeight.model.Tile
 import org.junit.runner.RunWith
-import org.scalatest.{Matchers, WordSpec}
 import org.scalatest.junit.JUnitRunner
+import org.scalatest.{Matchers, WordSpec}
 
 @RunWith(classOf[JUnitRunner])
 class ComponentSpec extends WordSpec with Matchers {
@@ -49,9 +49,6 @@ class ComponentSpec extends WordSpec with Matchers {
         component.getBackGroundColor(tile2048) should be(new Color(0xd10000))
         val tile0 = new Tile(0)
         component.getBackGroundColor(tile0) should be(new Color(0x707070))
-
-
-
       }
     }
   }
