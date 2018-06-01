@@ -34,13 +34,13 @@ class Component extends JPanel with KeyListener {
   override def keyReleased(e: KeyEvent): Unit = {}
 
   def processKey(key1: Int, key2: Char): String = {
-    if (key1 == 87 || key2 == "w") {
+    if (key1 == 87 || key2 == 'w') {
       return "up"
-    } else if (key1 == 65 || key2 == "a") {
+    } else if (key1 == 65 || key2 == 'a') {
       return "left"
-    } else if (key1 == 83 || key2 == "s") {
+    } else if (key1 == 83 || key2 == 's') {
       return "down"
-    } else if (key1 == 68 || key2 == "d") {
+    } else if (key1 == 68 || key2 == 'd') {
       return "right"
     } else if (key1 == 27) {
       return "exit"
