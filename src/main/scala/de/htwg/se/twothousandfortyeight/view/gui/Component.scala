@@ -9,21 +9,13 @@ import de.htwg.se.twothousandfortyeight.model.{Player, Tile}
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 
-class Component extends JPanel with KeyListener {
+class Component(player: Player) extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FOREGROUND_COLOR = new Color(0xededed)
   val FONT_NAME = "Helvetica"
   val TILE_SIZE = 512 / TwoThousandFortyEight.FIELD_SIZE
   val TILES_BORDER = 128 / TwoThousandFortyEight.FIELD_SIZE
-  var player = new Player("")
-
-  def this(player: Player) {
-    this()
-
-    this.player = player
-
-    repaint()
-  }
+  repaint()
 
   override def keyTyped(e: KeyEvent): Unit = {
     Turn.makeTurn(Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())

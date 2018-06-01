@@ -1,6 +1,5 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-import java.awt.Color
 import java.util
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
@@ -10,7 +9,7 @@ object Turn {
   def left(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     var needsATile = false
 
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
       val singleLine = grid.getSingleLine(i)
       val movedLine = moveSingleLine(singleLine)
       val mergedLine = mergeSingleLine(score, movedLine)
@@ -46,7 +45,7 @@ object Turn {
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
     val helperList = new util.LinkedList[Tile]
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
+    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
       if (!oldLine(i).isEmpty) {
         helperList.addLast(oldLine(i))
       }
@@ -55,13 +54,13 @@ object Turn {
     if (helperList.size() == 0) {
       return oldLine
     } else {
-      val newLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE) // FIELD_SIZE
+      val newLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)
 
-      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) { // FIELD_SIZE
+      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) {
         helperList.add(new Tile())
       }
 
-      for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) { // FIELD_SIZE - 1
+      for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
         newLine(i) = helperList.removeFirst()
       }
 
@@ -73,9 +72,9 @@ object Turn {
     val helperList = new util.LinkedList[Tile]
 
     var i = 0
-    while (i < TwoThousandFortyEight.FIELD_SIZE && !oldLine(i).isEmpty) { // FIELD_SIZE
+    while (i < TwoThousandFortyEight.FIELD_SIZE && !oldLine(i).isEmpty) {
       var oldValue = oldLine(i).value
-      if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) { // FIELD_SIZE - 1
+      if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) {
         oldValue *= 2
         score.value += oldValue
 
@@ -93,11 +92,11 @@ object Turn {
     if (helperList.size() == 0) {
       return oldLine
     } else {
-      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) { // FIELD_SIZE
+      while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) {
         helperList.add(new Tile())
       }
 
-      return helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)) // FIELD_SIZE
+      return helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE))
     }
   }
 
@@ -138,21 +137,25 @@ object Turn {
     }
 
     if (!TwoThousandFortyEight.win && !TwoThousandFortyEight.lose) {
-      key match {
-        case "left" =>
-          left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-        case "right" =>
-          right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-        case "down" =>
-          down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-        case "up" =>
-          up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-        case _ =>
-      }
+      runMove(key, random1, random2)
     }
 
     if (!TwoThousandFortyEight.win && !TwoThousandFortyEight.grid.canBeMoved) {
       TwoThousandFortyEight.lose = true
+    }
+  }
+
+  def runMove(key: String, random1: Double, random2: Double): Unit = {
+    key match {
+      case "left" =>
+        left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+      case "right" =>
+        right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+      case "down" =>
+        down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+      case "up" =>
+        up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+      case _ =>
     }
   }
 }
