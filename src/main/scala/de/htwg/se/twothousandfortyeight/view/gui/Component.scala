@@ -71,7 +71,7 @@ class Component extends JPanel with KeyListener {
     graphics.setColor(getBackGroundColor(tile))
     val xO = x * (TILES_BORDER + TILE_SIZE) + TILES_BORDER
     val yO = y * (TILES_BORDER + TILE_SIZE) + TILES_BORDER
-    graphics.fillRoundRect(xO, yO, TILE_SIZE, TILE_SIZE, 28, 28)
+    graphics.fillRoundRect(xO, yO, TILE_SIZE, TILE_SIZE, 12, 12)
     graphics.setColor(getForegroundColor(tile))
 
     var size = 0
