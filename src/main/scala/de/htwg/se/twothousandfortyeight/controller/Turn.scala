@@ -116,7 +116,18 @@ object Turn {
     return true
   }
 
+  def resetGame(): Unit = {
+    TwoThousandFortyEight.win = false
+    TwoThousandFortyEight.lose = false
+    TwoThousandFortyEight.score = new Score
+    TwoThousandFortyEight.grid = new Grid
+  }
+
   def makeTurn(key: String, random1: Double, random2: Double): Unit = {
+    if (key == "reset") {
+      resetGame()
+    }
+
     if (key == "exit") {
       sys.exit()
     }

@@ -45,6 +45,8 @@ class TextUserInterface {
       return "right"
     } else if (key == "exit") {
       return "exit"
+    } else if (key == "reset") {
+      return "reset"
     } else {
       println("Wrong key, retry!")
       return processKey()

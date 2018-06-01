@@ -44,6 +44,8 @@ class Component extends JPanel with KeyListener {
       return "right"
     } else if (key1 == 27) {
       return "exit"
+    } else if (key1 == 82 || key2 == 'r') {
+      return "reset"
     } else {
       return ""
     }
@@ -57,16 +59,13 @@ class Component extends JPanel with KeyListener {
 
     for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
       for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
-        drawTile(graphics, TwoThousandFortyEight.grid.tiles(x + y * TwoThousandFortyEight.FIELD_SIZE), x, y);
+        draw(graphics, TwoThousandFortyEight.grid.tiles(x + y * TwoThousandFortyEight.FIELD_SIZE), x, y);
       }
     }
   }
 
-  private def drawTile(graphics2: Graphics, tile: Tile, x: Int, y: Int): Unit = {
+  private def draw(graphics2: Graphics, tile: Tile, x: Int, y: Int): Unit = {
     val graphics = graphics2.asInstanceOf[Graphics2D]
-
-    graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
-    graphics.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE)
 
     val valueOfTile = tile.value
     graphics.setColor(getBackGroundColor(tile))
