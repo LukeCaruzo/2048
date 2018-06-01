@@ -51,6 +51,8 @@ class TurnSpec extends WordSpec with Matchers {
         TwoThousandFortyEight.grid.tiles = Array(new Tile(2), new Tile(4), new Tile(8), new Tile(16), new Tile(32), new Tile(64), new Tile(128), new Tile(256), new Tile(512), new Tile(1024), new Tile(2048), new Tile(4096), new Tile(64), new Tile(32), new Tile(16), new Tile(1024))
         Turn.makeTurn("left", 0.4, 0.7)
         TwoThousandFortyEight.lose should be(true)
+        Turn.makeTurn("reset", 0.5, 0.5)
+        TwoThousandFortyEight.lose should be(false)
       }
       "have a left method with no need for tile" in {
         grid.tiles = Array(new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0))
@@ -62,6 +64,12 @@ class TurnSpec extends WordSpec with Matchers {
         grid.tiles = Array(new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024), new Tile(1024))
         Turn.mergeSingleLine(score, grid.getSingleLine(1)) should be(Array(new Tile(2048), new Tile(2048), new Tile(0), new Tile(0)))
         TwoThousandFortyEight.win should be(true)
+      }
+      "have a resetGame method" in {
+        TwoThousandFortyEight.win = true
+        TwoThousandFortyEight.win should be(true)
+        Turn.resetGame()
+        TwoThousandFortyEight.win should be(false)
       }
     }
   }

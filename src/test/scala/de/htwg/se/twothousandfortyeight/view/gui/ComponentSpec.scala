@@ -18,6 +18,7 @@ class ComponentSpec extends WordSpec with Matchers {
         component.processKey(68, 'd') should be("right")
         component.processKey(65, 'a') should be("left")
         component.processKey(27, ' ') should be("exit")
+        component.processKey(82, 'r') should be("reset")
         component.processKey(32, ' ') should be("")
       }
       "have a getForegroundColor method" in {
