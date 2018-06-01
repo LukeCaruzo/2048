@@ -2,9 +2,10 @@ package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.model.{Grid, Player, Score}
 import de.htwg.se.twothousandfortyeight.view.gui.GraphicalUserInterface
+import de.htwg.se.twothousandfortyeight.view.tui.TextUserInterface
 
 object TwoThousandFortyEight {
-  val FIELD_SIZE = 4
+  val FIELD_SIZE = 4 // Tests are configured for 4
   var win = false
   var lose = false
   var score = new Score

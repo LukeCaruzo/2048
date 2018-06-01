@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller
 
+import java.awt.Color
 import java.util
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
@@ -137,14 +138,16 @@ object Turn {
     }
 
     if (!TwoThousandFortyEight.win && !TwoThousandFortyEight.lose) {
-      if (key == "left") {
-        left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "right") {
-        right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "down") {
-        down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
-      } else if (key == "up") {
-        up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+      key match {
+        case "left" =>
+          left(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+        case "right" =>
+          right(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+        case "down" =>
+          down(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+        case "up" =>
+          up(TwoThousandFortyEight.grid, TwoThousandFortyEight.score, random1, random2)
+        case _ =>
       }
     }
 

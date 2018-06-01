@@ -5,6 +5,7 @@ import java.util.Scanner
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.Player
+import de.htwg.se.twothousandfortyeight.util.Utils
 
 class TextUserInterface {
   def this(player: Player) {
@@ -23,33 +24,12 @@ class TextUserInterface {
         sys.exit()
       }
 
-      val key = processKey()
+      val key = new Scanner(System.in).next()
 
-      Turn.makeTurn(key, Math.random(), Math.random())
+      Turn.makeTurn(Utils.processKey(0, key.toCharArray()(0)), Math.random(), Math.random())
 
       println(TwoThousandFortyEight.grid.toString)
       println("Your Score: " + TwoThousandFortyEight.score.toString)
-    }
-  }
-
-  def processKey(): String = {
-    val key = new Scanner(System.in).next
-
-    if (key == "w") {
-      return "up"
-    } else if (key == "a") {
-      return "left"
-    } else if (key == "s") {
-      return "down"
-    } else if (key == "d") {
-      return "right"
-    } else if (key == "exit") {
-      return "exit"
-    } else if (key == "reset") {
-      return "reset"
-    } else {
-      println("Wrong key, retry!")
-      return processKey()
     }
   }
 }
