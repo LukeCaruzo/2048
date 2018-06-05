@@ -33,8 +33,8 @@ class Component(player: Player) extends JPanel with KeyListener {
     graphics.setColor(BACKGROUND_COLOR)
     graphics.fillRect(0, 0, this.getSize().width, this.getSize().height)
 
-    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
-      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (x <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
+      for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         draw(graphics, TwoThousandFortyEight.grid.tiles(x + y * TwoThousandFortyEight.FIELD_SIZE), x, y);
       }
     }

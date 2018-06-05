@@ -6,14 +6,14 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
 case class Grid(random1: Double = Math.random(), random2: Double = Math.random(), random3: Double = Math.random(), random4: Double = Math.random()) {
   var tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
-  for (i <- 0 until tiles.length) {
+  for (i <- tiles.indices) {
     tiles(i) = new Tile()
   }
   addTile(random1, random2)
   addTile(random3, random4)
 
   def addTile(random1: Double, random2: Double): Unit = {
-    val availableSpace = getAvailableSpace
+    val availableSpace = getAvailableSpace()
     if (!availableSpace.isEmpty) {
       val emptyTile = availableSpace((random1 * availableSpace.length).asInstanceOf[Int] % availableSpace.length)
       emptyTile.value = if (random2 < 0.9) 2 else 4
@@ -36,7 +36,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     return tilesArray
   }
 
-  def isFull: Boolean = getAvailableSpace.size == 0
+  def isFull: Boolean = getAvailableSpace().length == 0
 
   def getPositionOfTile(x: Int, y: Int): Tile = tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
 
@@ -45,8 +45,8 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
       return true
     }
 
-    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
-      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (x <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
+      for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         val tile = getPositionOfTile(x, y)
         if ((x < (TwoThousandFortyEight.FIELD_SIZE - 1) && tile.value == getPositionOfTile(x + 1, y).value) || ((y < (TwoThousandFortyEight.FIELD_SIZE - 1)) && tile.value == getPositionOfTile(x, y + 1).value)) {
           return true
@@ -72,8 +72,8 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     val cos = Math.cos(radians).toInt
     val sin = Math.sin(radians).toInt
 
-    for (x <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
-      for (y <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (x <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
+      for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         val nX = (x * cos) - (y * sin) + oX
         val nY = (x * sin) + (y * cos) + oY
         newTiles(nX + nY * TwoThousandFortyEight.FIELD_SIZE) = getPositionOfTile(x, y)
@@ -86,7 +86,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   def getSingleLine(index: Int): Array[Tile] = {
     val singleLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)
 
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       singleLine(i) = getPositionOfTile(i, index)
     }
 
@@ -100,9 +100,9 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   override def toString: String = {
     val sb = new StringBuilder
 
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val tiles = getSingleLine(i)
-      for (j <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+      for (j <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         sb.append(tiles(j))
       }
 

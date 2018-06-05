@@ -9,7 +9,7 @@ object Turn {
   def left(grid: Grid, score: Score, random1: Double, random2: Double): Unit = {
     var needsATile = false
 
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val singleLine = grid.getSingleLine(i)
       val movedLine = moveSingleLine(singleLine)
       val mergedLine = mergeSingleLine(score, movedLine)
@@ -45,7 +45,7 @@ object Turn {
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
     val helperList = new util.LinkedList[Tile]
-    for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+    for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       if (!oldLine(i).isEmpty) {
         helperList.addLast(oldLine(i))
       }
@@ -60,7 +60,7 @@ object Turn {
         helperList.add(new Tile())
       }
 
-      for (i <- 0 to (TwoThousandFortyEight.FIELD_SIZE - 1)) {
+      for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         newLine(i) = helperList.removeFirst()
       }
 
@@ -107,7 +107,7 @@ object Turn {
       return false
     }
 
-    for (i <- 0 until line1.length) {
+    for (i <- line1.indices) {
       if (line1(i).value != line2(i).value) {
         return false
       }
