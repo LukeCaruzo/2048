@@ -4,33 +4,33 @@ import java.util.Scanner
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.Player
+import de.htwg.se.twothousandfortyeight.model.{Game, Player}
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class TextUserInterface {
-  def this(player: Player) {
+  def this(player: Player, game: Game) {
     this()
     println("Hello " + player.toString + ". Game started!")
-    println("Used W A S D to move and R to reset and T to exit.")
+    println("Used W A S D to move and R to reset and T to exit and Z to save and U to load.")
     println()
-    println(TwoThousandFortyEight.grid.toString)
-    println("Your Score: " + TwoThousandFortyEight.score.toString)
+    println(game.grid.toString)
+    println("Your Score: " + game.score.toString)
 
     while (true) {
-      if (TwoThousandFortyEight.win) {
+      if (game.win) {
         println("You won!")
         sys.exit()
-      } else if (TwoThousandFortyEight.lose) {
+      } else if (game.lose) {
         println("You lost!")
         sys.exit()
       }
 
       val key = new Scanner(System.in).next()
 
-      Turn.makeTurn(Utils.processKey(0, key.toCharArray()(0)), Math.random(), Math.random())
+      Turn.makeTurn(game, Utils.processKey(0, key.toCharArray()(0)), Math.random(), Math.random())
 
-      println(TwoThousandFortyEight.grid.toString)
-      println("Your Score: " + TwoThousandFortyEight.score.toString)
+      println(game.grid.toString)
+      println("Your Score: " + game.score.toString)
     }
   }
 }

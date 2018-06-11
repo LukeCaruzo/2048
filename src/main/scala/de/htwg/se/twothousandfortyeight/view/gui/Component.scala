@@ -5,11 +5,11 @@ import java.awt.{Color, Graphics2D, _}
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.{Player, Tile}
+import de.htwg.se.twothousandfortyeight.model.{Game, Player, Tile}
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 
-class Component(player: Player) extends JPanel with KeyListener {
+class Component(player: Player, game: Game) extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FOREGROUND_COLOR = new Color(0xededed)
   val FONT_NAME = "Helvetica"
@@ -18,7 +18,7 @@ class Component(player: Player) extends JPanel with KeyListener {
   repaint()
 
   override def keyTyped(e: KeyEvent): Unit = {
-    Turn.makeTurn(Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
+    Turn.makeTurn(game, Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
 
     repaint()
   }
@@ -35,7 +35,7 @@ class Component(player: Player) extends JPanel with KeyListener {
 
     for (x <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
-        draw(graphics, TwoThousandFortyEight.grid.tiles(x + y * TwoThousandFortyEight.FIELD_SIZE), x, y);
+        draw(graphics, game.grid.getPositionOfTile(x, y), x, y);
       }
     }
   }
@@ -72,22 +72,22 @@ class Component(player: Player) extends JPanel with KeyListener {
       graphics.drawString(valueString, xO + (TILE_SIZE - stringWidth) / 2, yO + TILE_SIZE - (TILE_SIZE - stringHeight) / 2 - 2)
     }
 
-    if (TwoThousandFortyEight.win || TwoThousandFortyEight.lose) {
+    if (game.win || game.lose) {
       graphics.setColor(new Color(255, 255, 255, 40))
       graphics.fillRect(0, 0, getWidth, getHeight)
       graphics.setColor(new Color(0xFF0000))
       graphics.setFont(new Font(FONT_NAME, Font.BOLD, 96))
 
-      if (TwoThousandFortyEight.win) {
+      if (game.win) {
         graphics.drawString("You won!", 136, 300)
       }
 
-      if (TwoThousandFortyEight.lose) {
+      if (game.lose) {
         graphics.drawString("Game over!", 90, 260)
         graphics.drawString("You lost!", 140, 400)
       }
 
-      if (TwoThousandFortyEight.win || TwoThousandFortyEight.lose) {
+      if (game.win || game.lose) {
         graphics.setFont(new Font(FONT_NAME, Font.PLAIN, 32))
         graphics.setColor(new Color(0x545454))
         graphics.drawString("Press T to exit or R to reset!", 150, getHeight - 80)
@@ -96,7 +96,7 @@ class Component(player: Player) extends JPanel with KeyListener {
 
     graphics.setFont(new Font(FONT_NAME, Font.PLAIN, 32))
     graphics.setColor(new Color(0x545454))
-    graphics.drawString("Score: " + TwoThousandFortyEight.score.value, 400, 740)
+    graphics.drawString("Score: " + game.score.value, 400, 740)
     graphics.drawString(this.player.name, 70, 740)
   }
 }

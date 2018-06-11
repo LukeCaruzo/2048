@@ -2,11 +2,11 @@ package de.htwg.se.twothousandfortyeight.view.gui
 
 import java.awt.Dimension
 
-import de.htwg.se.twothousandfortyeight.model.Player
+import de.htwg.se.twothousandfortyeight.model.{Game, Player}
 import javax.swing.{WindowConstants, _}
 
 class GraphicalUserInterface extends JFrame {
-  def this(player: Player) {
+  def this(player: Player, game: Game) {
     this()
 
     setTitle("2048")
@@ -14,7 +14,7 @@ class GraphicalUserInterface extends JFrame {
     setSize(680, 800)
     setResizable(false)
 
-    val component: Component = new Component(player)
+    val component: Component = new Component(player, game)
     component.addKeyListener(component)
     component.setFocusable(true)
     component.setPreferredSize(new Dimension(680, 800))
