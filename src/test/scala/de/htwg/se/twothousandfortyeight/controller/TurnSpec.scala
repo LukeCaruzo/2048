@@ -52,6 +52,8 @@ class TurnSpec extends WordSpec with Matchers {
         game.lose should be(true)
         Turn.makeTurn(game, "reset", 0.5, 0.5)
         game.lose should be(false)
+        Turn.makeTurn(game, "save", 0.5, 0.5)
+        Turn.makeTurn(game, "load", 0.5, 0.5)
       }
       "have a left method with no need for tile" in {
         game.grid.tiles = Array(new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(0))

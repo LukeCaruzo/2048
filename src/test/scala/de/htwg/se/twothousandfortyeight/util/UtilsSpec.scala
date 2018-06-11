@@ -18,6 +18,8 @@ class UtilsSpec extends WordSpec with Matchers {
         Utils.processKey(65, 'a') should be("left")
         Utils.processKey(84, 't') should be("exit")
         Utils.processKey(82, 'r') should be("reset")
+        Utils.processKey(90, 'z') should be("save")
+        Utils.processKey(85, 'u') should be("load")
         Utils.processKey(32, ' ') should be("")
       }
       "have a getBackgroundColor method" in {

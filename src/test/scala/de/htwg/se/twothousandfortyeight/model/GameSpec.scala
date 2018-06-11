@@ -19,6 +19,17 @@ class GameSpec extends WordSpec with Matchers {
         game.reset
         game.win should be(false)
       }
+      "have a save method" in {
+        game.win = true
+        game.win should be(true)
+        game.save
+      }
+      "have a load method" in {
+        game.win = false
+        game.win should be(false)
+        game.load
+        game.win should be(true)
+      }
     }
   }
 }
