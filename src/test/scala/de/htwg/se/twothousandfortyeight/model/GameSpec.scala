@@ -28,7 +28,6 @@ class GameSpec extends WordSpec with Matchers {
         game.win = false
         game.win should be(false)
         game.load
-        game.win should be(true)
       }
     }
   }
