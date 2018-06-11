@@ -2,7 +2,6 @@ package de.htwg.se.twothousandfortyeight.view.tui
 
 import java.util.Scanner
 
-import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.{Game, Player}
 import de.htwg.se.twothousandfortyeight.util.Utils

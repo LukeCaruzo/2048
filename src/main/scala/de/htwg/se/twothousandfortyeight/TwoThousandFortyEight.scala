@@ -1,7 +1,5 @@
 package de.htwg.se.twothousandfortyeight
 
-import java.util.Scanner
-
 import de.htwg.se.twothousandfortyeight.model.{Game, Player}
 import de.htwg.se.twothousandfortyeight.view.gui.GraphicalUserInterface
 //import de.htwg.se.twothousandfortyeight.view.tui.TextUserInterface
