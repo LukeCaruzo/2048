@@ -22,12 +22,12 @@ class GameSpec extends WordSpec with Matchers {
       "have a save method" in {
         game.win = true
         game.win should be(true)
-        game.save
+        game.save("test.2048")
       }
       "have a load method" in {
         game.win = false
         game.win should be(false)
-        game.load
+        game.load("test.2048")
       }
     }
   }

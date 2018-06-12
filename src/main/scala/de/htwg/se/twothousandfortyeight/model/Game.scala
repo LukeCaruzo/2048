@@ -15,14 +15,14 @@ class Game extends Serializable {
     grid = new Grid
   }
 
-  def save: Unit = {
-    val oos = new ObjectOutputStream(new FileOutputStream("savegame.2048"))
+  def save(filename: String): Unit = {
+    val oos = new ObjectOutputStream(new FileOutputStream(filename))
     oos.writeObject(this)
     oos.close
   }
 
-  def load: Unit = {
-    val ois = new ObjectInputStream(new FileInputStream("savegame.2048"))
+  def load(filename: String): Unit = {
+    val ois = new ObjectInputStream(new FileInputStream(filename))
     val game = ois.readObject.asInstanceOf[Game]
     this.win = game.win
     this.lose = game.lose

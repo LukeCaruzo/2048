@@ -117,21 +117,7 @@ object Turn {
   }
 
   def makeTurn(game: Game, key: String, random1: Double, random2: Double): Unit = {
-    if (key == "reset") {
-      game.reset
-    }
-
-    if (key == "save") {
-      game.save
-    }
-
-    if (key == "load") {
-      game.load
-    }
-
-    if (key == "exit") {
-      sys.exit()
-    }
+    runSpecialMove(game, key)
 
     if (!game.grid.canBeMoved) {
       game.lose = true
@@ -143,6 +129,23 @@ object Turn {
 
     if (!game.win && !game.grid.canBeMoved) {
       game.lose = true
+    }
+  }
+
+  def runSpecialMove(game: Game, key: String): Unit = {
+    key match {
+      case "undo" =>
+        game.load("undo.2048")
+      case "reset" =>
+        game.reset
+      case "save" =>
+        game.save("save.2048")
+      case "load" =>
+        game.load("save.2048")
+      case "exit" =>
+        sys.exit()
+      case _ =>
+        game.save("undo.2048")
     }
   }
 

@@ -22,6 +22,8 @@ object Utils {
       return "save"
     } else if (key1 == 85 || key2 == 'u') {
       return "load"
+    } else if (key1 == 81 || key2 == 'q') {
+      return "undo"
     } else {
       return ""
     }
