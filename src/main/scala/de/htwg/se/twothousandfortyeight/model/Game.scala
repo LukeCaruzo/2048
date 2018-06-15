@@ -30,4 +30,11 @@ class Game extends Serializable {
     this.grid = game.grid
     ois.close
   }
+
+  //  def overwrite(game: Game) {
+  //    this.win = game.win
+  //    this.lose = game.lose
+  //    this.score = game.score
+  //    this.grid = game.grid
+  //  }
 }

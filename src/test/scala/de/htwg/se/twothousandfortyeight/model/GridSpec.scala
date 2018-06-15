@@ -41,13 +41,19 @@ class GridSpec extends WordSpec with Matchers {
         grid.tiles should be(Array(new Tile(0), new Tile(4), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(2), new Tile(0)))
       }
       "have a rotate method which is called with 90" in {
-        grid.rotate(90) should be(Array(new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(4), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0)))
+        grid.rotate(90)
+        grid.tiles should be(Array(new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(4), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0)))
+        grid.rotate(270)
       }
       "have a rotate method which is called with 180" in {
-        grid.rotate(180) should be(Array(new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(4), new Tile(0)))
+        grid.rotate(180)
+        grid.tiles should be(Array(new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(0), new Tile(0), new Tile(4), new Tile(0)))
+        grid.rotate(180)
       }
       "have a rotate method which is called with 270" in {
-        grid.rotate(270) should be(Array(new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(4), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0)))
+        grid.rotate(270)
+        grid.tiles should be(Array(new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(2), new Tile(4), new Tile(2), new Tile(0), new Tile(0), new Tile(0), new Tile(2), new Tile(0), new Tile(0)))
+        grid.rotate(90)
       }
       "have a toString method" in {
         grid.toString should be("(0)(4)(0)(0)\n(2)(2)(0)(0)\n(0)(0)(2)(2)\n(0)(0)(2)(0)")

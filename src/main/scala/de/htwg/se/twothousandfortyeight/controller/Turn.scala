@@ -26,21 +26,21 @@ object Turn {
   }
 
   def right(game: Game, random1: Double, random2: Double): Unit = {
-    game.grid.tiles = game.grid.rotate(180)
+    game.grid.rotate(180)
     left(game, random1, random2)
-    game.grid.tiles = game.grid.rotate(180)
+    game.grid.rotate(180)
   }
 
   def up(game: Game, random1: Double, random2: Double): Unit = {
-    game.grid.tiles = game.grid.rotate(270)
+    game.grid.rotate(270)
     left(game, random1, random2)
-    game.grid.tiles = game.grid.rotate(90)
+    game.grid.rotate(90)
   }
 
   def down(game: Game, random1: Double, random2: Double): Unit = {
-    game.grid.tiles = game.grid.rotate(90)
+    game.grid.rotate(90)
     left(game, random1, random2)
-    game.grid.tiles = game.grid.rotate(270)
+    game.grid.rotate(270)
   }
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
@@ -132,9 +132,12 @@ object Turn {
     }
   }
 
+  //var game: Game = new Game
   def runSpecialMove(game: Game, key: String): Unit = {
     key match {
       case "undo" =>
+        //game.overwrite(this.game)
+        //game = this.game
         game.load("undo.2048")
       case "reset" =>
         game.reset
@@ -145,6 +148,8 @@ object Turn {
       case "exit" =>
         sys.exit()
       case _ =>
+        //this.game = game
+        //this.game.overwrite(game)
         game.save("undo.2048")
     }
   }

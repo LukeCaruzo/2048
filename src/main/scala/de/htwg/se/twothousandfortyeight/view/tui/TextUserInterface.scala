@@ -10,7 +10,7 @@ class TextUserInterface {
   def this(player: Player, game: Game) {
     this()
     println("Hello " + player.toString + ". Game started!")
-    println("Used W A S D to move and R to reset and T to exit and Z to save and U to load.")
+    println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
     println()
     println(game.grid.toString)
     println("Your Score: " + game.score.toString)

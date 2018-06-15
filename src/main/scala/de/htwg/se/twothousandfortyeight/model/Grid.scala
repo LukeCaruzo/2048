@@ -57,7 +57,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     return false
   }
 
-  def rotate(angle: Int): Array[Tile] = {
+  def rotate(angle: Int): Unit = {
     val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
     var oX = TwoThousandFortyEight.FIELD_SIZE - 1
     var oY = TwoThousandFortyEight.FIELD_SIZE - 1
@@ -80,7 +80,8 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
       }
     }
 
-    return newTiles
+
+    this.tiles = newTiles
   }
 
   def getSingleLine(index: Int): Array[Tile] = {
