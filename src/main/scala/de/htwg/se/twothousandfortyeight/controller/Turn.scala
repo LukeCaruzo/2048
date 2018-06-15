@@ -132,12 +132,9 @@ object Turn {
     }
   }
 
-  //var game: Game = new Game
   def runSpecialMove(game: Game, key: String): Unit = {
     key match {
       case "undo" =>
-        //game.overwrite(this.game)
-        //game = this.game
         game.load("undo.2048")
       case "reset" =>
         game.reset
@@ -148,8 +145,6 @@ object Turn {
       case "exit" =>
         sys.exit()
       case _ =>
-        //this.game = game
-        //this.game.overwrite(game)
         game.save("undo.2048")
     }
   }
