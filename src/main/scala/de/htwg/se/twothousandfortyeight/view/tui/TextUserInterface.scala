@@ -3,11 +3,11 @@ package de.htwg.se.twothousandfortyeight.view.tui
 import java.util.Scanner
 
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.{Game, Player}
+import de.htwg.se.twothousandfortyeight.model.{GameTrait, Player}
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class TextUserInterface {
-  def this(player: Player, game: Game) {
+  def this(player: Player, game: GameTrait) {
     this()
     println("Hello " + player.toString + ". Game started!")
     println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")

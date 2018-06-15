@@ -2,11 +2,11 @@ package de.htwg.se.twothousandfortyeight.view.gui
 
 import java.awt.Dimension
 
-import de.htwg.se.twothousandfortyeight.model.{Game, Player}
+import de.htwg.se.twothousandfortyeight.model.{GameTrait, Player}
 import javax.swing.{WindowConstants, _}
 
 class GraphicalUserInterface extends JFrame {
-  def this(player: Player, game: Game) {
+  def this(player: Player, game: GameTrait) {
     this()
 
     setTitle("2048")

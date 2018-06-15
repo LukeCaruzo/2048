@@ -3,10 +3,10 @@ package de.htwg.se.twothousandfortyeight.controller
 import java.util
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.{Game, Tile}
+import de.htwg.se.twothousandfortyeight.model.{GameTrait, Tile}
 
 object Turn {
-  def left(game: Game, random1: Double, random2: Double): Unit = {
+  def left(game: GameTrait, random1: Double, random2: Double): Unit = {
     var needsATile = false
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
@@ -25,19 +25,19 @@ object Turn {
     }
   }
 
-  def right(game: Game, random1: Double, random2: Double): Unit = {
+  def right(game: GameTrait, random1: Double, random2: Double): Unit = {
     game.grid.rotate(180)
     left(game, random1, random2)
     game.grid.rotate(180)
   }
 
-  def up(game: Game, random1: Double, random2: Double): Unit = {
+  def up(game: GameTrait, random1: Double, random2: Double): Unit = {
     game.grid.rotate(270)
     left(game, random1, random2)
     game.grid.rotate(90)
   }
 
-  def down(game: Game, random1: Double, random2: Double): Unit = {
+  def down(game: GameTrait, random1: Double, random2: Double): Unit = {
     game.grid.rotate(90)
     left(game, random1, random2)
     game.grid.rotate(270)
@@ -68,7 +68,7 @@ object Turn {
     }
   }
 
-  def mergeSingleLine(game: Game, oldLine: Array[Tile]): Array[Tile] = {
+  def mergeSingleLine(game: GameTrait, oldLine: Array[Tile]): Array[Tile] = {
     val helperList = new util.LinkedList[Tile]
 
     var i = 0
@@ -116,7 +116,7 @@ object Turn {
     return true
   }
 
-  def makeTurn(game: Game, key: String, random1: Double, random2: Double): Unit = {
+  def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
     runSpecialMove(game, key)
 
     if (!game.grid.canBeMoved) {
@@ -132,7 +132,7 @@ object Turn {
     }
   }
 
-  def runSpecialMove(game: Game, key: String): Unit = {
+  def runSpecialMove(game: GameTrait, key: String): Unit = {
     key match {
       case "undo" =>
         game.load("undo.2048")
@@ -149,7 +149,7 @@ object Turn {
     }
   }
 
-  def runMove(game: Game, key: String, random1: Double, random2: Double): Unit = {
+  def runMove(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
     key match {
       case "left" =>
         left(game, random1, random2)

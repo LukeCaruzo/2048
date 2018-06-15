@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.model._
 import de.htwg.se.twothousandfortyeight.view.gui.GraphicalUserInterface
-//import de.htwg.se.twothousandfortyeight.view.tui.TextUserInterface
+import de.htwg.se.twothousandfortyeight.view.tui.TextUserInterface
 
 object TwoThousandFortyEight {
   val FIELD_SIZE = 4 // Tests are configured for 4
@@ -11,7 +11,7 @@ object TwoThousandFortyEight {
     val student = new Player("Lucas/Bilal")
     val game = new Game
 
-    //new TextUserInterface(student, game)
     new GraphicalUserInterface(student, game)
+    new TextUserInterface(student, game)
   }
 }

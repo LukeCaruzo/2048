@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.model
 
 import java.io.{FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
 
-class Game extends Serializable {
+class Game extends GameTrait {
   var win = false
   var lose = false
   var score = new Score
