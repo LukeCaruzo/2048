@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.model
+package de.htwg.se.twothousandfortyeight.model.game
 
 case class Tile(var value: Int = 0) {
   def isEmpty: Boolean = value == 0

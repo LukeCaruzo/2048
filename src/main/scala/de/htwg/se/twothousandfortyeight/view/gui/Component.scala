@@ -5,7 +5,8 @@ import java.awt.{Color, Graphics2D, _}
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.{GameTrait, Player, Tile}
+import de.htwg.se.twothousandfortyeight.model.game.{Player, Tile}
+import de.htwg.se.twothousandfortyeight.model.{GameTrait}
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 

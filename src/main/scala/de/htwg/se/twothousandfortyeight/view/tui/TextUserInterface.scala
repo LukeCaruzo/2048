@@ -3,7 +3,8 @@ package de.htwg.se.twothousandfortyeight.view.tui
 import java.util.Scanner
 
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.{GameTrait, Player}
+import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.game.Player
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class TextUserInterface {

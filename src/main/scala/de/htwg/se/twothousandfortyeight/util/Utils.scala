@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.util
 
 import java.awt.Color
 
-import de.htwg.se.twothousandfortyeight.model.Tile
+import de.htwg.se.twothousandfortyeight.model.game.Tile
 
 object Utils {
   def processKey(key1: Int, key2: Char): String = {

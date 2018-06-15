@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.model
+package de.htwg.se.twothousandfortyeight.model.game
 
 import java.util
 

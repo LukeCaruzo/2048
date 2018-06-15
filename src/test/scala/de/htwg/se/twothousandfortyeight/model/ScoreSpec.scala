@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model
 
+import de.htwg.se.twothousandfortyeight.model.game.Score
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

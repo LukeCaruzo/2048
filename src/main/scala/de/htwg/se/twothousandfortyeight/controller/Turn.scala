@@ -3,7 +3,8 @@ package de.htwg.se.twothousandfortyeight.controller
 import java.util
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.{GameTrait, Tile}
+import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.game.Tile
 
 object Turn {
   def left(game: GameTrait, random1: Double, random2: Double): Unit = {
