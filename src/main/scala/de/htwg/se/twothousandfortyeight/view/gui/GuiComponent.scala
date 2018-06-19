@@ -10,7 +10,7 @@ import de.htwg.se.twothousandfortyeight.model.TileTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 
-class Component(player: String, game: GameTrait) extends JPanel with KeyListener {
+class GuiComponent(player: String, game: GameTrait) extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FOREGROUND_COLOR = new Color(0xededed)
   val FONT_NAME = "Helvetica"
