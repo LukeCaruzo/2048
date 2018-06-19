@@ -28,10 +28,12 @@ class Game extends GameTrait {
   def load(filename: String): Unit = {
     val ois = new ObjectInputStream(new FileInputStream(filename))
     val game = ois.readObject.asInstanceOf[Game]
+
     this.win = game.win
     this.lose = game.lose
     this.score = game.score
     this.grid = game.grid
+
     ois.close
   }
 
