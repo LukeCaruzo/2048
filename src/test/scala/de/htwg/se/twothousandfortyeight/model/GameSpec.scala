@@ -1,9 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model
 
 import de.htwg.se.twothousandfortyeight.model.game.Game
-import org.junit.runner.RunWith
-import org.scalatest._
-import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class GameSpec extends WordSpec with Matchers {

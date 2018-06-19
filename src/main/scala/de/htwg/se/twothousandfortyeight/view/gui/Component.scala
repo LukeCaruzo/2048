@@ -5,12 +5,12 @@ import java.awt.{Color, Graphics2D, _}
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.game.{Player, Tile}
-import de.htwg.se.twothousandfortyeight.model.{GameTrait}
+import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.game.Tile
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 
-class Component(player: Player, game: GameTrait) extends JPanel with KeyListener {
+class Component(player: String, game: GameTrait) extends JPanel with KeyListener {
   val BACKGROUND_COLOR = new Color(0x000000)
   val FOREGROUND_COLOR = new Color(0xededed)
   val FONT_NAME = "Helvetica"
@@ -98,6 +98,6 @@ class Component(player: Player, game: GameTrait) extends JPanel with KeyListener
     graphics.setFont(new Font(FONT_NAME, Font.PLAIN, 32))
     graphics.setColor(new Color(0x545454))
     graphics.drawString("Score: " + game.score.value, 400, 740)
-    graphics.drawString(this.player.name, 70, 740)
+    graphics.drawString(this.player, 70, 740)
   }
 }

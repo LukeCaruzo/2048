@@ -1,9 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller
 
 import de.htwg.se.twothousandfortyeight.model.game.{Game, Grid, Tile}
-import org.junit.runner.RunWith
-import org.scalatest._
-import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class TurnSpec extends WordSpec with Matchers {
