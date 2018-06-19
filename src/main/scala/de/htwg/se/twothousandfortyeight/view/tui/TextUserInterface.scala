@@ -1,35 +1,23 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import java.util.Scanner
-
-import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.GameTrait
-import de.htwg.se.twothousandfortyeight.util.Utils
+import javax.swing.{JFrame, WindowConstants}
 
-class TextUserInterface {
+class TextUserInterface extends JFrame {
   def this(player: String, game: GameTrait) {
     this()
-    println("Hello " + player + ". Game started!")
-    println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
-    println()
-    println(game.grid.toString)
-    println("Your Score: " + game.score.toString)
 
-    while (true) {
-      if (game.win) {
-        println("You won!")
-        sys.exit()
-      } else if (game.lose) {
-        println("You lost!")
-        sys.exit()
-      }
+    setTitle("2048")
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
+    setSize(1, 1)
+    setResizable(false)
 
-      val key = new Scanner(System.in).next()
+    val component: Component = new Component(player, game)
+    component.addKeyListener(component)
+    component.setFocusable(true)
+    add(component)
 
-      Turn.makeTurn(game, Utils.processKey(0, key.toCharArray()(0)), Math.random(), Math.random())
-
-      println(game.grid.toString)
-      println("Your Score: " + game.score.toString)
-    }
+    setLocationRelativeTo(null)
+    setVisible(true)
   }
 }
