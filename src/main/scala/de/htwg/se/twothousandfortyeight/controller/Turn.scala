@@ -1,9 +1,16 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
+import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
+import net.codingwell.scalaguice.InjectorExtensions._
 
+@Inject
 object Turn {
+  val injector = Guice.createInjector(new TwoThousandFortyEightModule)
+  val fileIo = injector.instance[FileIoTrait]
+
   def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
     runSpecialMove(game, key)
 
@@ -23,19 +30,17 @@ object Turn {
   def runSpecialMove(game: GameTrait, key: String): Unit = {
     key match {
       case "undo" =>
-      //game.load("undo.2048")
+        fileIo.load("undo.2048", game)
       case "reset" =>
         game.reset
       case "save" =>
-        new FileIo().save("save.2048", game)
-      //game.save("save.2048")
+        fileIo.save("save.2048", game)
       case "load" =>
-        new FileIo().load("save.2048", game)
-      //game.load("save.2048")
+        fileIo.load("save.2048", game)
       case "exit" =>
         sys.exit()
       case _ =>
-      //game.save("undo.2048")
+        fileIo.save("undo.2048", game)
     }
   }
 

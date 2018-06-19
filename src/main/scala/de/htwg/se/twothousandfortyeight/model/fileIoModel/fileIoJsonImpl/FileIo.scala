@@ -2,10 +2,11 @@ package de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl
 
 import java.io._
 
+import com.google.gson.Gson
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import com.google.gson.Gson
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
+
 import scala.io.Source
 
 class FileIo extends FileIoTrait {
