@@ -5,7 +5,6 @@ import java.awt.event.{KeyEvent, KeyListener}
 import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
-import javax.swing.JPanel
 
 class TuiComponent(player: String, game: GameTrait) extends KeyListener {
   println("Hello " + player + ". Game started!")

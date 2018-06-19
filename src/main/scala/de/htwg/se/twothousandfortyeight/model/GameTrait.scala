@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model
 
-import de.htwg.se.twothousandfortyeight.model.game.{Grid, Score}
+import de.htwg.se.twothousandfortyeight.model.gameBaseImpl.{Grid, Score}
 
 trait GameTrait extends Serializable {
   var win: Boolean
