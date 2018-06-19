@@ -13,4 +13,12 @@ trait GameTrait extends Serializable {
   def save(filename: String)
 
   def load(filename: String)
+
+  def left(random1: Double, random2: Double)
+
+  def right(random1: Double, random2: Double)
+
+  def up(random1: Double, random2: Double)
+
+  def down(random1: Double, random2: Double)
 }
