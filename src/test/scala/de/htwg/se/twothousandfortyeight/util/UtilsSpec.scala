@@ -3,6 +3,9 @@ package de.htwg.se.twothousandfortyeight.util
 import java.awt.Color
 
 import de.htwg.se.twothousandfortyeight.model.game.Tile
+import org.junit.runner.RunWith
+import org.scalatest._
+import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class UtilsSpec extends WordSpec with Matchers {
