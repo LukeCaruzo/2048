@@ -3,7 +3,7 @@ package de.htwg.se.twothousandfortyeight.view.tui
 import java.awt.event.{KeyEvent, KeyListener}
 
 import de.htwg.se.twothousandfortyeight.controller.Turn
-import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class TuiComponent(player: String, game: GameTrait) extends KeyListener {

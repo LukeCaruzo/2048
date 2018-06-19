@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model
 
-import de.htwg.se.twothousandfortyeight.model.gameBaseImpl.{Grid, Tile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Grid, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

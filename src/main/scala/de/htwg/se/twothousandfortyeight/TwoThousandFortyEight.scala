@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight
 
-import de.htwg.se.twothousandfortyeight.model.gameBaseImpl.Game
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 import de.htwg.se.twothousandfortyeight.view.UserInterface
 
 object TwoThousandFortyEight {

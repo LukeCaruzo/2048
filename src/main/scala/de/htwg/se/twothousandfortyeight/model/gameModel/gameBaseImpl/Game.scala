@@ -1,10 +1,9 @@
-package de.htwg.se.twothousandfortyeight.model.gameBaseImpl
+package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-import java.io.{FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
 import java.util
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 
 class Game extends GameTrait {
   var win = false
@@ -17,24 +16,6 @@ class Game extends GameTrait {
     lose = false
     score = new Score
     grid = new Grid
-  }
-
-  def save(filename: String): Unit = {
-    val oos = new ObjectOutputStream(new FileOutputStream(filename))
-    oos.writeObject(this)
-    oos.close
-  }
-
-  def load(filename: String): Unit = {
-    val ois = new ObjectInputStream(new FileInputStream(filename))
-    val game = ois.readObject.asInstanceOf[Game]
-
-    this.win = game.win
-    this.lose = game.lose
-    this.score = game.score
-    this.grid = game.grid
-
-    ois.close
   }
 
   def left(random1: Double, random2: Double): Unit = {

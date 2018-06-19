@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
+import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 
 object Turn {
   def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
@@ -22,17 +23,19 @@ object Turn {
   def runSpecialMove(game: GameTrait, key: String): Unit = {
     key match {
       case "undo" =>
-        game.load("undo.2048")
+      //game.load("undo.2048")
       case "reset" =>
         game.reset
       case "save" =>
-        game.save("save.2048")
+        new FileIo().save("save.2048", game)
+      //game.save("save.2048")
       case "load" =>
-        game.load("save.2048")
+        new FileIo().load("save.2048", game)
+      //game.load("save.2048")
       case "exit" =>
         sys.exit()
       case _ =>
-        game.save("undo.2048")
+      //game.save("undo.2048")
     }
   }
 

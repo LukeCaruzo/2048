@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.util
 
 import java.awt.Color
 
-import de.htwg.se.twothousandfortyeight.model.gameBaseImpl.Tile
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

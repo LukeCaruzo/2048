@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.view
 
 import java.awt.Dimension
 
-import de.htwg.se.twothousandfortyeight.model.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.view.gui.GuiComponent
 import de.htwg.se.twothousandfortyeight.view.tui.TuiComponent
 import javax.swing.{WindowConstants, _}

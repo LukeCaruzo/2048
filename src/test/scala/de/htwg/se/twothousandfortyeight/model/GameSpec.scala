@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model
 
-import de.htwg.se.twothousandfortyeight.model.gameBaseImpl.{Game, Grid, Tile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Grid, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner
@@ -52,16 +52,6 @@ class GameSpec extends WordSpec with Matchers {
         game2.win should be(true)
         game2.reset
         game2.win should be(false)
-      }
-      "have a save method" in {
-        game2.win = true
-        game2.win should be(true)
-        game2.save("test.2048")
-      }
-      "have a load method" in {
-        game2.win = false
-        game2.win should be(false)
-        game2.load("test.2048")
       }
     }
   }
