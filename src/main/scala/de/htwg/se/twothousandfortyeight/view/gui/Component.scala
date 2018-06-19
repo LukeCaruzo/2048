@@ -6,7 +6,7 @@ import java.awt.{Color, Graphics2D, _}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.GameTrait
-import de.htwg.se.twothousandfortyeight.model.game.Tile
+import de.htwg.se.twothousandfortyeight.model.TileTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._
 
@@ -41,7 +41,7 @@ class Component(player: String, game: GameTrait) extends JPanel with KeyListener
     }
   }
 
-  private def draw(graphics2: Graphics, tile: Tile, x: Int, y: Int): Unit = {
+  private def draw(graphics2: Graphics, tile: TileTrait, x: Int, y: Int): Unit = {
     val graphics = graphics2.asInstanceOf[Graphics2D]
 
     val valueOfTile = tile.value

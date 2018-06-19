@@ -22,3 +22,11 @@ trait GameTrait extends Serializable {
 
   def down(random1: Double, random2: Double)
 }
+
+trait TileTrait {
+  var value: Int
+
+  def isEmpty(): Boolean
+
+  def toString(): String
+}

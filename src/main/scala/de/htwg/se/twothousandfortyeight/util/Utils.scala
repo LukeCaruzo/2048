@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.util
 
 import java.awt.Color
 
-import de.htwg.se.twothousandfortyeight.model.game.Tile
+import de.htwg.se.twothousandfortyeight.model.TileTrait
 
 object Utils {
   def processKey(key1: Int, key2: Char): String = {
@@ -29,7 +29,7 @@ object Utils {
     }
   }
 
-  def getBackGroundColor(tile: Tile): Color = {
+  def getBackGroundColor(tile: TileTrait): Color = {
     tile.value match {
       case 2 =>
         return new Color(0xfff835)
