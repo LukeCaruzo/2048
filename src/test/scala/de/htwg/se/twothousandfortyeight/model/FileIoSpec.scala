@@ -32,7 +32,7 @@ class FileIoSpec extends WordSpec with Matchers {
       "have a load (xml) method" in {
         game.win = false
         fileIoXml.load("test.2048", game)
-        //game.win should be(true)
+        game.win should be(true)
       }
     }
   }

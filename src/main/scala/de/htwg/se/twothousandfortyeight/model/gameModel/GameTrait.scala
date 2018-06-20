@@ -2,6 +2,8 @@ package de.htwg.se.twothousandfortyeight.model.gameModel
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Grid, Score}
 
+import scala.xml.Elem
+
 trait GameTrait {
   var win: Boolean
   var lose: Boolean
@@ -9,6 +11,10 @@ trait GameTrait {
   var grid: Grid
 
   def reset
+
+  def toXml: Elem
+
+  def fromXml(node: scala.xml.Node)
 
   def left(random1: Double, random2: Double)
 
