@@ -57,7 +57,7 @@ class GridSpec extends WordSpec with Matchers {
         grid.rotate(90)
       }
       "have a toString method" in {
-        grid.toString should be("(0)(4)(0)(0)\n(2)(2)(0)(0)\n(0)(0)(2)(2)\n(0)(0)(2)(0)")
+        grid.toString should be("(0)(4)(0)(0)" + System.getProperty("line.separator") + "(2)(2)(0)(0)" + System.getProperty("line.separator") + "(0)(0)(2)(2)" + System.getProperty("line.separator") + "(0)(0)(2)(0)")
       }
       "have a canBeMoved method which returns true" in {
         grid.canBeMoved should be(true)
