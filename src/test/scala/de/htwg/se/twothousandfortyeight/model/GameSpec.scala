@@ -53,6 +53,12 @@ class GameSpec extends WordSpec with Matchers {
         game2.reset
         game2.win should be(false)
       }
+      val game3 = new Game
+      game3.score.value = 98
+      "have a fromXml/toXml method" in {
+        game3.fromXml(game3.toXml)
+        game3.score.value should be(98)
+      }
     }
   }
 }
