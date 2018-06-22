@@ -6,6 +6,7 @@ import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 
 import scala.io.Source
+import scala.xml.XML
 
 class FileIo extends FileIoTrait {
   def save(filename: String, game: GameTrait): Unit = {
@@ -19,6 +20,6 @@ class FileIo extends FileIoTrait {
     val source = Source.fromFile(filename + ".xml")
     val lines = try source.mkString finally source.close()
 
-    game.fromXml(scala.xml.XML.loadString(lines))
+    game.fromXml(XML.loadString(lines))
   }
 }
