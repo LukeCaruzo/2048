@@ -1,7 +1,5 @@
 package de.htwg.se.twothousandfortyeight.view.wui
 
-import java.awt.event.KeyEvent
-
 import de.htwg.se.twothousandfortyeight.controller.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
