@@ -5,24 +5,17 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class WebComponent(player: String, game: GameTrait) {
-  println("Hello " + player + ". Game started!")
-  println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
-  println()
-  println(game.grid.toString)
-  println("Your Score: " + game.score.toString)
-  println()
+  val initialize = "Hello " + player + ". Game started!\nUsed W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.\n\n" + game.grid.toString + "\n" + "Your Score: " + game.score.toString + "\n\n"
 
-  def action(input: Char): Unit = {
+  def action(input: Char): String = {
     Turn.makeTurn(game, Utils.processKey(0, input), Math.random(), Math.random())
 
     if (game.win) {
-      println("You won!")
+      return "You won!"
     } else if (game.lose) {
-      println("You lost!")
+      return "You lost!"
     } else {
-      println(game.grid.toString)
-      println("Your Score: " + game.score.toString)
-      println()
+      return game.grid.toString + "\nYour Score: " + game.score.toString + "\n\n"
     }
   }
 }
