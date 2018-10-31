@@ -17,7 +17,7 @@ class UserInterface extends JFrame {
     setResizable(false)
 
     val component: GuiComponent = new GuiComponent(player, game)
-    //component.addKeyListener(new TuiComponent(player, game))
+    component.addKeyListener(new TuiComponent(player, game))
     component.addKeyListener(component)
     component.setFocusable(true)
     component.setPreferredSize(new Dimension(680, 800))

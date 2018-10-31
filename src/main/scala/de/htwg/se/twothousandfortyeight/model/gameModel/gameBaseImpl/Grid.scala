@@ -104,7 +104,7 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val tiles = getSingleLine(i)
       for (j <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
-        sb.append(tiles(j))
+        sb.append("(" + tiles(j) + ")")
       }
 
       if (i != (TwoThousandFortyEight.FIELD_SIZE - 1)) {

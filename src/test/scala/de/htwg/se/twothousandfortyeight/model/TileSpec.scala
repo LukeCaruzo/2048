@@ -15,7 +15,7 @@ class TileSpec extends WordSpec with Matchers {
         tile.value should be(16)
       }
       "have a nice String representation" in {
-        tile.toString should be("(16)")
+        tile.toString should be("16")
       }
       "have check if it is empty" in {
         tile.isEmpty should be(false)
