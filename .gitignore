@@ -38,6 +38,10 @@ project/.sbtserver
 .scala_dependencies
 .worksheet
 
+# Save and Load
+*.xml
+*.json
+
 # Sonar
 /.sonar/
 
