@@ -1,7 +1,7 @@
 name          := "2048SE"
 organization  := "de.htwg.se"
 version       := "0.0.1"
-scalaVersion  := "2.12.4"
+scalaVersion := "2.12.7"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
