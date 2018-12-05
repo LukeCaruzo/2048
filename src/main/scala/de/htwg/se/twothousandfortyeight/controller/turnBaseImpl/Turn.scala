@@ -2,17 +2,19 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
+import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
+import net.codingwell.scalaguice.InjectorExtensions._
 
 import scala.swing.Publisher
 
 @Inject
-object Turn {
+class Turn extends TurnTrait with Publisher {
   val injector = Guice.createInjector(new TwoThousandFortyEightModule)
   val fileIo = injector.instance[FileIoTrait]
 
-  def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
+  def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double) {
     runSpecialMove(game, key)
 
     if (!game.grid.canBeMoved) {
@@ -27,7 +29,7 @@ object Turn {
       game.lose = true
     }
 
-    //publish()
+    publish(new TurnMade)
   }
 
   def runSpecialMove(game: GameTrait, key: String): Unit = {

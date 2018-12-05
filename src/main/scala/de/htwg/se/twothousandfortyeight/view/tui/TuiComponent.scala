@@ -2,6 +2,7 @@ package de.htwg.se.twothousandfortyeight.view.tui
 
 import java.awt.event.{KeyEvent, KeyListener}
 
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
@@ -15,7 +16,8 @@ class TuiComponent(player: String, game: GameTrait) extends KeyListener {
   println()
 
   override def keyTyped(e: KeyEvent): Unit = {
-    Turn.makeTurn(game, Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
+    val turn = new Turn
+    turn.makeTurn(game, Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
 
     if (game.win) {
       println("You won!")
