@@ -5,24 +5,24 @@ import java.awt.Color
 import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
 
 object Utils {
-  def processKey(key1: Int, key2: Char): String = {
-    if (key1 == 87 || key2 == 'w') {
+  def processKey(key: Char): String = {
+    if (key == 'w') {
       return "up"
-    } else if (key1 == 65 || key2 == 'a') {
+    } else if (key == 'a') {
       return "left"
-    } else if (key1 == 83 || key2 == 's') {
+    } else if (key == 's') {
       return "down"
-    } else if (key1 == 68 || key2 == 'd') {
+    } else if (key == 'd') {
       return "right"
-    } else if (key1 == 84 || key2 == 't') {
+    } else if (key == 't') {
       return "exit"
-    } else if (key1 == 82 || key2 == 'r') {
+    } else if (key == 'r') {
       return "reset"
-    } else if (key1 == 90 || key2 == 'z') {
+    } else if (key == 'z') {
       return "save"
-    } else if (key1 == 85 || key2 == 'u') {
+    } else if (key == 'u') {
       return "load"
-    } else if (key1 == 81 || key2 == 'q') {
+    } else if (key == 'q') {
       return "undo"
     } else {
       return ""
