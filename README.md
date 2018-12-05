@@ -1,4 +1,5 @@
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/LukeCaruzo/2048.svg?columns=all)](https://waffle.io/LukeCaruzo/2048)
+
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/LukeCaruzo/2048SE.svg?columns=all)](https://waffle.io/LukeCaruzo/2048SE)
 
 [![Build Status](https://api.travis-ci.org/LukeCaruzo/2048SE.svg?branch=master)](https://travis-ci.org/LukeCaruzo/2048SE)
 
