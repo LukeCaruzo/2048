@@ -1,17 +1,10 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import java.awt.event.KeyEvent
-
 import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
-import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
-import scala.swing._
-import scala.swing.event._
-import java.awt.event._
 
-import scala.swing.{Reactor, SimpleSwingApplication}
-import scala.swing.event.KeyReleased
+import scala.swing.Reactor
 
 class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   listenTo(turn)
