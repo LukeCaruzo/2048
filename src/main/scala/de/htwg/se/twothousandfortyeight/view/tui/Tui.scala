@@ -16,6 +16,10 @@ import scala.swing.event.KeyReleased
 class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   listenTo(turn)
 
+  reactions += {
+    case event: TurnMade => printTui
+  }
+
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
   println()
@@ -25,10 +29,6 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   while (true) {
     val scanner = new java.util.Scanner(System.in)
     turn.makeTurn(game, Utils.processKey(scanner.nextLine().charAt(0)), Math.random(), Math.random())
-  }
-
-  reactions += {
-    case event: TurnMade => printTui
   }
 
   def printTui(): Unit = {
