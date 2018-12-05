@@ -12,16 +12,16 @@ class UtilsSpec extends WordSpec with Matchers {
   "A Util" when {
     "used" should {
       "have a processKey method" in {
-        Utils.processKey(87, 'w') should be("up")
-        Utils.processKey(83, 's') should be("down")
-        Utils.processKey(68, 'd') should be("right")
-        Utils.processKey(65, 'a') should be("left")
-        Utils.processKey(84, 't') should be("exit")
-        Utils.processKey(82, 'r') should be("reset")
-        Utils.processKey(90, 'z') should be("save")
-        Utils.processKey(85, 'u') should be("load")
-        Utils.processKey(81, 'q') should be("undo")
-        Utils.processKey(32, ' ') should be("")
+        Utils.processKey('w') should be("up")
+        Utils.processKey('s') should be("down")
+        Utils.processKey('d') should be("right")
+        Utils.processKey('a') should be("left")
+        Utils.processKey('t') should be("exit")
+        Utils.processKey('r') should be("reset")
+        Utils.processKey('z') should be("save")
+        Utils.processKey('u') should be("load")
+        Utils.processKey('q') should be("undo")
+        Utils.processKey(' ') should be("")
       }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)

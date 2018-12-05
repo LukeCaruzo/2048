@@ -2,12 +2,15 @@ package de.htwg.se.twothousandfortyeight.view.tui
 
 import java.awt.event.KeyEvent
 
-import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
+import scala.swing._
+import scala.swing.event._
+import java.awt.event._
 
-import scala.swing.Reactor
+import scala.swing.{Reactor, SimpleSwingApplication}
 import scala.swing.event.KeyReleased
 
 class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
@@ -19,63 +22,24 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   println(game.grid.toString)
   println("Your Score: " + game.score.toString)
   println()
-
-  reactions += {
-    case event: KeyReleased => {
-      turn.makeTurn(game, Utils.processKey(event.key.id, 'x'), Math.random(), Math.random())
-
-      if (game.win) {
-        println("You won!")
-      } else if (game.lose) {
-        println("You lost!")
-      } else {
-        println(game.grid.toString)
-        println("Your Score: " + game.score.toString)
-        println()
-      }
-    }
+  while (true) {
+    val scanner = new java.util.Scanner(System.in)
+    turn.makeTurn(game, Utils.processKey(scanner.nextLine().charAt(0)), Math.random(), Math.random())
   }
 
-  //  def printTui(): Unit = {
-  //    if (game.win) {
-  //      println("You won!")
-  //    } else if (game.lose) {
-  //      println("You lost!")
-  //    } else {
-  //      println(game.grid.toString)
-  //      println("Your Score: " + game.score.toString)
-  //      println()
-  //    }
-  //  }
+  reactions += {
+    case event: TurnMade => printTui
+  }
 
-  //  override def keyTyped(e: KeyEvent): Unit = {
-  //    val turn = new Turn
-  //    turn.makeTurn(game, Utils.processKey(e.getExtendedKeyCode, e.getKeyChar), Math.random(), Math.random())
-  //
-  //    if (game.win) {
-  //      println("You won!")
-  //    } else if (game.lose) {
-  //      println("You lost!")
-  //    } else {
-  //      println(game.grid.toString)
-  //      println("Your Score: " + game.score.toString)
-  //      println()
-  //    }
-  //  }
-
-  //  reactions += {
-  //    case event: GridSizeChanged => printTui
-  //  }
-  //
-  //  def printTui: Unit = {
-  //    logger.info(controller.gridToString)
-  //    logger.info(GameStatus.message(controller.gameStatus))
-  //  }
-  //
-  //  def printCandidates: Unit = {
-  //    logger.info("Candidates: ")
-  //    for (row <- 0 until size; col <- 0 until size) {
-  //      if (controller.isShowCandidates(row, col)) println("("+row+","+col+"):"+controller.available(row, col).toList.sorted)
-  //    }
-  //  }
+  def printTui(): Unit = {
+    if (game.win) {
+      println("You won!")
+    } else if (game.lose) {
+      println("You lost!")
+    } else {
+      println(game.grid.toString)
+      println("Your Score: " + game.score.toString)
+      println()
+    }
+  }
 }
