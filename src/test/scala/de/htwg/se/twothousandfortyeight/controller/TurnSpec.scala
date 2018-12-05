@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller
 
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Grid, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._

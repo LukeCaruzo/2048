@@ -4,7 +4,7 @@ import java.awt.event.{KeyEvent, KeyListener}
 import java.awt.{Color, Graphics2D, _}
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.controller.Turn
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.{GameTrait, TileTrait}
 import de.htwg.se.twothousandfortyeight.util.Utils
 import javax.swing._

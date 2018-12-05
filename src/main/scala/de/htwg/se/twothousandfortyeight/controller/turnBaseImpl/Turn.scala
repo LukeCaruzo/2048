@@ -1,10 +1,11 @@
-package de.htwg.se.twothousandfortyeight.controller
+package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import net.codingwell.scalaguice.InjectorExtensions._
+
+import scala.swing.Publisher
 
 @Inject
 object Turn {
@@ -25,6 +26,8 @@ object Turn {
     if (!game.win && !game.grid.canBeMoved) {
       game.lose = true
     }
+
+    //publish()
   }
 
   def runSpecialMove(game: GameTrait, key: String): Unit = {
