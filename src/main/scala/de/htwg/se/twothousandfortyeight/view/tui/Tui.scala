@@ -5,14 +5,16 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 import scala.swing.Reactor
+import scala.swing.event.Event
 
 class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   listenTo(turn)
 
+
   reactions += {
     case event: TurnMade => printTui
-    case win: GameWon => printWin
-    case lose: GameLost => printLose
+    case event: GameWon => printWin
+    case event: GameLost => printLose
   }
 
   println("Hello. Game started!")
@@ -23,7 +25,10 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   println()
   while (true) {
     val scanner = new java.util.Scanner(System.in)
-    turn.makeTurn(game, Utils.processKey(scanner.nextLine().charAt(0)), Math.random(), Math.random())
+    val line = scanner.nextLine()
+    if(!line.isEmpty) {
+      turn.makeTurn(game, Utils.processKey(line.charAt(0)), Math.random(), Math.random())
+    }
   }
 
   def printTui(): Unit = {
@@ -32,7 +37,15 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
     println()
   }
 
-  def printWin() = println("You won!")
+  def printWin(): Unit = {
+    printTui()
+    println("You won!")
+    sys.exit()
+  }
 
-  def printLose() = println("You lost!")
+  def printLose(): Unit = {
+    printTui()
+    println("You lost!")
+    sys.exit()
+  }
 }

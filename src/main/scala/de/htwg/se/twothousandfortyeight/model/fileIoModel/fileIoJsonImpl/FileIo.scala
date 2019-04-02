@@ -10,7 +10,7 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Game
 import scala.io.Source
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: GameStatus) {
+  def save(filename: String, game: GameTrait) {
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
@@ -19,14 +19,14 @@ class FileIo extends FileIoTrait {
     bw.close()
   }
 
-  def load(filename: String, game: GameStatus) {
+  def load(filename: String, game: GameTrait) {
     val source = Source.fromFile(filename + ".json")
     val lines = try source.mkString finally source.close()
 
     val gson = new Gson
-    val jsonGame = gson.fromJson(lines, classOf[GameStatus])
+    val jsonGame = gson.fromJson(lines, classOf[Game])
 
-    game.score = jsonGame.score
-    game.grid = jsonGame.grid
+    game.status.score = jsonGame.status.score
+    game.status.grid = jsonGame.status.grid
   }
 }

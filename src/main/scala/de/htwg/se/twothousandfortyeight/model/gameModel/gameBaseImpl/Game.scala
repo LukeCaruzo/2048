@@ -3,12 +3,9 @@ package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 import java.util.LinkedList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.controller.GameWon
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 
-import scala.swing.Publisher
-
-class Game extends GameTrait with Publisher {
+class Game extends GameTrait {
   val status = new GameStatus
 
   def reset: Unit = status.reset
@@ -84,9 +81,9 @@ class Game extends GameTrait with Publisher {
         oldValue *= 2
         this.status.score.value += oldValue
 
-        if (oldValue == 2048) {
-          publish(new GameWon)
-        }
+        //if (oldValue == 2048) {
+        //  publish(new GameWon)
+        //}
 
         i = i + 1
       }

@@ -2,6 +2,9 @@ package de.htwg.se.twothousandfortyeight.model.gameModel
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.GameStatus
 
+import scala.swing.Publisher
+import scala.swing.event.Event
+
 trait GameTrait {
   val status: GameStatus
 
@@ -23,3 +26,4 @@ trait TileTrait {
 
   def toString(): String
 }
+

@@ -10,24 +10,17 @@ import scala.io.Source
 import scala.xml.{Elem, XML}
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: GameStatus): Unit = {
+  def save(filename: String, game: GameTrait): Unit = {
     val file = new File(filename + ".xml")
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(toXml(game).toString)
     bw.close()
   }
 
-  def load(filename: String, game: GameStatus): Unit = {
-    val source = Source.fromFile(filename + ".xml")
-    val lines = try source.mkString finally source.close()
-
-    fromXml(XML.loadString(lines), game)
-  }
-
-  def toXml(game: GameStatus): Elem = {
+  def toXml(game: GameTrait): Elem = {
     return <game>
-      <score>{game.score.value}</score>
-      <grid>{serializeTiles(game.grid.tiles)}</grid>
+      <score>{game.status.score.value}</score>
+      <grid>{serializeTiles(game.status.grid.tiles)}</grid>
     </game>
   }
 
@@ -44,15 +37,22 @@ class FileIo extends FileIoTrait {
     return sb.toString
   }
 
-  def fromXml(node: scala.xml.Node, game: GameStatus): Unit = {
+  def load(filename: String, game: GameTrait): Unit = {
+    val source = Source.fromFile(filename + ".xml")
+    val lines = try source.mkString finally source.close()
+
+    fromXml(XML.loadString(lines), game)
+  }
+
+  def fromXml(node: scala.xml.Node, game: GameTrait): Unit = {
     val scoreObj = new Score()
     scoreObj.value = (node \ "score").text.toInt
 
     val gridObj = new Grid
     gridObj.tiles = deserializeTiles((node \ "grid").text)
 
-    game.score = scoreObj
-    game.grid = gridObj
+    game.status.score = scoreObj
+    game.status.grid = gridObj
   }
 
   def deserializeTiles(tiles: String): Array[Tile] = {
