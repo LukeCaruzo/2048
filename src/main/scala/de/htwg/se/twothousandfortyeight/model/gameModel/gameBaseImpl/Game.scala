@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-import java.util
+import java.util.LinkedList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
@@ -17,8 +17,7 @@ class Game extends GameTrait {
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val singleLine = this.status.grid.getSingleLine(i)
-      val movedLine = moveSingleLine(singleLine)
-      val mergedLine = mergeSingleLine(movedLine)
+      val mergedLine = mergeSingleLine(moveSingleLine(singleLine))
       this.status.grid.setSingleLine(i, mergedLine)
 
       if (!needsATile && !compareLines(singleLine, mergedLine)) {
@@ -50,7 +49,7 @@ class Game extends GameTrait {
   }
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
-    val helperList = new util.LinkedList[Tile]
+    val helperList = new LinkedList[Tile]
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       if (!oldLine(i).isEmpty) {
         helperList.addLast(oldLine(i))
@@ -75,7 +74,7 @@ class Game extends GameTrait {
   }
 
   def mergeSingleLine(oldLine: Array[Tile]): Array[Tile] = {
-    val helperList = new util.LinkedList[Tile]
+    val helperList = new LinkedList[Tile]
 
     var i = 0
     while (i < TwoThousandFortyEight.FIELD_SIZE && !oldLine(i).isEmpty) {

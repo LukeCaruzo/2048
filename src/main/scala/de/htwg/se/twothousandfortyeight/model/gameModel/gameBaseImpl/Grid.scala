@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-import java.util
+import java.util.ArrayList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
@@ -18,12 +18,9 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
   }
 
   def getAvailableSpace(): Array[Tile] = {
-    val tilesList = new util.ArrayList[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
-    for (tile <- this.tiles) {
-      if (tile.isEmpty) {
-        tilesList.add(tile)
-      }
-    }
+    val tilesList = new ArrayList[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
+
+    this.tiles.foreach(tile => if (tile.isEmpty) tilesList.add(tile))
 
     val tilesArray = new Array[Tile](tilesList.size)
     for (i <- 0 until tilesList.size) {

@@ -1,10 +1,9 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-class GameStatus {
-  var win = false
-  var lose = false
-  var score = new Score
-  var grid = new Grid
+case class GameStatus(var win: Boolean = false,
+                      var lose: Boolean = false,
+                      var score: Score = new Score,
+                      var grid: Grid = new Grid) {
 
   def reset: Unit = {
     win = false
