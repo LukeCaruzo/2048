@@ -43,17 +43,12 @@ class GameSpec extends WordSpec with Matchers {
         game.compareLines(game.status.grid.getSingleLine(1), Array(new Tile(2), new Tile(4), new Tile(0))) should be(false)
       }
       val game2 = new Game
-      "have initial values" in {
-        game2.status.win should be(false)
-        game2.status.lose should be(false)
-      }
       "have a reset method" in {
-        game2.status.win = true
-        game2.status.win should be(true)
+        game2.status.score.value = 5
+        game2.status.score.value should be(5)
         game2.reset
-        game2.status.win should be(false)
+        game2.status.score.value should be(0)
       }
-
     }
   }
 }

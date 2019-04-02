@@ -4,32 +4,30 @@ import java.io._
 
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Grid, Score, Tile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{GameStatus, Grid, Score, Tile}
 
 import scala.io.Source
 import scala.xml.{Elem, XML}
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: GameTrait): Unit = {
+  def save(filename: String, game: GameStatus): Unit = {
     val file = new File(filename + ".xml")
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(toXml(game).toString)
     bw.close()
   }
 
-  def load(filename: String, game: GameTrait): Unit = {
+  def load(filename: String, game: GameStatus): Unit = {
     val source = Source.fromFile(filename + ".xml")
     val lines = try source.mkString finally source.close()
 
     fromXml(XML.loadString(lines), game)
   }
 
-  def toXml(game: GameTrait): Elem = {
+  def toXml(game: GameStatus): Elem = {
     return <game>
-      <win>{game.status.win}</win>
-      <lose>{game.status.lose}</lose>
-      <score>{game.status.score.value}</score>
-      <grid>{serializeTiles(game.status.grid.tiles)}</grid>
+      <score>{game.score.value}</score>
+      <grid>{serializeTiles(game.grid.tiles)}</grid>
     </game>
   }
 
@@ -46,17 +44,15 @@ class FileIo extends FileIoTrait {
     return sb.toString
   }
 
-  def fromXml(node: scala.xml.Node, game: GameTrait): Unit = {
+  def fromXml(node: scala.xml.Node, game: GameStatus): Unit = {
     val scoreObj = new Score()
     scoreObj.value = (node \ "score").text.toInt
 
     val gridObj = new Grid
     gridObj.tiles = deserializeTiles((node \ "grid").text)
 
-    game.status.win = (node \ "win").text.toBoolean
-    game.status.lose = (node \ "lose").text.toBoolean
-    game.status.score = scoreObj
-    game.status.grid = gridObj
+    game.score = scoreObj
+    game.grid = gridObj
   }
 
   def deserializeTiles(tiles: String): Array[Tile] = {

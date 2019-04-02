@@ -3,7 +3,7 @@ package de.htwg.se.twothousandfortyeight.model
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoXmlImpl
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Score}
 import org.junit.runner.RunWith
 import org.scalatest.{Matchers, WordSpec}
 import org.scalatest.junit.JUnitRunner
@@ -17,27 +17,27 @@ class FileIoSpec extends WordSpec with Matchers {
 
       val game = new Game
       "have a save (json) " in {
-        game.status.win = true
-        fileIoJson.save("test.2048", game)
+        game.status.score.value = 0
+        fileIoJson.save("test.2048", game.status)
       }
       "have a load (json) method" in {
-        game.status.win = false
-        fileIoJson.load("test.2048", game)
-        game.status.win should be(true)
+        game.status.score.value = 5
+        fileIoJson.load("test.2048", game.status)
+        game.status.score.value should be(0)
       }
       "have a save (xml) " in {
-        game.status.win = true
-        fileIoXml.save("test.2048", game)
+        game.status.score.value = 0
+        fileIoXml.save("test.2048", game.status)
       }
       "have a load (xml) method" in {
-        game.status.win = false
-        fileIoXml.load("test.2048", game)
-        game.status.win should be(true)
+        game.status.score.value = 5
+        fileIoXml.load("test.2048", game.status)
+        game.status.score.value should be(0)
       }
       val game3 = new Game
       game3.status.score.value = 98
       "have a fromXml/toXml method" in {
-        fileIoXml.fromXml(fileIoXml.toXml(game3), game3)
+        fileIoXml.fromXml(fileIoXml.toXml(game3.status), game3.status)
         game3.status.score.value should be(98)
       }
     }

@@ -5,12 +5,12 @@ import java.io._
 import com.google.gson.Gson
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, GameStatus}
 
 import scala.io.Source
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: GameTrait) {
+  def save(filename: String, game: GameStatus) {
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
@@ -19,16 +19,14 @@ class FileIo extends FileIoTrait {
     bw.close()
   }
 
-  def load(filename: String, game: GameTrait) {
+  def load(filename: String, game: GameStatus) {
     val source = Source.fromFile(filename + ".json")
     val lines = try source.mkString finally source.close()
 
     val gson = new Gson
-    val jsonGame = gson.fromJson(lines, classOf[Game])
+    val jsonGame = gson.fromJson(lines, classOf[GameStatus])
 
-    game.status.win = jsonGame.status.win
-    game.status.lose = jsonGame.status.lose
-    game.status.score = jsonGame.status.score
-    game.status.grid = jsonGame.status.grid
+    game.score = jsonGame.score
+    game.grid = jsonGame.grid
   }
 }

@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
-import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
+import de.htwg.se.twothousandfortyeight.controller.{GameLost, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import net.codingwell.scalaguice.InjectorExtensions._
@@ -18,15 +18,13 @@ class Turn extends TurnTrait with Publisher {
     runSpecialMove(game, key)
 
     if (!game.status.grid.canBeMoved) {
-      game.status.lose = true
+      publish(new GameLost)
     }
 
-    if (!game.status.win && !game.status.lose) {
-      runMove(game, key, random1, random2)
-    }
+    runMove(game, key, random1, random2)
 
-    if (!game.status.win && !game.status.grid.canBeMoved) {
-      game.status.lose = true
+    if (!game.status.grid.canBeMoved) {
+      publish(new GameLost)
     }
 
     publish(new TurnMade)
@@ -35,17 +33,17 @@ class Turn extends TurnTrait with Publisher {
   def runSpecialMove(game: GameTrait, key: String): Unit = {
     key match {
       case "undo" =>
-        fileIo.load("undo.2048", game)
+        fileIo.load("undo.2048", game.status)
       case "reset" =>
         game.reset
       case "save" =>
-        fileIo.save("save.2048", game)
+        fileIo.save("save.2048", game.status)
       case "load" =>
-        fileIo.load("save.2048", game)
+        fileIo.load("save.2048", game.status)
       case "exit" =>
         sys.exit()
       case _ =>
-        fileIo.save("undo.2048", game)
+        fileIo.save("undo.2048", game.status)
     }
   }
 

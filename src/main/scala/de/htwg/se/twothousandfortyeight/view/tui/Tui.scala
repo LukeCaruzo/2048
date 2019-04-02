@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
+import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
@@ -11,6 +11,8 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
 
   reactions += {
     case event: TurnMade => printTui
+    case win: GameWon => printWin
+    case lose: GameLost => printLose
   }
 
   println("Hello. Game started!")
@@ -25,14 +27,12 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   }
 
   def printTui(): Unit = {
-    if (game.status.win) {
-      println("You won!")
-    } else if (game.status.lose) {
-      println("You lost!")
-    } else {
-      println(game.status.grid.toString)
-      println("Your Score: " + game.status.score.toString)
-      println()
-    }
+    println(game.status.grid.toString)
+    println("Your Score: " + game.status.score.toString)
+    println()
   }
+
+  def printWin() = println("You won!")
+
+  def printLose() = println("You lost!")
 }

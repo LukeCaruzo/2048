@@ -11,3 +11,7 @@ trait TurnTrait extends Publisher {
 }
 
 class TurnMade extends Event
+
+class GameWon extends Event
+
+class GameLost extends Event
