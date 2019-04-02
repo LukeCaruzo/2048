@@ -13,10 +13,6 @@ trait GameTrait {
 
   def reset
 
-  def toXml: Elem
-
-  def fromXml(node: Node)
-
   def left(random1: Double, random2: Double)
 
   def right(random1: Double, random2: Double)

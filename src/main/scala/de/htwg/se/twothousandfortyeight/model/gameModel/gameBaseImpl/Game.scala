@@ -20,53 +20,6 @@ class Game extends GameTrait {
     grid = new Grid
   }
 
-  def toXml: Elem = {
-    return <game>
-      <win>{this.win}</win>
-      <lose>{this.lose}</lose>
-      <score>{this.score.value}</score>
-      <grid>{serializeTiles(this.grid.tiles)}</grid>
-    </game>
-  }
-
-  def serializeTiles(tiles: Array[Tile]): String = {
-    val sb = new StringBuilder
-
-    for (i <- tiles.indices) {
-      sb.append(tiles(i).value)
-      if (i != (tiles.length - 1)) {
-        sb.append(",")
-      }
-    }
-
-    return sb.toString
-  }
-
-  def fromXml(node: scala.xml.Node): Unit = {
-    val scoreObj = new Score()
-    scoreObj.value = (node \ "score").text.toInt
-
-    val gridObj = new Grid
-    gridObj.tiles = deserializeTiles((node \ "grid").text)
-
-    this.win = (node \ "win").text.toBoolean
-    this.lose = (node \ "lose").text.toBoolean
-    this.score = scoreObj
-    this.grid = gridObj
-  }
-
-  def deserializeTiles(tiles: String): Array[Tile] = {
-    val splitTiles = tiles.split(",")
-
-    val tempTilesArray = new Array[Tile](splitTiles.length)
-    for (i <- splitTiles.indices) {
-      tempTilesArray(i) = new Tile()
-      tempTilesArray(i).value = splitTiles(i).toInt
-    }
-
-    return tempTilesArray
-  }
-
   def left(random1: Double, random2: Double): Unit = {
     var needsATile = false
 

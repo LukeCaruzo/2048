@@ -34,6 +34,12 @@ class FileIoSpec extends WordSpec with Matchers {
         fileIoXml.load("test.2048", game)
         game.win should be(true)
       }
+      val game3 = new Game
+      game3.score.value = 98
+      "have a fromXml/toXml method" in {
+        fileIoXml.fromXml(fileIoXml.toXml(game3), game3)
+        game3.score.value should be(98)
+      }
     }
   }
 }
