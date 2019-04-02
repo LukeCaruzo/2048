@@ -18,21 +18,15 @@ class Turn extends TurnTrait with Publisher {
   def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double) {
     runSpecialMove(game, key)
 
-    if (!game.status.grid.canBeMoved) {
-      publish(new GameLost)
-    }
-
     runMove(game, key, random1, random2)
 
     if(game.status.grid.tiles contains new Tile(2048)) {
       publish(new GameWon)
-    }
-
-    if (!game.status.grid.canBeMoved) {
+    } else if (!game.status.grid.canBeMoved) {
       publish(new GameLost)
+    } else {
+      publish(new TurnMade)
     }
-
-    publish(new TurnMade)
   }
 
   def runSpecialMove(game: GameTrait, key: String): Unit = {

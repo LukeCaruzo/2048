@@ -81,10 +81,6 @@ class Game extends GameTrait {
         oldValue *= 2
         this.status.score.value += oldValue
 
-        //if (oldValue == 2048) {
-        //  publish(new GameWon)
-        //}
-
         i = i + 1
       }
 
