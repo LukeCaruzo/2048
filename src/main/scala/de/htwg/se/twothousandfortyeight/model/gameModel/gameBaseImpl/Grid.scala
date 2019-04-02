@@ -5,10 +5,7 @@ import java.util
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
 case class Grid(random1: Double = Math.random(), random2: Double = Math.random(), random3: Double = Math.random(), random4: Double = Math.random()) {
-  var tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
-  for (i <- tiles.indices) {
-    tiles(i) = new Tile()
-  }
+  var tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())
   addTile(random1, random2)
   addTile(random3, random4)
 

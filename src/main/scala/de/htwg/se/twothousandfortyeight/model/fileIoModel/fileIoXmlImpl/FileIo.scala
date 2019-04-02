@@ -26,10 +26,10 @@ class FileIo extends FileIoTrait {
 
   def toXml(game: GameTrait): Elem = {
     return <game>
-      <win>{game.win}</win>
-      <lose>{game.lose}</lose>
-      <score>{game.score.value}</score>
-      <grid>{serializeTiles(game.grid.tiles)}</grid>
+      <win>{game.status.win}</win>
+      <lose>{game.status.lose}</lose>
+      <score>{game.status.score.value}</score>
+      <grid>{serializeTiles(game.status.grid.tiles)}</grid>
     </game>
   }
 
@@ -53,10 +53,10 @@ class FileIo extends FileIoTrait {
     val gridObj = new Grid
     gridObj.tiles = deserializeTiles((node \ "grid").text)
 
-    game.win = (node \ "win").text.toBoolean
-    game.lose = (node \ "lose").text.toBoolean
-    game.score = scoreObj
-    game.grid = gridObj
+    game.status.win = (node \ "win").text.toBoolean
+    game.status.lose = (node \ "lose").text.toBoolean
+    game.status.score = scoreObj
+    game.status.grid = gridObj
   }
 
   def deserializeTiles(tiles: String): Array[Tile] = {

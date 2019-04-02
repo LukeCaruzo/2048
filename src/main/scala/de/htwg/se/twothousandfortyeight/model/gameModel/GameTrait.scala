@@ -1,15 +1,9 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Grid, Score}
-
-import scala.xml.Elem
-import scala.xml.Node
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.GameStatus
 
 trait GameTrait {
-  var win: Boolean
-  var lose: Boolean
-  var score: Score
-  var grid: Grid
+  val status: GameStatus
 
   def reset
 

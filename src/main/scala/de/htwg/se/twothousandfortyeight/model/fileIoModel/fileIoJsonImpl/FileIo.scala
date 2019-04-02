@@ -26,9 +26,9 @@ class FileIo extends FileIoTrait {
     val gson = new Gson
     val jsonGame = gson.fromJson(lines, classOf[Game])
 
-    game.win = jsonGame.win
-    game.lose = jsonGame.lose
-    game.score = jsonGame.score
-    game.grid = jsonGame.grid
+    game.status.win = jsonGame.status.win
+    game.status.lose = jsonGame.status.lose
+    game.status.score = jsonGame.status.score
+    game.status.grid = jsonGame.status.grid
   }
 }

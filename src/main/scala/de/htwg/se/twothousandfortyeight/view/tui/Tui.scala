@@ -16,8 +16,8 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
   println()
-  println(game.grid.toString)
-  println("Your Score: " + game.score.toString)
+  println(game.status.grid.toString)
+  println("Your Score: " + game.status.score.toString)
   println()
   while (true) {
     val scanner = new java.util.Scanner(System.in)
@@ -25,13 +25,13 @@ class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   }
 
   def printTui(): Unit = {
-    if (game.win) {
+    if (game.status.win) {
       println("You won!")
-    } else if (game.lose) {
+    } else if (game.status.lose) {
       println("You lost!")
     } else {
-      println(game.grid.toString)
-      println("Your Score: " + game.score.toString)
+      println(game.status.grid.toString)
+      println("Your Score: " + game.status.score.toString)
       println()
     }
   }
