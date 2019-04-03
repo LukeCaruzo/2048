@@ -24,18 +24,23 @@ object Move {
   def left(game: Game): Game = {
     var needsATile = false
     var gameNew = new Game
+    val scoreOld = game.score.value
 
+    var score = 0
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val singleLine = getSingleLine(game, i)
-      val mergedLine = mergeSingleLine(moveSingleLine(singleLine))
-      println("xx" + mergedLine.score)
-      gameNew = new Game(setSingleLine(game, i, mergedLine).grid, mergedLine.score) // Score doesnt work
-      println("yy"+gameNew.score)
+      val mergedLine = mergeSingleLine(moveSingleLine(new Game(singleLine.grid, new Score)))
+
+      System.arraycopy(mergedLine.grid, 0, game.grid, i * TwoThousandFortyEight.FIELD_SIZE, TwoThousandFortyEight.FIELD_SIZE)
+
+      score = score + mergedLine.score.value
 
       if (!needsATile && !compareLines(singleLine.grid, mergedLine.grid)) {
         needsATile = true
       }
     }
+
+    gameNew = new Game(game.grid, new Score(score + scoreOld))
 
     if (needsATile) {
       gameNew = new Game(addTile(gameNew.grid), gameNew.score)
@@ -108,7 +113,7 @@ object Move {
       var oldValue = oldLine(i).value
       if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) {
         oldValue *= 2
-        println(game.score.value + "+" + oldValue)
+        //println(game.score.value + " + " + oldValue)
         scoreNew = new Score(game.score.value + oldValue)
 
         i = i + 1
@@ -139,11 +144,7 @@ object Move {
     return new Game(singleLine, game.score)
   }
 
-  def setSingleLine(game: Game, index: Int, re: Game): Game = {
-    System.arraycopy(re.grid, 0, game.grid, index * TwoThousandFortyEight.FIELD_SIZE, TwoThousandFortyEight.FIELD_SIZE)
 
-    return new Game(game.grid, re.score)
-  }
 
   def getPositionOfTile(tiles: Array[Tile], x: Int, y: Int): Tile = {
     return tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
