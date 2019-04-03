@@ -14,19 +14,27 @@ class FileIo extends FileIoTrait {
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
-    val gson = new Gson
-    bw.write(gson.toJson(game))
+    bw.write(serialize(game))
     bw.close()
+  }
+
+  def serialize(game: GameTrait): String = {
+    val gson = new Gson
+    return gson.toJson(game)
   }
 
   def load(filename: String, game: GameTrait) {
     val source = Source.fromFile(filename + ".json")
     val lines = try source.mkString finally source.close()
 
-    val gson = new Gson
-    val jsonGame = gson.fromJson(lines, classOf[Game])
+    val gameNew = deserialize(lines)
 
-    game.status.score = jsonGame.status.score
-    game.status.grid = jsonGame.status.grid
+    game.status.score = gameNew.status.score
+    game.status.grid = gameNew.status.grid
+  }
+
+  def deserialize(json: String): GameTrait = {
+    val gson = new Gson
+    return gson.fromJson(json, classOf[Game])
   }
 }
