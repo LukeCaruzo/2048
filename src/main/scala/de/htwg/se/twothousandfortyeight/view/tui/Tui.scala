@@ -5,11 +5,9 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 import scala.swing.Reactor
-import scala.swing.event.Event
 
 class Tui(game: GameTrait, turn: TurnTrait) extends Reactor {
   listenTo(turn)
-
 
   reactions += {
     case event: TurnMade => printTui

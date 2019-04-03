@@ -74,7 +74,6 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
       }
     }
 
-
     this.tiles = newTiles
   }
 

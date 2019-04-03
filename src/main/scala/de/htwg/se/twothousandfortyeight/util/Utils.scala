@@ -29,7 +29,7 @@ object Utils {
     }
   }
 
-  def getBackGroundColor(tile: TileTrait): Color = {
+  /*def getBackGroundColor(tile: TileTrait): Color = {
     tile.value match {
       case 2 =>
         return new Color(0xfff835)
@@ -56,5 +56,5 @@ object Utils {
       case _ =>
         return new Color(0x707070)
     }
-  }
+  }*/
 }

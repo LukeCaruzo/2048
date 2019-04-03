@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.GameStatus
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{GameStatus, Grid, Score}
 
 import scala.swing.Publisher
 import scala.swing.event.Event
@@ -27,3 +27,10 @@ trait TileTrait {
   def toString(): String
 }
 
+/*trait GameStatusTrait {
+  var score: Score
+
+  var grid: Grid
+
+  def reset(): Unit
+}*/

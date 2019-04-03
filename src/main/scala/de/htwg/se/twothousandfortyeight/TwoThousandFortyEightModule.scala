@@ -10,6 +10,7 @@ import net.codingwell.scalaguice.ScalaModule
 class TwoThousandFortyEightModule extends AbstractModule with ScalaModule {
   override def configure(): Unit = {
     bind[GameTrait].to[gameBaseImpl.Game]
-    bind[FileIoTrait].to[fileIoJsonImpl.FileIo] //bind[FileIoTrait].to[fileIoXmlImpl.FileIo]
+    bind[FileIoTrait].to[fileIoJsonImpl.FileIo]
+    //bind[FileIoTrait].to[fileIoXmlImpl.FileIo]
   }
 }
