@@ -5,7 +5,7 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
 import scala.swing.Publisher
@@ -14,22 +14,23 @@ import scala.swing.Publisher
 class Turn extends TurnTrait with Publisher {
   val injector = Guice.createInjector(new TwoThousandFortyEightModule)
   val fileIo = injector.instance[FileIoTrait]
+  val game = new Game
 
-  def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double) {
-    runSpecialMove(game, key)
+  def makeTurn(key: String, random1: Double, random2: Double) {
+    runSpecialMove(key)
 
-    runMove(game, key, random1, random2)
+    runMove(key, random1, random2)
 
-    if(game.status.grid.tiles contains new Tile(2048)) {
+    if(game.grid.tiles contains new Tile(2048)) {
       publish(new GameWon)
-    } else if (!game.status.grid.canBeMoved) {
+    } else if (!game.grid.canBeMoved) {
       publish(new GameLost)
     } else {
       publish(new TurnMade)
     }
   }
 
-  def runSpecialMove(game: GameTrait, key: String): Unit = {
+  def runSpecialMove(key: String): Unit = {
     key match {
       case "undo" =>
         fileIo.load("undo.2048", game)
@@ -46,7 +47,7 @@ class Turn extends TurnTrait with Publisher {
     }
   }
 
-  def runMove(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
+  def runMove(key: String, random1: Double, random2: Double): Unit = {
     key match {
       case "left" =>
         game.left(random1, random2)

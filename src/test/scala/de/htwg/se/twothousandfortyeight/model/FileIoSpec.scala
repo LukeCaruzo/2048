@@ -15,13 +15,13 @@ class FileIoSpec extends WordSpec with Matchers {
 
       val game = new Game
       "have a save (json) " in {
-        game.status.score.value = 0
+        game.score.value = 0
         fileIoJson.save("test.2048", game)
       }
       "have a load (json) method" in {
-        game.status.score.value = 5
+        game.score.value = 5
         fileIoJson.load("test.2048", game)
-        game.status.score.value should be(0)
+        game.score.value should be(0)
       }
     }
   }

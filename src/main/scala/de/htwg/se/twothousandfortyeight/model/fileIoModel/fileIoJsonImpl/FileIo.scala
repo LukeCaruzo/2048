@@ -5,7 +5,7 @@ import java.io._
 import com.google.gson.Gson
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, GameStatus}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
 import scala.io.Source
 
@@ -29,8 +29,8 @@ class FileIo extends FileIoTrait {
 
     val gameNew = deserialize(lines)
 
-    game.status.score = gameNew.status.score
-    game.status.grid = gameNew.status.grid
+    game.score = gameNew.score
+    game.grid = gameNew.grid
   }
 
   def deserialize(json: String): GameTrait = {

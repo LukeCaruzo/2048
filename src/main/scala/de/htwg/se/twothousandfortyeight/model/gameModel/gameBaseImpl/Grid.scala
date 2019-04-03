@@ -4,7 +4,8 @@ import java.util.ArrayList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
-case class Grid(random1: Double = Math.random(), random2: Double = Math.random(), random3: Double = Math.random(), random4: Double = Math.random()) {
+case class Grid(random1: Double = Math.random(), random2: Double = Math.random(),
+                random3: Double = Math.random(), random4: Double = Math.random()) {
   var tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())
   addTile(random1, random2)
   addTile(random3, random4)
@@ -42,7 +43,8 @@ case class Grid(random1: Double = Math.random(), random2: Double = Math.random()
     for (x <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         val tile = getPositionOfTile(x, y)
-        if ((x < (TwoThousandFortyEight.FIELD_SIZE - 1) && tile.value == getPositionOfTile(x + 1, y).value) || ((y < (TwoThousandFortyEight.FIELD_SIZE - 1)) && tile.value == getPositionOfTile(x, y + 1).value)) {
+        if ((x < (TwoThousandFortyEight.FIELD_SIZE - 1) && tile.value == getPositionOfTile(x + 1, y).value) ||
+          ((y < (TwoThousandFortyEight.FIELD_SIZE - 1)) && tile.value == getPositionOfTile(x, y + 1).value)) {
           return true
         }
       }

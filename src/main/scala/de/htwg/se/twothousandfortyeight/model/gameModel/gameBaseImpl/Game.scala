@@ -6,17 +6,21 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 
 class Game extends GameTrait {
-  val status = new GameStatus
+  var score: Score = new Score
+  var grid: Grid = new Grid
 
-  def reset: Unit = status.reset
+  def reset: Unit = {
+    score = new Score
+    grid = new Grid
+  }
 
   def left(random1: Double, random2: Double): Unit = {
     var needsATile = false
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
-      val singleLine = this.status.grid.getSingleLine(i)
+      val singleLine = this.grid.getSingleLine(i)
       val mergedLine = mergeSingleLine(moveSingleLine(singleLine))
-      this.status.grid.setSingleLine(i, mergedLine)
+      this.grid.setSingleLine(i, mergedLine)
 
       if (!needsATile && !compareLines(singleLine, mergedLine)) {
         needsATile = true
@@ -24,26 +28,26 @@ class Game extends GameTrait {
     }
 
     if (needsATile) {
-      this.status.grid.addTile(random1, random2)
+      this.grid.addTile(random1, random2)
     }
   }
 
   def right(random1: Double, random2: Double): Unit = {
-    this.status.grid.rotate(180)
+    this.grid.rotate(180)
     left(random1, random2)
-    this.status.grid.rotate(180)
+    this.grid.rotate(180)
   }
 
   def up(random1: Double, random2: Double): Unit = {
-    this.status.grid.rotate(270)
+    this.grid.rotate(270)
     left(random1, random2)
-    this.status.grid.rotate(90)
+    this.grid.rotate(90)
   }
 
   def down(random1: Double, random2: Double): Unit = {
-    this.status.grid.rotate(90)
+    this.grid.rotate(90)
     left(random1, random2)
-    this.status.grid.rotate(270)
+    this.grid.rotate(270)
   }
 
   def moveSingleLine(oldLine: Array[Tile]): Array[Tile] = {
@@ -79,7 +83,7 @@ class Game extends GameTrait {
       var oldValue = oldLine(i).value
       if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) {
         oldValue *= 2
-        this.status.score.value += oldValue
+        this.score.value += oldValue
 
         i = i + 1
       }
