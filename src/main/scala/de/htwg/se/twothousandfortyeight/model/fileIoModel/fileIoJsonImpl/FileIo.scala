@@ -4,36 +4,36 @@ import java.io._
 
 import com.google.gson.Gson
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
 import scala.io.Source
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: GameTrait) {
+  def save(filename: String, game: Game) :Game = {
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
     bw.write(serialize(game))
     bw.close()
+
+    return game
   }
 
-  def serialize(game: GameTrait): String = {
+  def serialize(game: Game): String = {
     val gson = new Gson
     return gson.toJson(game)
   }
 
-  def load(filename: String, game: GameTrait) {
+  def load(filename: String, game: Game): Game = {
     val source = Source.fromFile(filename + ".json")
     val lines = try source.mkString finally source.close()
 
     val gameNew = deserialize(lines)
 
-    game.score = gameNew.score
-    game.grid = gameNew.grid
+    return gameNew
   }
 
-  def deserialize(json: String): GameTrait = {
+  def deserialize(json: String): Game = {
     val gson = new Gson
     return gson.fromJson(json, classOf[Game])
   }
