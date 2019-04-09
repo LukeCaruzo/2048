@@ -7,7 +7,6 @@ This repository is used for the Software Architectures course at the HTWG Konsta
 
 # Contributors
 * Lucas Schmidt (LukeCaruzo)
-* Bilal Rachachi (bilalra)
 
 # Details
 * SS 2019
