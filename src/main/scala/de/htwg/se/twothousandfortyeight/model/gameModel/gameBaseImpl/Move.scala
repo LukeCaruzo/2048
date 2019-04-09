@@ -7,7 +7,7 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 object Move {
   def addTile(tiles: Array[Tile]): Array[Tile] = {
     val emptyIndices = new ArrayList[Int]
-    for (i <- 0 until tiles.size) {
+    for (i <- tiles.indices) {
       if (tiles(i).isEmpty) {
         emptyIndices.add(i)
       }
@@ -50,15 +50,15 @@ object Move {
   }
 
   def right(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 180)), 180)
+    return Rotate.rotate(left(Rotate.rotate(game, 180).get), 180).get
   }
 
   def up(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 270)), 90)
+    return Rotate.rotate(left(Rotate.rotate(game, 270).get), 90).get
   }
 
   def down(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 90)), 270)
+    return Rotate.rotate(left(Rotate.rotate(game, 90).get), 270).get
   }
 
   def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
