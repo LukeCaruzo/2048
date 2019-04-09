@@ -50,15 +50,15 @@ object Move {
   }
 
   def right(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 180)), 180)
+    return Rotate.rotate(Rotate.rotate(left(Rotate.rotate(Rotate.rotate(game)))))
   }
 
   def up(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 270)), 90)
+    return Rotate.rotate(left(Rotate.rotate(Rotate.rotate(Rotate.rotate(game)))))
   }
 
   def down(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game, 90)), 270)
+    return Rotate.rotate(Rotate.rotate(Rotate.rotate(left(Rotate.rotate(game)))))
   }
 
   def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {

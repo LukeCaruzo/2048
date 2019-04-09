@@ -3,16 +3,11 @@ package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
 object Rotate {
-  def rotate(game: Game, angle: Int): Game = {
+  def rotate(game: Game): Game = {
     val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
-    var oX = TwoThousandFortyEight.FIELD_SIZE - 1
-    var oY = TwoThousandFortyEight.FIELD_SIZE - 1
-
-    if (angle == 90) {
-      oY = 0
-    } else if (angle == 270) {
-      oX = 0
-    }
+    val oX = TwoThousandFortyEight.FIELD_SIZE - 1
+    val oY = 0
+    val angle = 90
 
     val radians = Math.toRadians(angle)
     val cos = Math.cos(radians).toInt
