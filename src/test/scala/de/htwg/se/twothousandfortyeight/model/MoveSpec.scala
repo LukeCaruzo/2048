@@ -12,7 +12,25 @@ class MoveSpec extends WordSpec with Matchers {
   "A Move" when {
     "new" should {
       "have a addTile method" in {
-        Move.addTile(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())).length should be(16)
+        val tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.isFull(tiles) should be(false)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.addTile(tiles).length should be(16)
+        Move.isFull(tiles) should be(true)
       }
       "have a left method" in {
         Move.left(new Game).grid.length should be(16)
