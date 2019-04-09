@@ -1,9 +1,5 @@
 package de.htwg.se.twothousandfortyeight.util
 
-import java.awt.Color
-
-import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
-
 object Utils {
   def processKey(key: Char): String = {
     if (key == 'w') {

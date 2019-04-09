@@ -2,8 +2,6 @@ package de.htwg.se.twothousandfortyeight
 
 import com.google.inject.AbstractModule
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.{FileIoTrait, fileIoJsonImpl}
-
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 import net.codingwell.scalaguice.ScalaModule
 
 class TwoThousandFortyEightModule extends AbstractModule with ScalaModule {

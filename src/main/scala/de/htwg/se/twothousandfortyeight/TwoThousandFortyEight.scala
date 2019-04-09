@@ -1,7 +1,6 @@
 package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Functions
 import de.htwg.se.twothousandfortyeight.view.tui.Tui
 
 object TwoThousandFortyEight {

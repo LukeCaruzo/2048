@@ -58,7 +58,7 @@ object Move {
   }
 
   def down(game: Game): Game = {
-    return Rotate.rotate(left(Rotate.rotate(game,90)), 270)
+    return Rotate.rotate(left(Rotate.rotate(game, 90)), 270)
   }
 
   def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
@@ -113,7 +113,6 @@ object Move {
       var oldValue = oldLine(i).value
       if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) {
         oldValue *= 2
-        //println(game.score.value + " + " + oldValue)
         scoreNew = new Score(game.score.value + oldValue)
 
         i = i + 1
@@ -144,8 +143,6 @@ object Move {
     return new Game(singleLine, game.score)
   }
 
-
-
   def getPositionOfTile(tiles: Array[Tile], x: Int, y: Int): Tile = {
     return tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
   }
@@ -173,5 +170,4 @@ object Move {
 
     return true
   }
-
 }

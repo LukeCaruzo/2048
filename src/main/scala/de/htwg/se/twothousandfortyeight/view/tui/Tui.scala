@@ -24,7 +24,7 @@ class Tui(turn: TurnTrait) extends Reactor {
   while (true) {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine()
-    if(!line.isEmpty) {
+    if (!line.isEmpty) {
       turn.makeTurn(Utils.processKey(line.charAt(0)))
     }
   }
