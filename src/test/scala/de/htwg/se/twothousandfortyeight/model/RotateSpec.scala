@@ -10,11 +10,9 @@ class RotateSpec extends WordSpec with Matchers {
   "A Rotate" when {
     "new" should {
       "have a rotate method" in {
-        Rotate.rotate(new Game, 90).get.grid.length should be(16)
-        Rotate.rotate(new Game, 180).get.grid.length should be(16)
-        Rotate.rotate(new Game, 270).get.grid.length should be(16)
-
-        Rotate.rotate(new Game, 100) should be(None)
+        Rotate.rotate(new Game, 90).grid.length should be(16)
+        Rotate.rotate(new Game, 180).grid.length should be(16)
+        Rotate.rotate(new Game, 270).grid.length should be(16)
       }
     }
   }
