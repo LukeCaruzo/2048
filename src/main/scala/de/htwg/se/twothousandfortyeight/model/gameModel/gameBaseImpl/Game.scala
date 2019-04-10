@@ -11,7 +11,7 @@ case class Game(grid: Array[Tile] =
                 score: Score = new Score) { // TODO: Change Array to Vector
 
   def reset: Game = {
-    return new Game()
+    new Game()
   }
 
   def rotate(): Game = {
@@ -64,15 +64,15 @@ case class Game(grid: Array[Tile] =
   }
 
   def right(): Game = {
-    return this.rotate.rotate.left.rotate.rotate
+    this.rotate.rotate.left.rotate.rotate
   }
 
   def up(): Game = {
-    return this.rotate.rotate.rotate.left.rotate
+    this.rotate.rotate.rotate.left.rotate
   }
 
   def down(): Game = {
-    return this.rotate.left.rotate.rotate.rotate
+    this.rotate.left.rotate.rotate.rotate
   }
 
   def moveSingleLine(): Game = {
