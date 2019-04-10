@@ -6,19 +6,21 @@ import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
 object Move {
   def addTile(tiles: Array[Tile]): Array[Tile] = {
+    val newTiles = tiles
     val emptyIndices = new ArrayList[Int]
-    for (i <- tiles.indices) {
-      if (tiles(i).isEmpty) {
+
+    for (i <- newTiles.indices) {
+      if (newTiles(i).isEmpty) {
         emptyIndices.add(i)
       }
     }
 
     if (!emptyIndices.isEmpty) {
       val emptyTileValue = if (Math.random() < 0.9) 2 else 4
-      tiles(emptyIndices.get((Math.random() * emptyIndices.size()).asInstanceOf[Int] % emptyIndices.size())) = new Tile(emptyTileValue)
+      newTiles(emptyIndices.get((Math.random() * emptyIndices.size()).asInstanceOf[Int] % emptyIndices.size())) = new Tile(emptyTileValue)
     }
 
-    return tiles
+    return newTiles
   }
 
   def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
