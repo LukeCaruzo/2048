@@ -2,9 +2,9 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
-import de.htwg.se.twothousandfortyeight.controller.{TurnMade, TurnTrait}
+import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
 import scala.swing.Publisher
@@ -14,51 +14,56 @@ class Turn extends TurnTrait with Publisher {
   val injector = Guice.createInjector(new TwoThousandFortyEightModule)
   val fileIo = injector.instance[FileIoTrait]
 
-  def makeTurn(game: GameTrait, key: String, random1: Double, random2: Double) {
-    runSpecialMove(game, key)
+  var game = new Game
+  var undoGame = game
 
-    if (!game.grid.canBeMoved) {
-      game.lose = true
+  def makeTurn(key: String): Unit = {
+    runSpecialMove(key)
+
+    runMove(key)
+
+    if (game.grid contains new Tile(2048)) {
+      publish(new GameWon)
+    } else if (!Operations.canBeMoved(game.grid)) {
+      publish(new GameLost)
+    } else {
+      publish(new TurnMade)
     }
-
-    if (!game.win && !game.lose) {
-      runMove(game, key, random1, random2)
-    }
-
-    if (!game.win && !game.grid.canBeMoved) {
-      game.lose = true
-    }
-
-    publish(new TurnMade)
   }
 
-  def runSpecialMove(game: GameTrait, key: String): Unit = {
+  def runSpecialMove(key: String): Unit = {
     key match {
       case "undo" =>
-        fileIo.load("undo.2048", game)
+        game = undoGame
       case "reset" =>
-        game.reset
+        game = game.reset
       case "save" =>
         fileIo.save("save.2048", game)
       case "load" =>
-        fileIo.load("save.2048", game)
+        fileIo.load("save.2048") match {
+          case Some(game) =>
+            this.game = game
+          case None =>
+            println("No save found!")
+            println()
+        }
       case "exit" =>
         sys.exit()
       case _ =>
-        fileIo.save("undo.2048", game)
+        undoGame = game
     }
   }
 
-  def runMove(game: GameTrait, key: String, random1: Double, random2: Double): Unit = {
+  def runMove(key: String): Unit = {
     key match {
       case "left" =>
-        game.left(random1, random2)
+        game = game.left
       case "right" =>
-        game.right(random1, random2)
+        game = game.right
       case "down" =>
-        game.down(random1, random2)
+        game = game.down
       case "up" =>
-        game.up(random1, random2)
+        game = game.up
       case _ =>
     }
   }

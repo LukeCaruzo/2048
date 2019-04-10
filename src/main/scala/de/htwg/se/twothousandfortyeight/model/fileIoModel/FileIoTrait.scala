@@ -1,9 +1,13 @@
 package de.htwg.se.twothousandfortyeight.model.fileIoModel
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
 trait FileIoTrait {
-  def save(filename: String, game: GameTrait)
+  def save(filename: String, game: Game): Unit
 
-  def load(filename: String, game: GameTrait)
+  def serialize(game: Game): String
+
+  def load(filename: String): Option[Game]
+
+  def deserialize(text: String): Game
 }
