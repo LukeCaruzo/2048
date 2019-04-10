@@ -7,6 +7,7 @@ import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
 import scala.io.Source
+import scala.util.{Failure, Success, Try}
 
 class FileIo extends FileIoTrait {
   def save(filename: String, game: Game) {
@@ -15,26 +16,22 @@ class FileIo extends FileIoTrait {
 
     bw.write(serialize(game))
     bw.close()
-
-    return game
   }
 
   def serialize(game: Game): String = {
     val gson = new Gson
-    return gson.toJson(game)
+    gson.toJson(game)
   }
 
-  def load(filename: String): Game = {
-    val source = Source.fromFile(filename + ".json")
-    val lines = try source.mkString finally source.close()
-
-    val gameNew = deserialize(lines)
-
-    return gameNew
+  def load(filename: String): Option[Game] = {
+    Try(Source.fromFile(filename + ".json").mkString) match {
+      case Success(lines) => Some(deserialize(lines))
+      case Failure(_) => None
+    }
   }
 
   def deserialize(json: String): Game = {
     val gson = new Gson
-    return gson.fromJson(json, classOf[Game])
+    gson.fromJson(json, classOf[Game])
   }
 }

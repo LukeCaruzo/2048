@@ -40,7 +40,7 @@ class Turn extends TurnTrait with Publisher {
       case "save" =>
         fileIo.save("save.2048", game)
       case "load" =>
-        game = fileIo.load("save.2048")
+        game = fileIo.load("save.2048").get
       case "exit" =>
         sys.exit()
       case _ =>
