@@ -1,8 +1,7 @@
 package de.htwg.se.twothousandfortyeight.model
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Move.{getSingleLine, mergeSingleLine, moveSingleLine}
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Move, Score, Tile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Move, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner
@@ -32,18 +31,6 @@ class MoveSpec extends WordSpec with Matchers {
         Move.addTile(tiles).length should be(16)
         Move.isFull(tiles) should be(true)
       }
-      "have a left method" in {
-        Move.left(new Game).grid.length should be(16)
-      }
-      "have a right method" in {
-        Move.right(new Game).grid.length should be(16)
-      }
-      "have a up method" in {
-        Move.up(new Game).grid.length should be(16)
-      }
-      "have a down method" in {
-        Move.down(new Game).grid.length should be(16)
-      }
       "have a compareLines method" in {
         val tiles1 = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())
         val tiles2 = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile(2))
@@ -65,9 +52,6 @@ class MoveSpec extends WordSpec with Matchers {
         Move.compareLines(tiles4, tiles2) should be(false)
         Move.compareLines(tiles4, tiles3) should be(false)
         Move.compareLines(tiles4, tiles4) should be(true)
-      }
-      "have a mergeSingleLine, moveSingleLine and getSingleLine method" in {
-        mergeSingleLine(moveSingleLine(new Game(getSingleLine(new Game, 0).grid, new Score))).grid.length should be(4)
       }
       "have a getPositionOfTile method" in {
         Move.getPositionOfTile(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()), 2, 2) should be(new Tile())

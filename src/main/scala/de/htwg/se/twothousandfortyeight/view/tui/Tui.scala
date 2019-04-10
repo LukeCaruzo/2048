@@ -1,7 +1,6 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
 import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Functions
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 import scala.swing.Reactor
@@ -18,7 +17,7 @@ class Tui(turn: TurnTrait) extends Reactor {
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
   println()
-  println(Functions.toString(turn.game))
+  println(turn.game.toString)
   println("Your Score: " + turn.game.score.toString)
   println()
   while (true) {
@@ -30,7 +29,7 @@ class Tui(turn: TurnTrait) extends Reactor {
   }
 
   def printTui(): Unit = {
-    println(Functions.toString(turn.game))
+    println(turn.game.toString)
     println("Your Score: " + turn.game.score.toString)
     println()
   }

@@ -4,7 +4,7 @@ import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Functions, Game, Move, Tile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Move, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
 import scala.swing.Publisher
@@ -36,7 +36,7 @@ class Turn extends TurnTrait with Publisher {
       case "undo" =>
         game = undoGame
       case "reset" =>
-        game = Functions.reset
+        game = game.reset
       case "save" =>
         fileIo.save("save.2048", game)
       case "load" =>
@@ -51,13 +51,13 @@ class Turn extends TurnTrait with Publisher {
   def runMove(key: String): Unit = {
     key match {
       case "left" =>
-        game = Move.left(game)
+        game = game.left
       case "right" =>
-        game = Move.right(game)
+        game = game.right
       case "down" =>
-        game = Move.down(game)
+        game = game.down
       case "up" =>
-        game = Move.up(game)
+        game = game.up
       case _ =>
     }
   }
