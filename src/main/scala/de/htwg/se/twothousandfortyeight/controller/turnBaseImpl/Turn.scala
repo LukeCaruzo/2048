@@ -15,7 +15,7 @@ class Turn extends TurnTrait with Publisher {
   val fileIo = injector.instance[FileIoTrait]
 
   var game = new Game
-  var undoGame: Game = game
+  var undoGame = game
 
   def makeTurn(key: String): Unit = {
     runSpecialMove(key)
