@@ -4,7 +4,7 @@ import java.util.ArrayList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
-object Move {
+object Operations {
   def addTile(tiles: Array[Tile]): Array[Tile] = {
     val newTiles = tiles
     val emptyIndices = new ArrayList[Int]

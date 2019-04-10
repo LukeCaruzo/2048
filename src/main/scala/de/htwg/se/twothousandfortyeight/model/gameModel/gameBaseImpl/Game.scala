@@ -3,10 +3,10 @@ package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 import java.util.LinkedList
 
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Move.{addTile, compareLines, getPositionOfTile}
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Operations.{addTile, compareLines, getPositionOfTile}
 
 case class Game(grid: Array[Tile] =
-                Move.addTile(Move.addTile(
+                Operations.addTile(Operations.addTile(
                   new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()))),
                 score: Score = new Score) { // TODO: Change Array to Vector
 
@@ -28,7 +28,7 @@ case class Game(grid: Array[Tile] =
       for (y <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         val nX = (x * cos) - (y * sin) + oX
         val nY = (x * sin) + (y * cos) + oY
-        newTiles(nX + nY * TwoThousandFortyEight.FIELD_SIZE) = Move.getPositionOfTile(this.grid, x, y)
+        newTiles(nX + nY * TwoThousandFortyEight.FIELD_SIZE) = Operations.getPositionOfTile(this.grid, x, y)
       }
     }
 
