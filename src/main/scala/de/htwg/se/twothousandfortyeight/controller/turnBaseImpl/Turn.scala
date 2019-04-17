@@ -1,7 +1,5 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
-import java.util.concurrent.Executor
-
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
@@ -9,9 +7,7 @@ import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.swing.Publisher
-import scala.util.{Failure, Success}
 
 @Inject
 class Turn extends TurnTrait with Publisher {
@@ -44,15 +40,12 @@ class Turn extends TurnTrait with Publisher {
       case "save" =>
         fileIo.save("save.2048", game)
       case "load" =>
-          fileIo.load("save.2048").onComplete {
-          case Success(game) => game match {
-            case Some(game) =>
-              this.game = game
-            case None =>
-              println("No save found!")
-              println()
-          }
-          case Failure(error) => error.printStackTrace
+        fileIo.load("save.2048") match {
+          case Some(game) =>
+            this.game = game
+          case None =>
+            println("No save found!")
+            println()
         }
       case "exit" =>
         sys.exit()
