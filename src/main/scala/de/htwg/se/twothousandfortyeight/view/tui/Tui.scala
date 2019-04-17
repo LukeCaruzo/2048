@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, ReactorTrait, TurnMade, TurnTrait}
+import de.htwg.se.twothousandfortyeight.controller._
 
 import scala.swing.Reactor
 
