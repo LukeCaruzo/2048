@@ -1,30 +1,6 @@
 package de.htwg.se.twothousandfortyeight.util
 
 object Utils {
-  def processKey(key: Char): String = {
-    if (key == 'w') {
-      return "up"
-    } else if (key == 'a') {
-      return "left"
-    } else if (key == 's') {
-      return "down"
-    } else if (key == 'd') {
-      return "right"
-    } else if (key == 't') {
-      return "exit"
-    } else if (key == 'r') {
-      return "reset"
-    } else if (key == 'z') {
-      return "save"
-    } else if (key == 'u') {
-      return "load"
-    } else if (key == 'q') {
-      return "undo"
-    } else {
-      return ""
-    }
-  }
-
   /*def getBackGroundColor(tile: TileTrait): Color = {
     tile.value match {
       case 2 =>
