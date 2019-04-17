@@ -24,10 +24,14 @@ class FileIo extends FileIoTrait {
   }
 
   def load(filename: String): Option[Game] = {
-    Try(Source.fromFile(filename + ".json").mkString) match {
-      case Success(lines) => Some(deserialize(lines))
-      case Failure(_) => None
-    }
+    val data =
+      Try(Source.fromFile(filename + ".json").mkString) match {
+        case Success(lines) => Some(deserialize(lines))
+        case Failure(_) => None
+      }
+
+
+    return data
   }
 
   def deserialize(json: String): Game = {

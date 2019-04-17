@@ -11,13 +11,14 @@ class FileIoSpec extends WordSpec with Matchers {
   "FileIo" when {
     "new" should {
       val fileIoJson = new FileIo
-      var game = new Game
+      val game = new Game
 
       "have a save (json) " in {
         fileIoJson.save("test.2048", game)
       }
       "have a load (json) method" in {
         fileIoJson.load("test.2048").get.score.value should be(0)
+
         fileIoJson.load("test123.2048") should be(None)
       }
     }
