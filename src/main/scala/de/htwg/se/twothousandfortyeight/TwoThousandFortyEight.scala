@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight
 
-import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.{Reactor, Turn}
 import de.htwg.se.twothousandfortyeight.view.tui.Tui
 
 object TwoThousandFortyEight {
@@ -8,7 +8,9 @@ object TwoThousandFortyEight {
 
   def main(args: Array[String]): Unit = {
     val turn = new Turn
+    val reactor = new Reactor(turn)
 
-    new Tui(turn)
+    new Tui(turn, reactor)
+
   }
 }
