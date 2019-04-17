@@ -3,15 +3,15 @@ package de.htwg.se.twothousandfortyeight.view.tui
 import de.htwg.se.twothousandfortyeight.controller.{GameLost, GameWon, TurnMade, TurnTrait}
 import de.htwg.se.twothousandfortyeight.util.Utils
 
-import scala.swing.Reactor
+import scala.swing.{Publisher, Reactor}
 
 class Tui(turn: TurnTrait) extends Reactor {
   listenTo(turn)
 
   reactions += {
-    case event: TurnMade => printTui
-    case event: GameWon => printWin
-    case event: GameLost => printLose
+    case _: TurnMade => printTui
+    case _: GameWon => printWin
+    case _: GameLost => printLose
   }
 
   println("Hello. Game started!")
@@ -24,7 +24,7 @@ class Tui(turn: TurnTrait) extends Reactor {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine()
     if (!line.isEmpty) {
-      turn.makeTurn(Utils.processKey(line.charAt(0)))
+      turn.makeTurn(line.charAt(0))
     }
   }
 

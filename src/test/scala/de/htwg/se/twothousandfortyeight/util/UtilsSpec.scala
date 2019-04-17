@@ -8,18 +8,6 @@ import org.scalatest.junit.JUnitRunner
 class UtilsSpec extends WordSpec with Matchers {
   "A Util" when {
     "used" should {
-      "have a processKey method" in {
-        Utils.processKey('w') should be("up")
-        Utils.processKey('s') should be("down")
-        Utils.processKey('d') should be("right")
-        Utils.processKey('a') should be("left")
-        Utils.processKey('t') should be("exit")
-        Utils.processKey('r') should be("reset")
-        Utils.processKey('z') should be("save")
-        Utils.processKey('u') should be("load")
-        Utils.processKey('q') should be("undo")
-        Utils.processKey(' ') should be("")
-      }
       /*"have a getBackgroundColor method" in {
         val tile2 = new Tile(2)
         Utils.getBackGroundColor(tile2) should be(new Color(0xfff835))

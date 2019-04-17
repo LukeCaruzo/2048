@@ -8,7 +8,7 @@ import scala.swing.event.Event
 trait TurnTrait extends Publisher {
   var game: Game
 
-  def makeTurn(key: String)
+  def makeTurn(key: Char)
 }
 
 class TurnMade extends Event
@@ -16,3 +16,4 @@ class TurnMade extends Event
 class GameWon extends Event
 
 class GameLost extends Event
+
