@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.model.actorModel
+package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.actor
 
 import akka.actor.{Actor, ActorIdentity, ActorRef, Identify}
 

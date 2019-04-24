@@ -1,7 +1,12 @@
 package de.htwg.se.twothousandfortyeight.util
 
+import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
+
+import scala.swing.Color
+
+@deprecated
 object Utils {
-  /*def getBackGroundColor(tile: TileTrait): Color = {
+  def getBackGroundColor(tile: TileTrait): Color = {
     tile.value match {
       case 2 =>
         return new Color(0xfff835)
@@ -28,5 +33,5 @@ object Utils {
       case _ =>
         return new Color(0x707070)
     }
-  }*/
+  }
 }
