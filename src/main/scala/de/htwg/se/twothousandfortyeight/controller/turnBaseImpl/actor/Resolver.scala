@@ -8,7 +8,7 @@ object Resolver {
   case object Failed
 }
 
-import Resolver._
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.actor.Resolver._
 
 class Resolver extends Actor {
   var requester: ActorRef = _

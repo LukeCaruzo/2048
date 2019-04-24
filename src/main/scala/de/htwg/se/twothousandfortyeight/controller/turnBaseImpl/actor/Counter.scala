@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.actor
 
-import akka.actor.{Actor, Props, ActorSelection, ActorRef}
+import akka.actor.{Actor, Props}
 
 class Counter extends Actor {
   val counter = context.actorOf(Props[Counter], "counter")

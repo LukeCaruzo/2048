@@ -1,6 +1,5 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

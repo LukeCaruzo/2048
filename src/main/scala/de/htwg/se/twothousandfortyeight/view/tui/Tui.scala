@@ -18,34 +18,34 @@ class Tui extends Reactor with Publisher {
 
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
-  println()
+  println
   println(turn.game.toString)
   println("Your Score: " + turn.game.score.toString)
-  println()
+  println
   while (true) {
     val scanner = new java.util.Scanner(System.in)
-    val line = scanner.nextLine()
+    val line = scanner.nextLine
     if (!line.isEmpty) {
       publishKey(line.charAt(0))
     }
   }
 
-  def printTui(): Unit = {
+  def printTui: Unit = {
     println(turn.game.toString)
     println("Your Score: " + turn.game.score.toString)
-    println()
+    println
   }
 
-  def printWin(): Unit = {
-    printTui()
+  def printWin: Unit = {
+    printTui
     println("You won!")
-    sys.exit()
+    sys.exit
   }
 
-  def printLose(): Unit = {
-    printTui()
+  def printLose: Unit = {
+    printTui
     println("You lost!")
-    sys.exit()
+    sys.exit
   }
 
   def publishKey(key: Char): Unit = {
