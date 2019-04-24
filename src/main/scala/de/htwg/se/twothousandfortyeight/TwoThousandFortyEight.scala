@@ -11,6 +11,5 @@ object TwoThousandFortyEight {
     val reactor = new Reactor(turn)
 
     new Tui(turn, reactor)
-
   }
 }
