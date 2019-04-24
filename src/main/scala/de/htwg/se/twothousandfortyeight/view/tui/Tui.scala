@@ -1,11 +1,14 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
 import de.htwg.se.twothousandfortyeight.controller._
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 
-import scala.swing.Reactor
+import scala.swing.{Publisher, Reactor}
 
-class Tui(turn: TurnTrait, reactor: ReactorTrait) extends Reactor {
-  listenTo(reactor)
+class Tui extends Reactor with Publisher {
+  val turn = new Turn(this)
+
+  listenTo(turn)
 
   reactions += {
     case _: TurnMade => printTui
@@ -16,20 +19,20 @@ class Tui(turn: TurnTrait, reactor: ReactorTrait) extends Reactor {
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
   println()
-  println(reactor.game.toString)
-  println("Your Score: " + reactor.game.score.toString)
+  println(turn.game.toString)
+  println("Your Score: " + turn.game.score.toString)
   println()
   while (true) {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine()
     if (!line.isEmpty) {
-      turn.makeTurn(line.charAt(0))
+      publishKey(line.charAt(0))
     }
   }
 
   def printTui(): Unit = {
-    println(reactor.game.toString)
-    println("Your Score: " + reactor.game.score.toString)
+    println(turn.game.toString)
+    println("Your Score: " + turn.game.score.toString)
     println()
   }
 
@@ -43,5 +46,30 @@ class Tui(turn: TurnTrait, reactor: ReactorTrait) extends Reactor {
     printTui()
     println("You lost!")
     sys.exit()
+  }
+
+  def publishKey(key: Char): Unit = {
+    key match {
+      case 'a' =>
+        publish(new Left)
+      case 'd' =>
+        publish(new Right)
+      case 's' =>
+        publish(new Down)
+      case 'w' =>
+        publish(new Up)
+      case 'q' =>
+        publish(new Undo)
+      case 'r' =>
+        publish(new Reset)
+      case 'z' =>
+        publish(new Save)
+      case 'u' =>
+        publish(new Load)
+      case 't' =>
+        publish(new Exit)
+      case _ =>
+        publish(new Blank)
+    }
   }
 }

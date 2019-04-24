@@ -6,10 +6,6 @@ import scala.swing.Publisher
 import scala.swing.event.Event
 
 trait TurnTrait extends Publisher {
-  def makeTurn(key: Char)
-}
-
-trait ReactorTrait extends Publisher {
   var game: Game
 }
 
