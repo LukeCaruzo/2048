@@ -11,7 +11,11 @@ object CommandMessage {
 
 }
 
-class CommandActor(turn: TurnTrait) extends Actor {
+class TurnAsInstance(val turn: TurnTrait) extends AnyVal
+
+class CommandActor(val conf: TurnAsInstance) extends Actor {
+  val turn: TurnTrait = conf.turn
+
   override def receive: Receive = {
     case Command(command) =>
       command.charAt(0) match {
