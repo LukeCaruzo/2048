@@ -7,8 +7,6 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Route, StandardRoute}
 import akka.stream.ActorMaterializer
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
-import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
-import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 
 class Rest(turn: TurnTrait) {
   implicit val system = ActorSystem("system")
@@ -19,15 +17,18 @@ class Rest(turn: TurnTrait) {
     pathSingleSlash {
       complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "<h1>2048</h1>"))
     }
-    path("2048" / Segment) {
-      command => {
-        publishKey(command.charAt(0)) match {
-          case 0 => printTui
-          case 1 => printWin
-          case 2 => printLose
+    path("2048") {
+      printTui
+    } ~
+      path("2048" / Segment) {
+        command => {
+          publishKey(command.charAt(0)) match {
+            case 0 => printTui
+            case 1 => printWin
+            case 2 => printLose
+          }
         }
       }
-    }
   }
 
   def printTui: StandardRoute = {

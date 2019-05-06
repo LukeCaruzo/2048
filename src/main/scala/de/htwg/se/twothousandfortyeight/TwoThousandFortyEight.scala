@@ -9,7 +9,7 @@ object TwoThousandFortyEight {
   def main(args: Array[String]): Unit = {
     val turn = new Turn
 
-    new Tui(turn)
     new Rest(turn)
+    new Tui(turn)
   }
 }
