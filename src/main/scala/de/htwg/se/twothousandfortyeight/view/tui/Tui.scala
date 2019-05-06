@@ -1,20 +1,9 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller._
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 
-import scala.swing.{Publisher, Reactor}
-
-class Tui extends Reactor with Publisher {
-  val turn = new Turn(this)
-
-  listenTo(turn)
-
-  reactions += {
-    case _: TurnMade => printTui
-    case _: GameWon => printWin
-    case _: GameLost => printLose
-  }
+class Tui {
+  val turn = new Turn
 
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
@@ -26,7 +15,11 @@ class Tui extends Reactor with Publisher {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine
     if (!line.isEmpty) {
-      publishKey(line.charAt(0))
+      publishKey(line.charAt(0)) match {
+        case 0 => printTui
+        case 1 => printWin
+        case 2 => printLose
+      }
     }
   }
 
@@ -48,28 +41,28 @@ class Tui extends Reactor with Publisher {
     sys.exit
   }
 
-  def publishKey(key: Char): Unit = {
+  def publishKey(key: Char): Int = {
     key match {
       case 'a' =>
-        publish(new Left)
+        turn.turnLeft
       case 'd' =>
-        publish(new Right)
+        turn.turnRight
       case 's' =>
-        publish(new Down)
+        turn.turnDown
       case 'w' =>
-        publish(new Up)
+        turn.turnUp
       case 'q' =>
-        publish(new Undo)
+        turn.turnUndo
       case 'r' =>
-        publish(new Reset)
+        turn.turnReset
       case 'z' =>
-        publish(new Save)
+        turn.turnSave
       case 'u' =>
-        publish(new Load)
+        turn.turnLoad
       case 't' =>
-        publish(new Exit)
+        turn.turnExit
       case _ =>
-        publish(new Blank)
+        turn.evaluate
     }
   }
 }

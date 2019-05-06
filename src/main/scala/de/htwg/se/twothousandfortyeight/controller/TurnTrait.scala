@@ -2,36 +2,26 @@ package de.htwg.se.twothousandfortyeight.controller
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
-import scala.swing.Publisher
-import scala.swing.event.Event
-
-trait TurnTrait extends Publisher {
+trait TurnTrait {
   var game: Game
+
+  def turnLeft: Int
+
+  def turnRight: Int
+
+  def turnUp: Int
+
+  def turnDown: Int
+
+  def turnUndo: Int
+
+  def turnReset: Int
+
+  def turnSave: Int
+
+  def turnLoad: Int
+
+  def turnExit: Int
+
+  def evaluate: Int
 }
-
-class TurnMade extends Event
-
-class GameWon extends Event
-
-class GameLost extends Event
-
-class Up extends Event
-
-class Down extends Event
-
-class Left extends Event
-
-class Right extends Event
-
-class Undo extends Event
-
-class Reset extends Event
-
-class Save extends Event
-
-class Load extends Event
-
-class Exit extends Event
-
-class Blank extends Event
-

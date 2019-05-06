@@ -2,35 +2,18 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
-import de.htwg.se.twothousandfortyeight.controller.{Blank, Down, Exit, GameLost, GameWon, Left, Load, Reset, Right, Save, TurnMade, TurnTrait, Undo, Up}
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
-import scala.swing.Publisher
-
 @Inject
-class Turn(view: Publisher) extends TurnTrait with swing.Reactor with Publisher {
+class Turn extends TurnTrait {
   val injector = Guice.createInjector(new TwoThousandFortyEightModule)
   val fileIo = injector.instance[FileIoTrait]
 
   var game = new Game
   var undoGame = game
-
-  listenTo(view)
-
-  reactions += {
-    case _: Left => turnLeft
-    case _: Right => turnRight
-    case _: Up => turnUp
-    case _: Down => turnDown
-    case _: Undo => turnUndo
-    case _: Reset => turnReset
-    case _: Save => turnSave
-    case _: Load => turnLoad
-    case _: Exit => turnExit
-    case _: Blank => evaluate
-  }
 
   def turnLeft = {
     undoGame = game
@@ -82,15 +65,18 @@ class Turn(view: Publisher) extends TurnTrait with swing.Reactor with Publisher 
     evaluate
   }
 
-  def turnExit = sys.exit()
+  def turnExit: Int =  {
+    sys.exit()
+    return 0
+  }
 
-  def evaluate(): Unit = {
+  def evaluate(): Int = {
     if (game.grid contains new Tile(2048)) {
-      publish(new GameWon)
+      return 1 // won
     } else if (!Operations.canBeMoved(game.grid)) {
-      publish(new GameLost)
+      return 2 // lost
     } else {
-      publish(new TurnMade)
+      return 0
     }
   }
 }
