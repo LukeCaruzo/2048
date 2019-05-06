@@ -12,18 +12,21 @@ import scala.swing.Color
 class UtilsSpec extends WordSpec with Matchers {
   "A Util" when {
     "used" should {
-      "have a processKey method" in {
+      "have a processAction method" in {
         val turn = new Turn
 
-        Utils.processKey(turn, 'a') should be(0)
-        Utils.processKey(turn, 'd') should be(0)
-        Utils.processKey(turn, 's') should be(0)
-        Utils.processKey(turn, 'w') should be(0)
-        Utils.processKey(turn, 'q') should be(0)
-        Utils.processKey(turn, 'r') should be(0)
-        Utils.processKey(turn, 'z') should be(0)
-        Utils.processKey(turn, 'u') should be(0)
-        Utils.processKey(turn, ' ') should be(0)
+        Utils.processAction(turn, "left") should be(0)
+        Utils.processAction(turn, "right") should be(0)
+        Utils.processAction(turn, "down") should be(0)
+        Utils.processAction(turn, "up") should be(0)
+        Utils.processAction(turn, "undo") should be(0)
+        Utils.processAction(turn, "reset") should be(0)
+        Utils.processAction(turn, "save") should be(0)
+        Utils.processAction(turn, "load") should be(0)
+        Utils.processAction(turn, "blank") should be(0)
+      }
+      "have a help method" in {
+        Utils.help should be ("----------------HELP----------------\n| W - up    | Q - undo | R - reset |\n| A - left  | Z - save | T - exit  |\n| S - down  | U - load |           |\n| D - right |          |           |\n------------------------------------\n")
       }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)

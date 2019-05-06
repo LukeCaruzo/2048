@@ -4,20 +4,46 @@ import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class Tui(turn: TurnTrait) {
-  println("Hello. Game started!")
-  println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
-  println
+  println(Utils.help)
   printTui
 
   while (true) {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine
     if (!line.isEmpty) {
-      Utils.processKey(turn, line.charAt(0)) match {
+      Utils.processAction(turn, processInput(line)) match {
         case 0 => printTui
         case 1 => printWin
         case 2 => printLose
+        case 3 => printHelp
       }
+    }
+  }
+
+  def processInput(line: String): String = {
+    line.charAt(0) match {
+      case 'a' =>
+        return "left"
+      case 'd' =>
+        return "right"
+      case 's' =>
+        return "down"
+      case 'w' =>
+        return "up"
+      case 'q' =>
+        return "undo"
+      case 'r' =>
+        return "reset"
+      case 'z' =>
+        return "save"
+      case 'u' =>
+        return "load"
+      case 't' =>
+        return "exit"
+      case 'h' =>
+        return "help"
+      case _ =>
+        return ""
     }
   }
 
@@ -37,5 +63,10 @@ class Tui(turn: TurnTrait) {
     printTui
     println("You lost!")
     sys.exit
+  }
+
+  def printHelp: Unit = {
+    println(Utils.help)
+    println
   }
 }

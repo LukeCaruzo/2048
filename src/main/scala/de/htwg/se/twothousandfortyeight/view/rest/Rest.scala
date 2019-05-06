@@ -23,13 +23,41 @@ class Rest(turn: TurnTrait) {
     } ~
       path("2048" / Segment) {
         command => {
-          Utils.processKey(turn, command.charAt(0)) match {
+          Utils.processAction(turn, processInput(command)) match {
             case 0 => printTui
             case 1 => printWin
             case 2 => printLose
+            case 3 => printHelp
           }
         }
       }
+  }
+
+  def processInput(line: String): String = {
+    line.charAt(0) match {
+      case 'a' =>
+        return "left"
+      case 'd' =>
+        return "right"
+      case 's' =>
+        return "down"
+      case 'w' =>
+        return "up"
+      case 'q' =>
+        return "undo"
+      case 'r' =>
+        return "reset"
+      case 'z' =>
+        return "save"
+      case 'u' =>
+        return "load"
+      case 't' =>
+        return "exit"
+      case 'h' =>
+        return "help"
+      case _ =>
+        return ""
+    }
   }
 
   def printTui: StandardRoute = {
@@ -52,6 +80,13 @@ class Rest(turn: TurnTrait) {
     println
 
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "You lost!" + "\n"))
+  }
+
+  def printHelp: StandardRoute = {
+    println("Called help with REST!")
+    println
+
+    complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, Utils.help))
   }
 
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
