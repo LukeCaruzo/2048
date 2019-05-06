@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.util.Utils
 
 class Tui(turn: TurnTrait) {
   println("Hello. Game started!")
@@ -12,7 +13,7 @@ class Tui(turn: TurnTrait) {
     val scanner = new java.util.Scanner(System.in)
     val line = scanner.nextLine
     if (!line.isEmpty) {
-      publishKey(line.charAt(0)) match {
+      Utils.processKey(turn, line.charAt(0)) match {
         case 0 => printTui
         case 1 => printWin
         case 2 => printLose
@@ -36,30 +37,5 @@ class Tui(turn: TurnTrait) {
     printTui
     println("You lost!")
     sys.exit
-  }
-
-  def publishKey(key: Char): Int = {
-    key match {
-      case 'a' =>
-        turn.turnLeft
-      case 'd' =>
-        turn.turnRight
-      case 's' =>
-        turn.turnDown
-      case 'w' =>
-        turn.turnUp
-      case 'q' =>
-        turn.turnUndo
-      case 'r' =>
-        turn.turnReset
-      case 'z' =>
-        turn.turnSave
-      case 'u' =>
-        turn.turnLoad
-      case 't' =>
-        turn.turnExit
-      case _ =>
-        turn.evaluate
-    }
   }
 }

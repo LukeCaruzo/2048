@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.util
 
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
 import org.junit.runner.RunWith
 import org.scalatest._
@@ -11,6 +12,19 @@ import scala.swing.Color
 class UtilsSpec extends WordSpec with Matchers {
   "A Util" when {
     "used" should {
+      "have a processKey method" in {
+        val turn = new Turn
+
+        Utils.processKey(turn, 'a') should be(0)
+        Utils.processKey(turn, 'd') should be(0)
+        Utils.processKey(turn, 's') should be(0)
+        Utils.processKey(turn, 'w') should be(0)
+        Utils.processKey(turn, 'q') should be(0)
+        Utils.processKey(turn, 'r') should be(0)
+        Utils.processKey(turn, 'z') should be(0)
+        Utils.processKey(turn, 'u') should be(0)
+        Utils.processKey(turn, ' ') should be(0)
+      }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)
         Utils.getBackGroundColor(tile2) should be(new Color(0xfff835))

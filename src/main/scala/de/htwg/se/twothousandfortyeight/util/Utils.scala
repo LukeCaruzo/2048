@@ -1,11 +1,37 @@
 package de.htwg.se.twothousandfortyeight.util
 
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
 
 import scala.swing.Color
 
-@deprecated
 object Utils {
+  def processKey(turn: TurnTrait, key: Char): Int = {
+    key match {
+      case 'a' =>
+        turn.turnLeft
+      case 'd' =>
+        turn.turnRight
+      case 's' =>
+        turn.turnDown
+      case 'w' =>
+        turn.turnUp
+      case 'q' =>
+        turn.turnUndo
+      case 'r' =>
+        turn.turnReset
+      case 'z' =>
+        turn.turnSave
+      case 'u' =>
+        turn.turnLoad
+      case 't' =>
+        turn.turnExit
+      case _ =>
+        turn.evaluate
+    }
+  }
+
+  @deprecated
   def getBackGroundColor(tile: TileTrait): Color = {
     tile.value match {
       case 2 =>

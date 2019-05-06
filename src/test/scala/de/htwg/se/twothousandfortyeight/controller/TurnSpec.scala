@@ -9,7 +9,7 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class TurnSpec extends WordSpec with Matchers {
   "A Turn" when {
-    "used" should {
+    "new" should {
       val turn = new Turn
 
       "have a turnLeft method" in {

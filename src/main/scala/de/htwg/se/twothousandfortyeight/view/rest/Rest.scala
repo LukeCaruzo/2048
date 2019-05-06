@@ -7,6 +7,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Route, StandardRoute}
 import akka.stream.ActorMaterializer
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.util.Utils
 
 class Rest(turn: TurnTrait) {
   implicit val system = ActorSystem("system")
@@ -22,7 +23,7 @@ class Rest(turn: TurnTrait) {
     } ~
       path("2048" / Segment) {
         command => {
-          publishKey(command.charAt(0)) match {
+          Utils.processKey(turn, command.charAt(0)) match {
             case 0 => printTui
             case 1 => printWin
             case 2 => printLose
@@ -51,31 +52,6 @@ class Rest(turn: TurnTrait) {
     println
 
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "You lost!" + "\n"))
-  }
-
-  def publishKey(key: Char): Int = {
-    key match {
-      case 'a' =>
-        turn.turnLeft
-      case 'd' =>
-        turn.turnRight
-      case 's' =>
-        turn.turnDown
-      case 'w' =>
-        turn.turnUp
-      case 'q' =>
-        turn.turnUndo
-      case 'r' =>
-        turn.turnReset
-      case 'z' =>
-        turn.turnSave
-      case 'u' =>
-        turn.turnLoad
-      case 't' =>
-        turn.turnExit
-      case _ =>
-        turn.evaluate
-    }
   }
 
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
