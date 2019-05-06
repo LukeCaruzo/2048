@@ -23,6 +23,7 @@ class UtilsSpec extends WordSpec with Matchers {
         Utils.processAction(turn, "reset") should be(0)
         Utils.processAction(turn, "save") should be(0)
         Utils.processAction(turn, "load") should be(0)
+        Utils.processAction(turn, "help") should be(3)
         Utils.processAction(turn, "blank") should be(0)
       }
       "have a help method" in {

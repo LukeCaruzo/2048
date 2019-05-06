@@ -1,15 +1,26 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import akka.actor.ActorSystem
+import akka.actor.{ActorSystem, Props}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Route, StandardRoute}
+import akka.pattern.ask
 import akka.stream.ActorMaterializer
+import akka.util.Timeout
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandActor
 import de.htwg.se.twothousandfortyeight.util.Utils
 
+import scala.concurrent.Await
+import scala.concurrent.duration._
+import scala.util.Failure
+import scala.util.Success
+
 class Rest(turn: TurnTrait) {
+  val cmdActor = system.actorOf(Props(classOf[CommandActor], turn), "commandactor")
+
+  implicit val timeout = Timeout(5 seconds)
   implicit val system = ActorSystem("system")
   implicit val materializer = ActorMaterializer()
   implicit val executionContext = system.dispatcher
@@ -23,7 +34,15 @@ class Rest(turn: TurnTrait) {
     } ~
       path("2048" / Segment) {
         command => {
-          Utils.processAction(turn, processInput(command)) match {
+          val future = (cmdActor ? command).mapTo[Int]
+          /*val cmd = future.onComplete({
+            case Success(cmd) => cmd
+            case Failure(e) => e.printStackTrace
+          })*/
+
+          val cmd = Await.result(future, 5 seconds)
+
+          cmd match {
             case 0 => printTui
             case 1 => printWin
             case 2 => printLose
@@ -31,33 +50,6 @@ class Rest(turn: TurnTrait) {
           }
         }
       }
-  }
-
-  def processInput(line: String): String = {
-    line.charAt(0) match {
-      case 'a' =>
-        return "left"
-      case 'd' =>
-        return "right"
-      case 's' =>
-        return "down"
-      case 'w' =>
-        return "up"
-      case 'q' =>
-        return "undo"
-      case 'r' =>
-        return "reset"
-      case 'z' =>
-        return "save"
-      case 'u' =>
-        return "load"
-      case 't' =>
-        return "exit"
-      case 'h' =>
-        return "help"
-      case _ =>
-        return ""
-    }
   }
 
   def printTui: StandardRoute = {

@@ -22,28 +22,17 @@ class Tui(turn: TurnTrait) {
 
   def processInput(line: String): String = {
     line.charAt(0) match {
-      case 'a' =>
-        return "left"
-      case 'd' =>
-        return "right"
-      case 's' =>
-        return "down"
-      case 'w' =>
-        return "up"
-      case 'q' =>
-        return "undo"
-      case 'r' =>
-        return "reset"
-      case 'z' =>
-        return "save"
-      case 'u' =>
-        return "load"
-      case 't' =>
-        return "exit"
-      case 'h' =>
-        return "help"
-      case _ =>
-        return ""
+      case 'a' => return "left"
+      case 'd' => return "right"
+      case 's' => return "down"
+      case 'w' => return "up"
+      case 'q' => return "undo"
+      case 'r' => return "reset"
+      case 'z' => return "save"
+      case 'u' => return "load"
+      case 't' => return "exit"
+      case 'h' => return "help"
+      case _ => return "blank"
     }
   }
 
