@@ -65,7 +65,7 @@ class Turn extends TurnTrait {
     evaluate
   }
 
-  def turnExit: Int =  {
+  def turnExit: Int = {
     sys.exit()
     return 0
   }

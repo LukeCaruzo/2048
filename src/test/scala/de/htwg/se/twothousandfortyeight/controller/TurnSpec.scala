@@ -39,7 +39,6 @@ class TurnSpec extends WordSpec with Matchers {
       "have a evaluate method" in {
         turn.evaluate should be(0)
       }
-
       "have a way to win" in {
         val winArray = Array[Tile](new Tile(2), new Tile(1024), new Tile(1024),
           new Tile(2), new Tile(2), new Tile(2), new Tile(2), new Tile(2),
@@ -49,7 +48,6 @@ class TurnSpec extends WordSpec with Matchers {
         turn.turnRight should be(1)
         turn.evaluate should be(1)
       }
-
       "have a way to lose" in {
         val loseArray = Array[Tile](
           new Tile(2), new Tile(4), new Tile(8), new Tile(16),

@@ -3,9 +3,13 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.actor
 import akka.actor.{Actor, ActorIdentity, ActorRef, Identify}
 
 object Resolver {
+
   case class Resolve(path: String)
+
   case class Resolved(actorRef: ActorRef)
+
   case object Failed
+
 }
 
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.actor.Resolver._
