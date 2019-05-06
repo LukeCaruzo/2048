@@ -1,10 +1,8 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 
-class Tui {
-  val turn = new Turn
-
+class Tui(turn: TurnTrait) {
   println("Hello. Game started!")
   println("Used W A S D to move and R to reset and T to exit and Z to save and U to load and Q to undo.")
   println

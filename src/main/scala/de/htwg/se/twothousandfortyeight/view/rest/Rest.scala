@@ -6,18 +6,14 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Route, StandardRoute}
 import akka.stream.ActorMaterializer
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
-import play.api.libs.json.Json
 
-
-class Rest {
+class Rest(turn: TurnTrait) {
   implicit val system = ActorSystem("system")
   implicit val materializer = ActorMaterializer()
   implicit val executionContext = system.dispatcher
-
-  val turn = new Turn
-  val fileIo = new FileIo
 
   val route: Route = get {
     pathSingleSlash {
@@ -35,19 +31,24 @@ class Rest {
   }
 
   def printTui: StandardRoute = {
-    println("Turn made!")
+    println("Turn made with REST!")
+    println
+
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`,
       "<h1>2048</h1>" + turn.game.toString + "\n" + "Your Score: " + turn.game.score.toString + "\n"))
-    //complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, fileIo.serialize(turn.game)))
   }
 
   def printWin: StandardRoute = {
-    println("Game won!")
+    println("Game won with REST!")
+    println
+
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "You won!" + "\n"))
   }
 
   def printLose: StandardRoute = {
-    println("Game lost!")
+    println("Game lost with REST!")
+    println
+
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "You lost!" + "\n"))
   }
 
