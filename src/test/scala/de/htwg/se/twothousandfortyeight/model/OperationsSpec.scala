@@ -9,7 +9,7 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class OperationsSpec extends WordSpec with Matchers {
   "A Move" when {
-    "new" should {
+    "used" should {
       "have a addTile method" in {
         val tiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile())
         Operations.addTile(tiles).length should be(16)

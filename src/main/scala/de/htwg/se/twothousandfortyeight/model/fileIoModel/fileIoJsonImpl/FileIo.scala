@@ -30,7 +30,6 @@ class FileIo extends FileIoTrait {
         case Failure(_) => None
       }
 
-
     return data
   }
 

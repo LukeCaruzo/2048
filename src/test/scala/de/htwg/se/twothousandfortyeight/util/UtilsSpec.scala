@@ -1,14 +1,35 @@
 package de.htwg.se.twothousandfortyeight.util
 
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner
+
+import scala.swing.Color
 
 @RunWith(classOf[JUnitRunner])
 class UtilsSpec extends WordSpec with Matchers {
   "A Util" when {
     "used" should {
-      /*"have a getBackgroundColor method" in {
+      "have a processAction method" in {
+        val turn = new Turn
+
+        Utils.processAction(turn, "left") should be(0)
+        Utils.processAction(turn, "right") should be(0)
+        Utils.processAction(turn, "down") should be(0)
+        Utils.processAction(turn, "up") should be(0)
+        Utils.processAction(turn, "undo") should be(0)
+        Utils.processAction(turn, "reset") should be(0)
+        Utils.processAction(turn, "save") should be(0)
+        Utils.processAction(turn, "load") should be(0)
+        Utils.processAction(turn, "help") should be(3)
+        Utils.processAction(turn, "blank") should be(0)
+      }
+      "have a help method" in {
+        Utils.help should be("----------------HELP----------------\n| W - up    | Q - undo | R - reset |\n| A - left  | Z - save | T - exit  |\n| S - down  | U - load |           |\n| D - right |          |           |\n------------------------------------\n")
+      }
+      "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)
         Utils.getBackGroundColor(tile2) should be(new Color(0xfff835))
         val tile4 = new Tile(4)
@@ -33,7 +54,7 @@ class UtilsSpec extends WordSpec with Matchers {
         Utils.getBackGroundColor(tile2048) should be(new Color(0xd10000))
         val tile0 = new Tile(0)
         Utils.getBackGroundColor(tile0) should be(new Color(0x707070))
-      }*/
+      }
     }
   }
 }

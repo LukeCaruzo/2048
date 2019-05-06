@@ -1,32 +1,82 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
-import de.htwg.se.twothousandfortyeight.controller.{Blank, Down, Exit, Left, Load, Reset, Right, Save, TurnTrait, Undo, Up}
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
+import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
+import net.codingwell.scalaguice.InjectorExtensions._
 
-import scala.swing.Publisher
+@Inject
+class Turn extends TurnTrait {
+  val injector = Guice.createInjector(new TwoThousandFortyEightModule)
+  val fileIo = injector.instance[FileIoTrait]
 
-class Turn extends TurnTrait with Publisher {
-  def makeTurn(key: Char): Unit = {
-    key match {
-      case 'a' =>
-        publish(new Left)
-      case 'd' =>
-        publish(new Right)
-      case 's' =>
-        publish(new Down)
-      case 'w' =>
-        publish(new Up)
-      case 'q' =>
-        publish(new Undo)
-      case 'r' =>
-        publish(new Reset)
-      case 'z' =>
-        publish(new Save)
-      case 'u' =>
-        publish(new Load)
-      case 't' =>
-        publish(new Exit)
-      case _ =>
-        publish(new Blank)
+  var game = new Game
+  var undoGame = game
+
+  def turnLeft = {
+    undoGame = game
+    game = game.left
+    evaluate
+  }
+
+  def turnRight = {
+    undoGame = game
+    game = game.right
+    evaluate
+  }
+
+  def turnUp = {
+    undoGame = game
+    game = game.up
+    evaluate
+  }
+
+  def turnDown = {
+    undoGame = game
+    game = game.down
+    evaluate
+  }
+
+  def turnUndo = {
+    game = undoGame
+    evaluate
+  }
+
+  def turnReset = {
+    game = game.reset
+    evaluate
+  }
+
+  def turnSave = {
+    fileIo.save("save.2048", game)
+    evaluate
+  }
+
+  def turnLoad = {
+    fileIo.load("save.2048") match {
+      case Some(game) =>
+        this.game = game
+      case None =>
+        println("No save found!")
+        println()
+    }
+    evaluate
+  }
+
+  def turnExit: Int = {
+    sys.exit()
+    return 0
+  }
+
+  def evaluate(): Int = {
+    if (game.grid contains new Tile(2048)) {
+      return 1 // won
+    } else if (!Operations.canBeMoved(game.grid)) {
+      return 2 // lost
+    } else {
+      return 0
     }
   }
 }
