@@ -27,7 +27,7 @@ class UtilsSpec extends WordSpec with Matchers {
         Utils.processAction(turn, "blank") should be(0)
       }
       "have a help method" in {
-        Utils.help should be ("----------------HELP----------------\n| W - up    | Q - undo | R - reset |\n| A - left  | Z - save | T - exit  |\n| S - down  | U - load |           |\n| D - right |          |           |\n------------------------------------\n")
+        Utils.help should be("----------------HELP----------------\n| W - up    | Q - undo | R - reset |\n| A - left  | Z - save | T - exit  |\n| S - down  | U - load |           |\n| D - right |          |           |\n------------------------------------\n")
       }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)

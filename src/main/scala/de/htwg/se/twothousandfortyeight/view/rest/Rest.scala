@@ -15,8 +15,6 @@ import de.htwg.se.twothousandfortyeight.util.Utils
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
-import scala.util.Failure
-import scala.util.Success
 
 class Rest(turn: TurnTrait) {
   implicit val timeout = Timeout(5 seconds)
@@ -37,16 +35,7 @@ class Rest(turn: TurnTrait) {
     } ~
       path("2048" / Segment) {
         command => {
-          val future = (cmdActor ? Command(command)).mapTo[Int]
-
-          /*val cmd = future.onComplete({
-            case Success(cmd) => cmd
-            case Failure(e) => e.printStackTrace
-          })*/
-
-          val cmd = Await.result(future, 5 seconds)
-
-          cmd match {
+          Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
             case 0 => printTui
             case 1 => printWin
             case 2 => printLose
