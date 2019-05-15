@@ -31,3 +31,4 @@ class CounterService {
     "<p>" + toString + "</p>"
   }
 }
+

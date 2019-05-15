@@ -22,16 +22,10 @@ class HighScoreServiceServer(highScore: HighScoreService) {
     path("") {
       parseHtml
     } ~
-      path("setPlayer" / Segment) {
-        command => {
-          highScore.setPlayer(command)
+      path("setHighScore" / Segment / IntNumber) {
+        (command1, command2) => {
+          highScore.setHighScore(command1, command2)
           parseHtml
-        }
-      } ~
-      path("setHighScore" / IntNumber) {
-        command => {
-        highScore.setHighScore(command)
-        parseHtml
         }
       }
   }

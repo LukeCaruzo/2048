@@ -1,12 +1,14 @@
 package de.htwg.se.twothousandfortyeight.view.microservice
 
+import java.util
+
 import scala.io.StdIn
 
 object HighScoreServiceMain {
   def main(args: Array[String]): Unit = {
     val webserver = new HighScoreServiceServer(new HighScoreService)
 
-    println("Server online at http://localhost:8081/")
+    println("Server online at http://localhost:8082/")
     println("Press RETURN to stop...")
 
     StdIn.readLine() // let it run until user presses return
@@ -15,20 +17,25 @@ object HighScoreServiceMain {
 }
 
 class HighScoreService {
-  var player = ""
-  var highScore = 0
+  val highScoreList = new util.ArrayList[HighScore]()
 
-  def setPlayer(newPlayer: String) = {
-    player = newPlayer
+  def setHighScore(player: String, highScore: Int) = {
+    highScoreList.add(new HighScore(player, highScore))
   }
 
-  def setHighScore(newHighScore: Int) = {
-    highScore = newHighScore
-  }
+  override def toString: String = {
+    var string = ""
 
-  override def toString: String = "HighScore:\n" + player + " - " + highScore
+    highScoreList.forEach(highScore => {
+      string = string + highScore.player + " - " + highScore.highScore + "\n"
+    })
+
+    return string
+  }
 
   def toHtml: String = {
-    "<p>" + toString + "</p>"
+    "<p>" + toString.replace("\n", "<br>") + "</p>"
   }
 }
+
+case class HighScore(player: String, highScore: Int)
