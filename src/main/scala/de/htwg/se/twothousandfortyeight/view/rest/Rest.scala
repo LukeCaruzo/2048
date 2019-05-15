@@ -42,6 +42,11 @@ class Rest(turn: TurnTrait) {
             case 3 => printHelp
           }
         }
+      } ~
+      path("counter" / Segment) {
+        command =>
+          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`,
+            scalaj.http.Http("http://localhost:8081/" + command).param("", "").asString.body))
       }
   }
 

@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight
 
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.view.microservice.{CounterService, CounterServiceServer, HighScoreService, HighScoreServiceServer}
 import de.htwg.se.twothousandfortyeight.view.tui.{Rest, Tui}
 
 object TwoThousandFortyEight {
@@ -10,6 +11,8 @@ object TwoThousandFortyEight {
     val turn = new Turn
 
     new Rest(turn)
+    new CounterServiceServer(new CounterService)
+    new HighScoreServiceServer(new HighScoreService)
     new Tui(turn)
   }
 }

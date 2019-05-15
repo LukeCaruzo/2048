@@ -30,3 +30,5 @@ libraryDependencies += "com.typesafe.akka" %% "akka-http-testkit" % "10.1.8" % T
 libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.22"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.22" % Test
+
+libraryDependencies += "org.scalaj" % "scalaj-http_2.11" % "2.3.0"
