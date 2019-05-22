@@ -34,7 +34,7 @@ class HighScoreServiceServer(highScore: HighScoreService) {
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, highScore.toHtml))
   }
 
-  val bindingFuture: Future[Http.ServerBinding] = Http().bindAndHandle(route, "localhost", 8082)
+  val bindingFuture: Future[Http.ServerBinding] = Http().bindAndHandle(route, "0.0.0.0", 8082)
 
   def unbind(): Unit = {
     bindingFuture

@@ -11,7 +11,12 @@ object HighScoreServiceMain {
     println("Server online at http://localhost:8082/")
     println("Press RETURN to stop...")
 
-    StdIn.readLine() // let it run until user presses return
+    //StdIn.readLine() // let it run until user presses return
+
+    while(true){
+      println("running: highscore") // fix for docker
+    }
+
     webserver.unbind()
   }
 }

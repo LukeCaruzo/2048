@@ -46,7 +46,12 @@ class Rest(turn: TurnTrait) {
       path("counter" / Segment) {
         command =>
           complete(HttpEntity(ContentTypes.`text/html(UTF-8)`,
-            scalaj.http.Http("http://localhost:8081/" + command).param("", "").asString.body))
+            scalaj.http.Http("http://0.0.0.0:8081/" + command).param("", "").asString.body)) // Bugged?
+      } ~
+      path("highscore" / Segment) {
+        command =>
+          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`,
+            scalaj.http.Http("http://0.0.0.0:8082/" + command).param("", "").asString.body)) // Bugged?
       }
   }
 
@@ -79,7 +84,7 @@ class Rest(turn: TurnTrait) {
     complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>2048</h1>" + Utils.help))
   }
 
-  val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
+  val bindingFuture = Http().bindAndHandle(route, "0.0.0.0", 8080)
 
   def unbind = {
     bindingFuture

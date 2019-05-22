@@ -11,8 +11,8 @@ object TwoThousandFortyEight {
     val turn = new Turn
 
     new Rest(turn)
-    new CounterServiceServer(new CounterService)
-    new HighScoreServiceServer(new HighScoreService)
+    //new CounterServiceServer(new CounterService) // fix for docker
+    //new HighScoreServiceServer(new HighScoreService) // fix for docker
     new Tui(turn)
   }
 }
