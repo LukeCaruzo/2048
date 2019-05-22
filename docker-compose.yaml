@@ -1,5 +1,14 @@
 version: '3'
 services:
+  main:
+    build:
+      context: .
+      dockerfile: MainDocker
+    volumes:
+      - .:/main
+    ports:
+      - 8080:8080
+
   counter_service:
     build:
       context: .

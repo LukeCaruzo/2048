@@ -2,4 +2,4 @@ FROM zgwmike/akka-sbt
 WORKDIR /main
 EXPOSE 8081
 ADD . /main
-CMD sbt runMain de.htwg.se.twothousandfortyeight.view.microservice.CounterServiceMain
+CMD sbt "runMain de.htwg.se.twothousandfortyeight.view.microservice.CounterServiceMain"
