@@ -12,7 +12,7 @@ object CounterServiceMain {
     //StdIn.readLine() // let it run until user presses return
 
     while(true) {
-      println("running: counter")
+      println("running: counter") // fix for docker
     }
 
     webserver.unbind()

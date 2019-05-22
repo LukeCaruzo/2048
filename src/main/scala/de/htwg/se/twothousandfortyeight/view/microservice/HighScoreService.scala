@@ -14,7 +14,7 @@ object HighScoreServiceMain {
     //StdIn.readLine() // let it run until user presses return
 
     while(true){
-      println("running: highscore")
+      println("running: highscore") // fix for docker
     }
 
     webserver.unbind()

@@ -8,7 +8,7 @@ class Tui(turn: TurnTrait) {
   printTui
 
   while (true) {
-    try { // fix for docker
+    try {
       val scanner = new java.util.Scanner(System.in)
       val line = scanner.nextLine
       if (!line.isEmpty) {
@@ -20,7 +20,7 @@ class Tui(turn: TurnTrait) {
         }
       }
     } catch {
-      case _: NoSuchElementException => println("running: tui")
+      case _: NoSuchElementException => println("running: tui") // fix for docker
     }
   }
 
