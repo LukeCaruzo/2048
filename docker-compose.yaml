@@ -1,0 +1,19 @@
+version: '3'
+services:
+  counter_service:
+    build:
+      context: .
+      dockerfile: CounterServiceDocker
+    volumes:
+      - .:/main
+    ports:
+      - 8081:8081
+
+  highscore_service:
+    build:
+      context: .
+      dockerfile: HighScoreServiceDocker
+    volumes:
+      - .:/main
+    ports:
+      - 8082:8082
