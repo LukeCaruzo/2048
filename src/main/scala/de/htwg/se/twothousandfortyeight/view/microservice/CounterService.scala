@@ -9,7 +9,12 @@ object CounterServiceMain {
     println("Server online at http://localhost:8081/")
     println("Press RETURN to stop...")
 
-    StdIn.readLine() // let it run until user presses return
+    //StdIn.readLine() // let it run until user presses return
+
+    while(true) {
+      println("running: counter")
+    }
+
     webserver.unbind()
   }
 }

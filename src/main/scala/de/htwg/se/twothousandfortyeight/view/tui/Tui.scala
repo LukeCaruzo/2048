@@ -8,15 +8,19 @@ class Tui(turn: TurnTrait) {
   printTui
 
   while (true) {
-    val scanner = new java.util.Scanner(System.in)
-    val line = scanner.nextLine
-    if (!line.isEmpty) {
-      Utils.processAction(turn, processInput(line)) match {
-        case 0 => printTui
-        case 1 => printWin
-        case 2 => printLose
-        case 3 => printHelp
+    try { // fix for docker
+      val scanner = new java.util.Scanner(System.in)
+      val line = scanner.nextLine
+      if (!line.isEmpty) {
+        Utils.processAction(turn, processInput(line)) match {
+          case 0 => printTui
+          case 1 => printWin
+          case 2 => printLose
+          case 3 => printHelp
+        }
       }
+    } catch {
+      case _: NoSuchElementException => println("running: tui")
     }
   }
 
