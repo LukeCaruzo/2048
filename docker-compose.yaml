@@ -1,6 +1,6 @@
 version: '3'
 services:
-  main:
+  main-service:
     build:
       context: .
       dockerfile: MainDocker
@@ -9,7 +9,7 @@ services:
     ports:
       - 8080:8080
 
-  counter_service:
+  counter-service:
     build:
       context: .
       dockerfile: CounterServiceDocker
@@ -18,7 +18,7 @@ services:
     ports:
       - 8081:8081
 
-  highscore_service:
+  highscore-service:
     build:
       context: .
       dockerfile: HighScoreServiceDocker
