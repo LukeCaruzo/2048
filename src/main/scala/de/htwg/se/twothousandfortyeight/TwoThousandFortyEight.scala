@@ -5,7 +5,7 @@ import de.htwg.se.twothousandfortyeight.view.microservice.{CounterService, Count
 import de.htwg.se.twothousandfortyeight.view.tui.{Rest, Tui}
 
 object TwoThousandFortyEight {
-  val FIELD_SIZE = 4 // Tests are configured for 4
+  val FIELD_SIZE = 4 // Tests and Slick are configured for 4
 
   def main(args: Array[String]): Unit = {
     val turn = new Turn
