@@ -8,6 +8,7 @@ import org.scalatest.junit.JUnitRunner
 class GameDaoSpec extends WordSpec with Matchers {
   "A GameDao" when {
     "new" should {
-
+      // Run Test
     }
   }
+}
