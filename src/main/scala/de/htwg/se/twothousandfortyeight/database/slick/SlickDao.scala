@@ -1,10 +1,10 @@
 package de.htwg.se.twothousandfortyeight.database.slick
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 import slick.jdbc.H2Profile.api._
 
 class SlickDao {
-  def buildTables(game: GameTrait): Unit = {
+  def buildTables(game: Game): Unit = {
     val db = Database.forConfig("TwoThousandFortyEightDB")
 
     try {
@@ -58,7 +58,8 @@ class SlickDao {
 
         def tile16 = column[Int]("Tile16")
 
-        def * = (id, gameId, tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16)
+        def * = (id, gameId, tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10,
+          tile11, tile12, tile13, tile14, tile15, tile16)
       }
 
       val gridTable = TableQuery[Grid]
@@ -77,8 +78,6 @@ class SlickDao {
       )
 
       val setupFuture = db.run(setup)
-
-      db.run(gameTable.result).foreach(println)
 
     } finally db.close
   }
