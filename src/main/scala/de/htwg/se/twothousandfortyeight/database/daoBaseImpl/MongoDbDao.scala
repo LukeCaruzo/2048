@@ -24,15 +24,15 @@ class MongoDbDao extends DaoTrait {
         override def onComplete(): Unit = println("onComplete")
       })
 
-      0
+      0 // save only one state
     }
   }
 
   override def read(id: Int): Future[GameConfig] = {
-    Future {
+    return Future {
       var waitOnResult = true
       var result = new GameConfig("")
-      val observable: Observable[Document] = collection.find().first
+      val observable: Observable[Document] = collection.find().first // get the first result
 
       observable.subscribe(new Observer[Document] {
         override def onNext(nextResult: Document): Unit = {
