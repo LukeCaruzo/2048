@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.database
+package de.htwg.se.twothousandfortyeight.database.daoBaseImpl
 
 import slick.jdbc.H2Profile.api._
 
