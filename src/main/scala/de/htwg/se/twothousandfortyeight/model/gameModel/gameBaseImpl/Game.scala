@@ -8,7 +8,7 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Operations.
 case class Game(grid: Array[Tile] =
                 Operations.addTile(Operations.addTile(
                   new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()))),
-                score: Score = new Score) { // TODO: Change Array to Vector
+                score: Score = new Score) {
 
   def reset: Game = {
     new Game()
