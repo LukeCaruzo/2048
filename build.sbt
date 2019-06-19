@@ -38,3 +38,5 @@ libraryDependencies += "com.typesafe.slick" %% "slick" % "3.3.1"
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2"
 
 libraryDependencies += "com.h2database" % "h2" % "1.4.187"
+
+libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "2.6.0"
