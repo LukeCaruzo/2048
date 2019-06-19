@@ -1,9 +1,9 @@
-package de.htwg.se.twothousandfortyeight.database.dao
+package de.htwg.se.twothousandfortyeight.database.slick
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.GameTrait
 import slick.jdbc.H2Profile.api._
 
-class GameDao {
+class SlickDao {
   def buildTables(game: GameTrait): Unit = {
     val db = Database.forConfig("TwoThousandFortyEightDB")
 
@@ -77,6 +77,8 @@ class GameDao {
       )
 
       val setupFuture = db.run(setup)
+
+      db.run(gameTable.result).foreach(println)
 
     } finally db.close
   }

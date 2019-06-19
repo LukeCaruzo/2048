@@ -5,8 +5,8 @@ import org.scalatest._
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class GameDaoSpec extends WordSpec with Matchers {
-  "A GameDao" when {
+class SlickDaoSpec extends WordSpec with Matchers {
+  "A SlickDao" when {
     "new" should {
       // Run Test
     }
