@@ -1,8 +1,10 @@
 package de.htwg.se.twothousandfortyeight.database.daoBaseImpl
 
 import de.htwg.se.twothousandfortyeight.database.DaoTrait
-import org.mongodb.scala.{Completed, Document, MongoClient, MongoCollection, MongoDatabase, Observable, Observer}
+import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase, Observable, Observer, SingleObservable}
 import play.api.libs.json.Json
+import org.bson._
+import org.mongodb.scala.result.InsertOneResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -16,10 +18,10 @@ class MongoDbDao extends DaoTrait {
 
   override def create(gameConfig: GameConfig): Future[Int] = {
     return Future {
-      val observable: Observable[Completed] = collection.insertOne(Document(Json.obj("config" -> gameConfig.game).toString()))
+      val observable: SingleObservable[InsertOneResult] = collection.insertOne(Document(Json.obj("config" -> gameConfig.game).toString()))
 
-      observable.subscribe(new Observer[Completed] {
-        override def onNext(result: Completed): Unit = println(s"onNext: $result")
+      observable.subscribe(new Observer[InsertOneResult] {
+        override def onNext(result: InsertOneResult): Unit = println(s"onNext: $result")
         override def onError(e: Throwable): Unit = println(s"onError: $e")
         override def onComplete(): Unit = println("onComplete")
       })

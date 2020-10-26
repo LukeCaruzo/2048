@@ -4,11 +4,10 @@ import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
 import org.junit.runner.RunWith
 import org.scalatest._
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.wordspec.AnyWordSpec
 
-@RunWith(classOf[JUnitRunner])
-class TurnSpec extends WordSpec with Matchers {
-  "A Turn" when {
+class TurnSpec extends AnyWordSpec {
+  /*"A Turn" when {
     "new" should {
       val turn = new Turn
 
@@ -59,5 +58,5 @@ class TurnSpec extends WordSpec with Matchers {
         turn.evaluate should be(2)
       }
     }
-  }
+  }*/
 }

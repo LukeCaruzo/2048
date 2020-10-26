@@ -3,11 +3,10 @@ package de.htwg.se.twothousandfortyeight.model
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
 import org.junit.runner.RunWith
 import org.scalatest._
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.wordspec.AnyWordSpec
 
-@RunWith(classOf[JUnitRunner])
-class TileSpec extends WordSpec with Matchers {
-  "A Tile" when {
+class TileSpec extends AnyWordSpec {
+  /*"A Tile" when {
     "new" should {
       var tile = new Tile(16)
       var tileEmpty = new Tile()
@@ -22,5 +21,5 @@ class TileSpec extends WordSpec with Matchers {
         tileEmpty.isEmpty should be(true)
       }
     }
-  }
+  }*/
 }

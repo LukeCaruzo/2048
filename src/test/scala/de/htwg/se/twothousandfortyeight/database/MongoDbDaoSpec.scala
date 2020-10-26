@@ -3,12 +3,10 @@ package de.htwg.se.twothousandfortyeight.database
 import de.htwg.se.twothousandfortyeight.database.daoBaseImpl.{GameConfig, MongoDbDao}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-import org.junit.runner.RunWith
 import org.scalatest._
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.wordspec.AnyWordSpec
 
-@RunWith(classOf[JUnitRunner])
-class MongoDbDaoSpec extends WordSpec with Matchers {
+class MongoDbDaoSpec extends AnyWordSpec {
   "A MongoDbDao" when {
     "new" should {
       val game = new Game

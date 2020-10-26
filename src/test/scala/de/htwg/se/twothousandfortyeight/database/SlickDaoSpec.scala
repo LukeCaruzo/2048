@@ -5,10 +5,9 @@ import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 import org.junit.runner.RunWith
 import org.scalatest._
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.wordspec.AnyWordSpec
 
-@RunWith(classOf[JUnitRunner])
-class SlickDaoSpec extends WordSpec with Matchers {
+class SlickDaoSpec extends AnyWordSpec{
   "A SlickDao" when {
     "new" should {
       val game = new Game

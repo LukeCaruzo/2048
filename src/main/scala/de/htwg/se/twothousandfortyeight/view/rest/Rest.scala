@@ -16,6 +16,8 @@ import de.htwg.se.twothousandfortyeight.util.Utils
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
+import scala.language.postfixOps
+
 class Rest(turn: TurnTrait) {
   implicit val timeout = Timeout(5 seconds)
   implicit val system = ActorSystem("system")
