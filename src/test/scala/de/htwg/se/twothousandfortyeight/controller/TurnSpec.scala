@@ -1,8 +1,16 @@
 package de.htwg.se.twothousandfortyeight.controller
 
+import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.wordspec.AnyWordSpec
+import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 
-class TurnSpec extends AnyWordSpec {
+class TurnSpec extends AnyFlatSpec {
+  val turn = new Turn
+
+  "A turn" should "have a turnLeft method" in {
+    assert( turn.turnLeft == 0 )
+  }
+
   /*"A Turn" when {
     "new" should {
       val turn = new Turn
