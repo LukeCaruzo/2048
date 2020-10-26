@@ -3,8 +3,6 @@ package de.htwg.se.twothousandfortyeight.database
 import de.htwg.se.twothousandfortyeight.database.daoBaseImpl.{GameConfig, SlickDao}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-import org.junit.runner.RunWith
-import org.scalatest._
 import org.scalatest.wordspec.AnyWordSpec
 
 class SlickDaoSpec extends AnyWordSpec{

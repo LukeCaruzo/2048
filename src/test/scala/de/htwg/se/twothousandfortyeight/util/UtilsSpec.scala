@@ -1,12 +1,6 @@
 package de.htwg.se.twothousandfortyeight.util
 
-import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
-import org.junit.runner.RunWith
-import org.scalatest._
 import org.scalatest.wordspec.AnyWordSpec
-
-import scala.swing.Color
 
 class UtilsSpec extends AnyWordSpec {
   /*"A Util" when {

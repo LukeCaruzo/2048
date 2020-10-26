@@ -1,8 +1,5 @@
 package de.htwg.se.twothousandfortyeight.model
 
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
-import org.junit.runner.RunWith
-import org.scalatest._
 import org.scalatest.wordspec.AnyWordSpec
 
 class TileSpec extends AnyWordSpec {

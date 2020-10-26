@@ -1,9 +1,5 @@
 package de.htwg.se.twothousandfortyeight.model
 
-import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
-import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-import org.junit.runner.RunWith
-import org.scalatest._
 import org.scalatest.wordspec.AnyWordSpec
 
 class GameSpec extends AnyWordSpec {

@@ -3,7 +3,6 @@ package de.htwg.se.twothousandfortyeight.database
 import de.htwg.se.twothousandfortyeight.database.daoBaseImpl.{GameConfig, MongoDbDao}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-import org.scalatest._
 import org.scalatest.wordspec.AnyWordSpec
 
 class MongoDbDaoSpec extends AnyWordSpec {
