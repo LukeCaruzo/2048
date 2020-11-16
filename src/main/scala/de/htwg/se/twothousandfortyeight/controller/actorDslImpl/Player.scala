@@ -1,11 +1,13 @@
-package de.htwg.se.twothousandfortyeight.controller.actorBaseImpl
+package de.htwg.se.twothousandfortyeight.controller.actorDslImpl
 
 import akka.actor.{ActorSystem, Props}
 import akka.pattern.ask
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
+import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.util.Utils
 
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
@@ -31,23 +33,23 @@ object Player {
   }
 
   def printTui = {
-    println("Turn made with Actor!")
+    println(turn.game.toString)
+    println("Your Score: " + turn.game.score.toString)
     println
   }
 
   def printWin = {
-    println("Game won with Actor!")
-    println
+    printTui
+    println("You won!")
   }
 
   def printLose = {
-    println("Game lost with Actor!")
-    println
+    printTui
+    println("You lost!")
   }
 
   def printHelp = {
-    println("Called help with Actor!")
+    println(Utils.help)
     println
   }
 }
-
