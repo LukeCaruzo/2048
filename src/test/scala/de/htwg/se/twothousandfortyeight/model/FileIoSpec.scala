@@ -2,9 +2,10 @@ package de.htwg.se.twothousandfortyeight.model
 
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
+import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class FileIoSpec extends AnyWordSpec {
+class FileIoSpec extends AnyWordSpec with Matchers {
   "FileIo" when {
     "new" should {
       val fileIoJson = new FileIo
@@ -14,9 +15,9 @@ class FileIoSpec extends AnyWordSpec {
         fileIoJson.save("test.2048", game)
       }
       "have a load (json) method" in {
-        fileIoJson.load("test.2048").get.score.value === 0
+        fileIoJson.load("test.2048").get.score.value should be(0)
 
-        fileIoJson.load("test123.2048").isEmpty
+        fileIoJson.load("test123.2048") should be(None)
       }
     }
   }
