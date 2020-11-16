@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/LukeCaruzo/2048SE.svg)](https://travis-ci.org/LukeCaruzo/2048SE)
+![Build Status](https://github.com/LukeCaruzo/2048SE/workflows/continuous%20build/badge.svg)
 
 [![Coverage Status](https://coveralls.io/repos/github/LukeCaruzo/2048SE/badge.svg)](https://coveralls.io/github/LukeCaruzo/2048SE)
 
