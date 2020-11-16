@@ -25,7 +25,17 @@ class UtilsSpec extends AnyWordSpec with Matchers {
         Utils.processAction(turn, "blank") should be(0)
       }
       "have a help method" in {
-        Utils.help should be("----------------HELP----------------\n| W - up    | Q - undo | R - reset |\n| A - left  | Z - save | T - exit  |\n| S - down  | U - load |           |\n| D - right |          |           |\n------------------------------------\n")
+        val newline = System.getProperty("line.separator")
+        val sb = new StringBuilder
+
+        sb.append("----------------HELP----------------" + newline)
+        sb.append("| W - up    | Q - undo | R - reset |" + newline)
+        sb.append("| A - left  | Z - save | T - exit  |" + newline)
+        sb.append("| S - down  | U - load |           |" + newline)
+        sb.append("| D - right |          |           |" + newline)
+        sb.append("------------------------------------" + newline)
+
+        Utils.help should be(sb.toString)
       }
       "have a getBackgroundColor method" in {
         val tile2 = new Tile(2)
