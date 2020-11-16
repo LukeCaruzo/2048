@@ -13,11 +13,11 @@ class FileIoSpec extends AnyWordSpec {
       "have a save (json) " in {
         fileIoJson.save("test.2048", game)
       }
-      /*"have a load (json) method" in {
-        fileIoJson.load("test.2048").get.score.value should be(0)
+      "have a load (json) method" in {
+        fileIoJson.load("test.2048").get.score.value === 0
 
-        fileIoJson.load("test123.2048") should be(None)
-      }*/
+        fileIoJson.load("test123.2048").isEmpty
+      }
     }
   }
 }
