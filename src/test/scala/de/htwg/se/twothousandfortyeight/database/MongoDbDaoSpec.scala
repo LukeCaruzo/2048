@@ -6,7 +6,7 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 import org.scalatest.wordspec.AnyWordSpec
 
 class MongoDbDaoSpec extends AnyWordSpec {
-  "A MongoDbDao" when {
+  /*"A MongoDbDao" when {
     "new" should {
       val game = new Game
       val fileIo = new FileIo
@@ -20,5 +20,5 @@ class MongoDbDaoSpec extends AnyWordSpec {
         mongoDbDao.read(0)
       }
     }
-  }
+  }*/
 }
