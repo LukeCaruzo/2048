@@ -11,6 +11,6 @@ jobs:
         id: sbt
         uses: lokkju/github-action-sbt@master
         with:
-          commands: sbt clean coverage test coverageReport
+          commands: sbt test coverageReport
 #            sbt coverageReport coveralls
-          sbt_project_directory: .
+          sbt_project_directory: ./project
