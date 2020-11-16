@@ -3,21 +3,15 @@ on:
   push:
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        scala:
-          - version: "2.13.3"
-    name: build and test project
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: sbt build
-        uses: lokkju/github-action-sbt@master
-        with:
-          commands: build
-      - name: sbt test
-        uses: lokkju/github-action-sbt@master
-        with:
-          commands: test  
+    - uses: actions/checkout@v2
+    - name: Run tests
+      run: sbt coverage test
+    - name: Coverage Report
+      run: sbt coverageReport
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
