@@ -1,0 +1,16 @@
+name: continuous build
+on:
+  push:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    name: build and test project
+    steps:
+      - name: SBT action
+        id: sbt
+        uses: lokkju/github-action-sbt@master
+        with:
+          commands: test
+#            sbt coverageReport coveralls
+#          sbt_project_directory: .
