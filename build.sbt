@@ -19,9 +19,9 @@ libraryDependencies += "org.scala-lang.modules" % "scala-xml_2.13" % "1.3.0"
 
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.1"
 
-libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.6.10"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.5.23"
 
-libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.6.10" % Test
+libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.5.23" % Test
 
 libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.2.1"
 
