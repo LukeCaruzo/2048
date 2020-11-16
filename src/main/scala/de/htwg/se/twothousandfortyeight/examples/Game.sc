@@ -1,5 +1,3 @@
-Conductor!Add(Player)
+import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl._
 
-val game = Game(w, a, s, d)
-
-Player.play(game)
+Move("w", "a", "s", "d")
