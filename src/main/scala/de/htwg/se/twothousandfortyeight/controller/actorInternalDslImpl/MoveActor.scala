@@ -11,7 +11,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
-object MoveActor {
+class MoveActor {
   val turn = new Turn
   val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "commandactor")
