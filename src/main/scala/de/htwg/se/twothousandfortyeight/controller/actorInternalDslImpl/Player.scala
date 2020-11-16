@@ -1,9 +1,7 @@
-package de.htwg.se.twothousandfortyeight.controller.actorDslImpl
+package de.htwg.se.twothousandfortyeight.controller.actorInternalDslImpl
 
-import akka.actor.{ActorSystem, Props}
+import akka.actor.Props
 import akka.pattern.ask
-import akka.stream.ActorMaterializer
-import akka.util.Timeout
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
@@ -14,11 +12,6 @@ import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 object Player {
-  implicit val timeout = Timeout(5 seconds)
-  implicit val system = ActorSystem("system")
-  implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
-
   val turn = new Turn
   val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "commandactor")
@@ -41,11 +34,13 @@ object Player {
   def printWin = {
     printTui
     println("You won!")
+    sys.exit
   }
 
   def printLose = {
     printTui
     println("You lost!")
+    sys.exit
   }
 
   def printHelp = {
