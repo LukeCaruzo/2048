@@ -51,6 +51,3 @@ object Player {
   }
 }
 
-case class Move(seq: String*) {
-  def foreach(move: String) = Player.play(move)
-}
