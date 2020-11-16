@@ -5,8 +5,8 @@ import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 import org.scalatest.wordspec.AnyWordSpec
 
-class SlickDaoSpec extends AnyWordSpec{
-  "A SlickDao" when {
+class SlickDaoSpec extends AnyWordSpec {
+  /*"A SlickDao" when {
     "new" should {
       val game = new Game
       val fileIo = new FileIo
@@ -29,5 +29,5 @@ class SlickDaoSpec extends AnyWordSpec{
         slickDao.delete(0)
       }
     }
-  }
+  }*/
 }
