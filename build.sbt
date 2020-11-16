@@ -3,6 +3,10 @@ organization := "de.htwg.se"
 version := "0.0.1"
 scalaVersion := "2.13.3"
 
+import org.scoverage.coveralls.Imports.CoverallsKeys._
+
+coverallsToken := Some("SauHm93KXQlTBivHSKxpSqJdeytSHUPcb")
+
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % "test"
 
 libraryDependencies += "org.scala-lang.modules" % "scala-swing_2.13" % "2.1.1"
