@@ -1,9 +1,10 @@
 package de.htwg.se.twothousandfortyeight.model
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Tile
+import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class TileSpec extends AnyWordSpec {
+class TileSpec extends AnyWordSpec with Matchers {
   "A Tile" when {
     "new" should {
       var tile = new Tile(16)
