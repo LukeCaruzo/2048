@@ -1,5 +1,6 @@
 name: continuous build
-on: push
+on:
+  push:
 
 jobs:
   ci:
