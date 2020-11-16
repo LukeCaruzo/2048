@@ -13,4 +13,4 @@ jobs:
         with:
           commands: sbt clean coverage test coverageReport
 #            sbt coverageReport coveralls
-#          sbt_project_directory: ./test
+          sbt_project_directory: .
