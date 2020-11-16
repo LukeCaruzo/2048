@@ -5,6 +5,10 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        scala:
+          - version: "2.13.3"
     name: build and test project
     steps:
       - name: SBT action
@@ -12,5 +16,3 @@ jobs:
         uses: lokkju/github-action-sbt@master
         with:
           commands: test
-#            sbt coverageReport coveralls
-#          sbt_project_directory: .
