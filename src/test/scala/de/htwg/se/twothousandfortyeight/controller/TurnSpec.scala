@@ -1,46 +1,48 @@
 package de.htwg.se.twothousandfortyeight.controller
 
-import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.wordspec.AnyWordSpec
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
 
-class TurnSpec extends AnyFlatSpec {
+class TurnSpec extends AnyWordSpec {
   val turn = new Turn
 
-  "A turn" should "have a turnLeft method" in {
-    assert( turn.turnLeft == 0 )
+  "A turn" should {
+    "have a turnLeft method" in {
+      assert(turn.turnLeft === 0)
+    }
   }
 
-  /*"A Turn" when {
+  "A Turn" when {
     "new" should {
       val turn = new Turn
 
       "have a turnLeft method" in {
-        turn.turnLeft should be(0)
+        turn.turnLeft === 0
       }
       "have a turnRight method" in {
-        turn.turnRight should be(0)
+        turn.turnRight === 0
       }
       "have a turnDown method" in {
-        turn.turnDown should be(0)
+        turn.turnDown === 0
       }
       "have a turnUp method" in {
-        turn.turnUp should be(0)
+        turn.turnUp === 0
       }
       "have a turnUndo method" in {
-        turn.turnUndo should be(0)
+        turn.turnUndo === 0
       }
       "have a turnReset method" in {
-        turn.turnReset should be(0)
+        turn.turnReset === 0
       }
       "have a turnSave method" in {
-        turn.turnSave should be(0)
+        turn.turnSave === 0
       }
       "have a turnLoad method" in {
-        turn.turnLoad should be(0)
+        turn.turnLoad === 0
       }
       "have a evaluate method" in {
-        turn.evaluate should be(0)
+        turn.evaluate === 0
       }
       "have a way to win" in {
         val winArray = Array[Tile](new Tile(2), new Tile(1024), new Tile(1024),
@@ -48,8 +50,8 @@ class TurnSpec extends AnyFlatSpec {
           new Tile(2), new Tile(2), new Tile(2), new Tile(2),
           new Tile(2), new Tile(2), new Tile(2), new Tile(2))
         turn.game = new Game(winArray)
-        turn.turnRight should be(1)
-        turn.evaluate should be(1)
+        turn.turnRight === 1
+        turn.evaluate === 1
       }
       "have a way to lose" in {
         val loseArray = Array[Tile](
@@ -58,9 +60,9 @@ class TurnSpec extends AnyFlatSpec {
           new Tile(32), new Tile(64), new Tile(128), new Tile(256),
           new Tile(256), new Tile(128), new Tile(64), new Tile(32))
         turn.game = new Game(loseArray)
-        turn.turnRight should be(2)
-        turn.evaluate should be(2)
+        turn.turnRight === 2
+        turn.evaluate === 2
       }
     }
-  }*/
+  }
 }
