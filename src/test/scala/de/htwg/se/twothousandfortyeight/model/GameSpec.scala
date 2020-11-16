@@ -35,7 +35,7 @@ class GameSpec extends AnyWordSpec with Matchers {
         game.getSingleLine(0).moveSingleLine.mergeSingleLine.grid.length should be(4)
       }
       "have a toString method" in {
-        game.toString.length should be(51)
+        game.toString.length should be(54)
       }
     }
   }
