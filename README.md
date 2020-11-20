@@ -5,9 +5,6 @@
 # Introduction
 This repository is used for the Software Architectures course at the HTWG Konstanz.
 
-# Contributors
-* Lucas Schmidt (LukeCaruzo)
-
 # Details
 * SS 2019
 * Apache License 2.0
