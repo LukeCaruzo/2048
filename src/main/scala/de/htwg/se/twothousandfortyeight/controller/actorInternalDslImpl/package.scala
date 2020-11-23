@@ -13,14 +13,16 @@ package object actorInternalDslImpl {
   implicit val materializer = ActorMaterializer()
   implicit val executionContext = system.dispatcher
 
-  val w = "w"
-  val a = "a"
-  val s = "s"
-  val d = "d"
-  val q = "q"
-  val r = "r"
-  val z = "z"
-  val u = "u"
-  val t = "t"
-  val h = "h"
+  val Player = new Player
+
+  val UP = "w"
+  val LEFT = "a"
+  val DOWN = "s"
+  val RIGHT = "d"
+  val UNDO = "q"
+  val RESET = "r"
+  val SAVE = "z"
+  val LOAD = "u"
+  val EXIT = "t"
+  val HELP = "h"
 }

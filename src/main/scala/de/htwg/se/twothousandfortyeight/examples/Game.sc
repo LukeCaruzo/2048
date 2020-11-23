@@ -1,5 +1,5 @@
 import de.htwg.se.twothousandfortyeight.controller.actorInternalDslImpl._
 
-Move(w, a, s, d)
+Player Move (UP, DOWN, RIGHT, LEFT)
 
-// TODO: Klammern und Komma weg
+Player Move UP
