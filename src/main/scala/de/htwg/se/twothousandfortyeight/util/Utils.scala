@@ -23,7 +23,7 @@ object Utils {
   }
 
   def help: String = {
-    val newline = System.getProperty("line.separator")
+    val newline = "\n"
     val sb = new StringBuilder
 
     sb.append("----------------HELP----------------" + newline)

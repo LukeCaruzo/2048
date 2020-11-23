@@ -25,7 +25,7 @@ class UtilsSpec extends AnyWordSpec with Matchers {
         Utils.processAction(turn, "blank") should be(0)
       }
       "have a help method" in {
-        val newline = System.getProperty("line.separator")
+        val newline = "\n"
         val sb = new StringBuilder
 
         sb.append("----------------HELP----------------" + newline)

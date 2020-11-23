@@ -11,40 +11,39 @@ import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
-class MoveActor {
+class MoveActor(actorName: String) {
+  val newline = "\n"
   val turn = new Turn
   val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
-  val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "commandactor")
+  val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)
 
   def move(command: String) = {
     Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
-      case 0 => printTui
+      case 0 => print(printTui)
       case 1 => printWin
       case 2 => printLose
       case 3 => printHelp
     }
   }
 
-  def printTui = {
-    println(turn.game.toString)
-    println("Your Score: " + turn.game.score.toString)
+  def print(str: String) = {
+    println(str)
     println
   }
 
-  def printWin = {
-    printTui
-    println("You won!")
-    sys.exit
+  def printTui: String = {
+    turn.game.toString + newline + "Your Score: " + turn.game.score.toString
   }
 
-  def printLose = {
-    printTui
-    println("You lost!")
-    sys.exit
+  def printWin: String = {
+    printTui + newline + "You won!"
   }
 
-  def printHelp = {
-    println(Utils.help)
-    println
+  def printLose: String = {
+    printTui + newline + "You lost!"
+  }
+
+  def printHelp: String = {
+    Utils.help
   }
 }
