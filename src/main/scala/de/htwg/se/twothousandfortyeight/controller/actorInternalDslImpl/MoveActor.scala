@@ -12,7 +12,7 @@ import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 class MoveActor(actorName: String) {
-  val newline = System.getProperty("line.separator")
+  val newline = "\n"
   val turn = new Turn
   val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)

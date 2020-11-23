@@ -151,7 +151,7 @@ case class Game(grid: Array[Tile] =
       }
 
       if (i != (TwoThousandFortyEight.FIELD_SIZE - 1)) {
-        sb.append(System.getProperty("line.separator"))
+        sb.append("\n")
       }
     }
 

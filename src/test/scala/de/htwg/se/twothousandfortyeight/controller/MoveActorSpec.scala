@@ -11,16 +11,16 @@ class MoveActorSpec extends AnyWordSpec with Matchers {
       val moveActor = new MoveActor("testActor")
 
       "have a printTui method" in {
-        moveActor.printTui.length should be(69)
+        moveActor.printTui.length should be(65)
       }
       "have a printWin method" in {
-        moveActor.printWin.length should be(79)
+        moveActor.printWin.length should be(74)
       }
       "have a printLose method" in {
-        moveActor.printLose.length should be(80)
+        moveActor.printLose.length should be(75)
       }
       "have a printHelp method" in {
-        moveActor.printHelp.length should be(228)
+        moveActor.printHelp.length should be(222)
       }
     }
   }
