@@ -3,9 +3,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/LukeCaruzo/2048SE/badge.svg)](https://coveralls.io/github/LukeCaruzo/2048SE)
 
 # Introduction
-This repository is used for the Software Architectures course at the HTWG Konstanz.
+This repository is used for courses at the HTWG Konstanz.
 
 # Details
-* SS 2019
 * Apache License 2.0
-* Scala Version 2.12.7
+* Scala Version 2.13.3
