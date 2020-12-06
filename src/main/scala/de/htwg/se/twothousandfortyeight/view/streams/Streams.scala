@@ -26,37 +26,40 @@ object Streams {
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "streamActor")
 
   def main(args: Array[String]): Unit = {
-    val source = Source(1 to 10)
+    val print = true
 
-    val flow = Flow[Int].map(_ => stream)
+    val source = Source(1 to 10000)
 
-    val sink = Sink.foreach[Int](println)
-      //reduce[Int]((x, y) => { var a = 0; a = if( x == 2 ) a + 1 else a; println(a); a})
+    val flow = Flow[Int].map(_ => stream(print))
 
-    val example = source.via(flow).to(sink)
+    val sink = Sink.fold(0)((acc: Int, element: Int) => acc + element)
 
-    example.run()
+    val example = source.via(flow).filter(x => x == 1)
+
+    val result = example.runWith(sink)
+
+    result.map(println) // Counted wins
   }
 
-  def stream: Int = {
+  def stream(p: Boolean): Int = {
     var result = 0
 
     while (result == 0) {
-      result = singleStream(randomMove)
+      result = singleStream(randomMove, p)
     }
 
     result
   }
 
-  def singleStream(command: String): Int = {
+  def singleStream(command: String, p: Boolean): Int = {
     Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
-      case 0 => print(printTui); 0
-      case 1 => print(printWin); 1
-      case 2 => print(printLose); 2
+      case 0 => if(p) print(printTui); 0
+      case 1 => if(p) print(printWin); 1
+      case 2 => if(p) print(printLose); 2
     }
   }
 
-  def randomMove: String = {
+  def randomMove: String = { // TODO: Implement a weight for different game szenarios
     Random.nextInt(3) match {
       case 0 => "w"
       case 1 => "a"
