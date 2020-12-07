@@ -1,4 +1,4 @@
-package de.htwg.se.twothousandfortyeight.view.tui
+package de.htwg.se.twothousandfortyeight.view.rest
 
 import akka.actor.{ActorSystem, Props}
 import akka.http.scaladsl.Http
