@@ -21,10 +21,7 @@ object Streams {
   implicit val executionContext = system.dispatcher
 
   val newline = "\n"
-  val turn = new Turn
-  val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
-  val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "streamActor")
-
+  
   def main(args: Array[String]): Unit = {
     val print = true
 
@@ -52,6 +49,10 @@ object Streams {
   }
 
   def singleStream(command: String, p: Boolean): Int = {
+    val turn = new Turn
+    val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
+    val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "streamActor")
+    
     Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
       case 0 => if(p) print(printTui); 0
       case 1 => if(p) print(printWin); 1
