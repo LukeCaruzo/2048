@@ -44,3 +44,5 @@ libraryDependencies += "com.h2database" % "h2" % "1.4.187"
 libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "4.1.1"
 
 libraryDependencies += "org.scoverage" %% "scalac-scoverage-plugin" % "1.4.0"
+
+libraryDependencies += "org.apache.kafka" %% "kafka" % "2.6.0"
