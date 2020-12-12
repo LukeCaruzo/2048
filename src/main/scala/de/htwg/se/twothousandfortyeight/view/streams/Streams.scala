@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.view.streams
 
-import akka.actor.{ActorSystem, Props}
+import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.pattern.ask
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{Flow, Sink, Source}
@@ -41,27 +41,27 @@ object Streams {
   def stream(p: Boolean): Int = {
     var result = 0
 
+    val turn = new Turn
+    val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
+    val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn))
+
     while (result == 0) {
-      result = singleStream(randomMove, p)
+      result = singleStream(cmdActor, turn,randomMove, p)
     }
 
     result
   }
 
-  def singleStream(command: String, p: Boolean): Int = {
-    val turn = new Turn
-    val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
-    val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), "streamActor")
-    
+  def singleStream(cmdActor: ActorRef, turn: Turn, command: String, p: Boolean): Int = {
     Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
-      case 0 => if(p) print(printTui); 0
-      case 1 => if(p) print(printWin); 1
-      case 2 => if(p) print(printLose); 2
+      case 0 => if(p) print(printTui(turn)); 0
+      case 1 => if(p) print(printWin(turn)); 1
+      case 2 => if(p) print(printLose(turn)); 2
     }
   }
 
   def randomMove: String = { // TODO: Implement a weight for different game szenarios
-    Random.nextInt(3) match {
+    Random.nextInt(4) match {
       case 0 => "w"
       case 1 => "a"
       case 2 => "s"
@@ -75,15 +75,15 @@ object Streams {
     println
   }
 
-  def printTui: String = {
+  def printTui(turn: Turn): String = {
     turn.game.toString + newline + "Your Score: " + turn.game.score.toString
   }
 
-  def printWin: String = {
-    printTui + newline + "You won!"
+  def printWin(turn: Turn): String = {
+    printTui(turn) + newline + "You won!"
   }
 
-  def printLose: String = {
-    printTui + newline + "You lost!"
+  def printLose(turn: Turn): String = {
+    printTui(turn) + newline + "You lost!"
   }
 }
