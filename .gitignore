@@ -47,3 +47,5 @@ project/.sbtserver
 
 # Application
 /sudoku.log
+/zk-single-kafka-single/
+/save.2048.dsl
