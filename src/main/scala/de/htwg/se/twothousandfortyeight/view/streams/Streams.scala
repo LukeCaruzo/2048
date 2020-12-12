@@ -8,7 +8,9 @@ import akka.util.Timeout
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
+import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
 import de.htwg.se.twothousandfortyeight.util.Utils
+import de.htwg.se.twothousandfortyeight.view.streams.Streams.randomMoveWeighted
 
 import scala.util.Random
 import scala.concurrent.Await
@@ -25,7 +27,7 @@ object Streams {
   def main(args: Array[String]): Unit = {
     val print = true
 
-    val source = Source(1 to 10000)
+    val source = Source(1 to 100)
 
     val flow = Flow[Int].map(_ => stream(print))
 
@@ -45,8 +47,16 @@ object Streams {
     val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
     val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn))
 
+    /* val winArray = Array[Tile](new Tile(2), new Tile(2), new Tile(2), new Tile(2),
+    new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
+    new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
+    new Tile(2), new Tile(2), new Tile(2), new Tile(2))
+    turn.game = new Game(winArray) */
+
     while (result == 0) {
-      result = singleStream(cmdActor, turn,randomMove, p)
+      val move = randomMoveWeighted // randomMoveSimple
+      println(move)
+      result = singleStream(cmdActor, turn, move, p)
     }
 
     result
@@ -60,12 +70,26 @@ object Streams {
     }
   }
 
-  def randomMove: String = { // TODO: Implement a weight for different game szenarios
+  def randomMoveSimple: String = {
     Random.nextInt(4) match {
       case 0 => "w"
       case 1 => "a"
       case 2 => "s"
       case 3 => "d"
+      case _ => " "
+    }
+  }
+
+  def randomMoveWeighted: String = {
+    val a = 0.01
+    val b = 0.02
+    val c = 0.8
+
+    Random.nextDouble() match {
+      case x if(x < a) => "w"
+      case x if(a <= x && x < b) => "a"
+      case x if(b <= x && x < c) => "s"
+      case x if(c <= x) => "d"
       case _ => " "
     }
   }
