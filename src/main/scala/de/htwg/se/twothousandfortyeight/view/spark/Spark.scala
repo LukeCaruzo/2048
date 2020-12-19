@@ -1,23 +1,20 @@
 package de.htwg.se.twothousandfortyeight.view.spark
 
-// import org.apache.spark.sql.SparkSession
-
-import scala.math.random
+import de.htwg.se.twothousandfortyeight.view.streams.Streams.stream
+import org.apache.spark.sql.SparkSession
 
 object Spark {
   def main(args: Array[String]): Unit = {
-    /*val spark = SparkSession.builder.appName("Spark Pi").config("spark.master", "local").getOrCreate()
+    val spark = SparkSession.builder.appName("Simple Spark Application").config("spark.master", "local").getOrCreate()
 
-    val slices = if (args.length > 0) args(0).toInt else 2
-    val n = math.min(100000L * slices, Int.MaxValue).toInt // avoid overflow
-    val count = spark.sparkContext.parallelize(1 until n, slices).map { i =>
-      val x = random * 2 - 1
-      val y = random * 2 - 1
-      if (x*x + y*y <= 1) 1 else 0
-    }.reduce(_ + _)
-    println(s"Pi is roughly ${4.0 * count / (n - 1)}")
+    val n = 100
 
-    spark.stop()*/
+    val winCount = spark.sparkContext.parallelize(1 to n).map { i =>
+      stream()
+    }.filter(x => x == 1).fold(0)((acc: Int, element: Int) => acc + element)
+
+    println(s"Wins: ${winCount}")
+
+    spark.stop()
   }
-
 }

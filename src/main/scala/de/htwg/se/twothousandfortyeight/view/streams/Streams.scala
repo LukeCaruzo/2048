@@ -2,20 +2,17 @@ package de.htwg.se.twothousandfortyeight.view.streams
 
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.pattern.ask
-import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{Flow, Sink, Source}
 import akka.util.Timeout
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Tile}
-import de.htwg.se.twothousandfortyeight.util.Utils
-import de.htwg.se.twothousandfortyeight.view.streams.Streams.randomMoveWeighted
 
-import scala.util.Random
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
+import scala.util.Random
 
 object Streams {
   implicit val timeout = Timeout(5 seconds)
@@ -25,11 +22,10 @@ object Streams {
   val newline = "\n"
   
   def main(args: Array[String]): Unit = {
-    val print = true
 
     val source = Source(1 to 100)
 
-    val flow = Flow[Int].map(_ => stream(print))
+    val flow = Flow[Int].map(_ => stream())
 
     val sink = Sink.fold(0)((acc: Int, element: Int) => acc + element)
 
@@ -40,18 +36,18 @@ object Streams {
     result.map(println) // Counted wins
   }
 
-  def stream(p: Boolean): Int = {
+  def stream(p: Boolean = true): Int = {
     var result = 0
 
     val turn = new Turn
     val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
     val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn))
 
-    /* val winArray = Array[Tile](new Tile(2), new Tile(2), new Tile(2), new Tile(2),
+     val winArray = Array[Tile](new Tile(2), new Tile(2), new Tile(2), new Tile(2),
     new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
     new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
     new Tile(2), new Tile(2), new Tile(2), new Tile(2))
-    turn.game = new Game(winArray) */
+    turn.game = new Game(winArray)
 
     while (result == 0) {
       val move = randomMoveWeighted // randomMoveSimple
