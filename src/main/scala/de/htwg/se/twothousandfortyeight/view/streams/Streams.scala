@@ -22,10 +22,11 @@ object Streams {
   val newline = "\n"
   
   def main(args: Array[String]): Unit = {
+    val n = 100
 
-    val source = Source(1 to 100)
+    val source = Source(1 to n)
 
-    val flow = Flow[Int].map(_ => stream())
+    val flow = Flow[Int].map(_ => stream(true, false))
 
     val sink = Sink.fold(0)((acc: Int, element: Int) => acc + element)
 
@@ -36,18 +37,20 @@ object Streams {
     result.map(println) // Counted wins
   }
 
-  def stream(p: Boolean = true): Int = {
+  def stream(p: Boolean, ez: Boolean): Int = {
     var result = 0
 
     val turn = new Turn
     val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
     val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn))
 
-     val winArray = Array[Tile](new Tile(2), new Tile(2), new Tile(2), new Tile(2),
-    new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
-    new Tile(2), new Tile(1024), new Tile(1024), new Tile(2),
-    new Tile(2), new Tile(2), new Tile(2), new Tile(2))
-    turn.game = new Game(winArray)
+    if (ez) {
+      val winArray = Array[Tile](Tile(2), Tile(2), Tile(2), Tile(2),
+        Tile(2), Tile(1024), Tile(1024), Tile(2),
+        Tile(2), Tile(1024), Tile(1024), Tile(2),
+        Tile(2), Tile(2), Tile(2), Tile(2))
+      turn.game = new Game(winArray)
+    }
 
     while (result == 0) {
       val move = randomMoveWeighted // randomMoveSimple

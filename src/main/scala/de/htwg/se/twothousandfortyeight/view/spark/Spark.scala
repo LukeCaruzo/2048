@@ -5,12 +5,12 @@ import org.apache.spark.sql.SparkSession
 
 object Spark {
   def main(args: Array[String]): Unit = {
-    val spark = SparkSession.builder.appName("Simple Spark Application").config("spark.master", "local").getOrCreate()
+    val spark = SparkSession.builder.appName("Spark Application").config("spark.master", "local").getOrCreate()
 
     val n = 100
 
     val winCount = spark.sparkContext.parallelize(1 to n).map { i =>
-      stream()
+      stream(false, true)
     }.filter(x => x == 1).fold(0)((acc: Int, element: Int) => acc + element)
 
     println(s"Wins: ${winCount}")
