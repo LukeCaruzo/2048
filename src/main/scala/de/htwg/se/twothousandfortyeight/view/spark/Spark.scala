@@ -6,6 +6,7 @@ import org.apache.spark.sql.SparkSession
 object Spark {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder.appName("Spark Application").config("spark.master", "local").getOrCreate()
+    spark.sparkContext.setLogLevel("ERROR")
 
     val n = 100
 
