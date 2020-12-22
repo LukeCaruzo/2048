@@ -1,7 +1,7 @@
 name := "2048SE"
 organization := "de.htwg.se"
 version := "0.0.1"
-scalaVersion := "2.13.3"
+scalaVersion := "2.12.12"
 
 import org.scoverage.coveralls.Imports.CoverallsKeys._
 
@@ -9,15 +9,11 @@ coverallsToken := Some("SauHm93KXQlTBivHSKxpSqJdeytSHUPcb")
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % "test"
 
-libraryDependencies += "org.scala-lang.modules" % "scala-swing_2.13" % "2.1.1"
-
 libraryDependencies += "com.google.inject" % "guice" % "4.1.0"
 
 libraryDependencies += "com.google.code.gson" % "gson" % "2.8.5"
 
 libraryDependencies += "net.codingwell" %% "scala-guice" % "4.2.11"
-
-libraryDependencies += "org.scala-lang.modules" % "scala-xml_2.13" % "1.3.0"
 
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.1"
 
@@ -46,3 +42,11 @@ libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "4.1.1"
 libraryDependencies += "org.scoverage" %% "scalac-scoverage-plugin" % "1.4.0"
 
 libraryDependencies += "org.apache.kafka" %% "kafka" % "2.6.0"
+
+libraryDependencies += "org.apache.spark" % "spark-core_2.12" % "3.0.1"
+
+libraryDependencies += "org.apache.spark" % "spark-streaming_2.12" % "3.0.1" % "provided"
+
+libraryDependencies += "org.apache.spark" % "spark-streaming-kafka-0-10_2.12" % "3.0.1"
+
+libraryDependencies += "org.apache.spark" % "spark-sql_2.12" % "3.0.1"
