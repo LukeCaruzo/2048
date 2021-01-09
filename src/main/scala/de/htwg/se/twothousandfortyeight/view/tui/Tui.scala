@@ -3,7 +3,7 @@ package de.htwg.se.twothousandfortyeight.view.tui
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.util.Utils
 
-class Tui(turn: TurnTrait) {
+class Tui(turn: TurnTrait):
   println(Utils.help)
   printTui
 
@@ -62,4 +62,3 @@ class Tui(turn: TurnTrait) {
     println(Utils.help)
     println
   }
-}
