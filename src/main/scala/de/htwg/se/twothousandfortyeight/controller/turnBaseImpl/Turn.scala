@@ -4,51 +4,44 @@ import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 
-class Turn extends TurnTrait {
-val fileIo = new FileIo
+class Turn extends TurnTrait:
+  val fileIo = new FileIo
   var game = new Game
   var undoGame = game
 
-  def turnLeft = {
+  def turnLeft =
     undoGame = game
     game = game.left
     evaluate
-  }
 
-  def turnRight = {
+  def turnRight =
     undoGame = game
     game = game.right
     evaluate
-  }
 
-  def turnUp = {
+  def turnUp =
     undoGame = game
     game = game.up
     evaluate
-  }
 
-  def turnDown = {
+  def turnDown =
     undoGame = game
     game = game.down
     evaluate
-  }
 
-  def turnUndo = {
+  def turnUndo =
     game = undoGame
     evaluate
-  }
 
-  def turnReset = {
+  def turnReset =
     game = game.reset
     evaluate
-  }
 
-  def turnSave = {
+  def turnSave =
     fileIo.save("save.2048", game)
     evaluate
-  }
 
-  def turnLoad = {
+  def turnLoad =
     fileIo.load("save.2048") match {
       case Some(game) =>
         this.game = game
@@ -57,14 +50,12 @@ val fileIo = new FileIo
         println()
     }
     evaluate
-  }
 
-  def turnExit: Int = {
+  def turnExit: Int =
     sys.exit()
     return 0
-  }
 
-  def evaluate: Int = {
+  def evaluate: Int =
     if (game.grid contains new Tile(2048)) {
       return 1 // won
     } else if (!Operations.canBeMoved(game.grid)) {
@@ -72,5 +63,3 @@ val fileIo = new FileIo
     } else {
       return 0
     }
-  }
-}
