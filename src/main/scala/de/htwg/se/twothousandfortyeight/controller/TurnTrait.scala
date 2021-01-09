@@ -2,7 +2,7 @@ package de.htwg.se.twothousandfortyeight.controller
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 
-trait TurnTrait {
+trait TurnTrait:
   var game: Game
 
   def turnLeft: Int
@@ -24,4 +24,3 @@ trait TurnTrait {
   def turnExit: Int
 
   def evaluate: Int
-}
