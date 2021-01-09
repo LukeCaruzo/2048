@@ -22,11 +22,10 @@ class FileIo extends FileIoTrait :
     gson.toJson(game)
 
   def load(filename: String): Option[Game] =
-    return Try(Source.fromFile(filename + ".json").mkString) match {
-        case Success(lines) => Some(deserialize(lines))
-        case Failure(_) => None
-      }
+    return Try(Source.fromFile(filename + ".json").mkString) match
+      case Success(lines) => Some(deserialize(lines))
+      case Failure(_) => None
 
-  def deserialize(json: String): Game = 
+  def deserialize(json: String): Game =
     val gson = new Gson
     gson.fromJson(json, classOf[Game])
