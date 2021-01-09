@@ -5,7 +5,7 @@ import java.util.ArrayList
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 
 object Operations:
-  def addTile(tiles: Array[Tile]): Array[Tile] = {
+  def addTile(tiles: Array[Tile]): Array[Tile] =
     val newTiles = tiles
     val emptyIndices = new ArrayList[Int]
 
@@ -21,9 +21,8 @@ object Operations:
     }
 
     return newTiles
-  }
 
-  def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
+  def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean =
     if (line1 == line2) {
       return true
     } else if (line1.length != line2.length) {
@@ -37,13 +36,11 @@ object Operations:
     }
 
     return true
-  }
 
-  def getPositionOfTile(tiles: Array[Tile], x: Int, y: Int): Tile = {
+  def getPositionOfTile(tiles: Array[Tile], x: Int, y: Int): Tile =
     return tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
-  }
 
-  def canBeMoved(tiles: Array[Tile]): Boolean = {
+  def canBeMoved(tiles: Array[Tile]): Boolean = 
     if (!isFull(tiles)) {
       return true
     }
@@ -57,12 +54,8 @@ object Operations:
         }
       }
     }
-
     return false
-  }
 
-  def isFull(tiles: Array[Tile]): Boolean = {
+  def isFull(tiles: Array[Tile]): Boolean =
     tiles.foreach(tile => if (tile.isEmpty) return false)
-
     return true
-  }
