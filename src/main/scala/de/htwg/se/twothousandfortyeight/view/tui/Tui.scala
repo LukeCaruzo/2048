@@ -7,7 +7,7 @@ class Tui(turn: TurnTrait):
   println(Utils.help)
   printTui
 
-  while (true) {
+  while (true)
     try {
       val scanner = new java.util.Scanner(System.in)
       val line = scanner.nextLine
@@ -22,9 +22,8 @@ class Tui(turn: TurnTrait):
     } catch {
       case _: NoSuchElementException => println("running: tui") // fix for docker
     }
-  }
 
-  def processInput(line: String): String = {
+  def processInput(line: String): String = 
     line.charAt(0) match {
       case 'a' => return "left"
       case 'd' => return "right"
@@ -38,27 +37,22 @@ class Tui(turn: TurnTrait):
       case 'h' => return "help"
       case _ => return "blank"
     }
-  }
 
-  def printTui: Unit = {
+  def printTui: Unit = 
     println(turn.game.toString)
     println("Your Score: " + turn.game.score.toString)
     println
-  }
 
-  def printWin: Unit = {
+  def printWin: Unit = 
     printTui
     println("You won!")
     sys.exit
-  }
 
-  def printLose: Unit = {
+  def printLose: Unit = 
     printTui
     println("You lost!")
     sys.exit
-  }
 
-  def printHelp: Unit = {
+  def printHelp: Unit = 
     println(Utils.help)
     println
-  }
