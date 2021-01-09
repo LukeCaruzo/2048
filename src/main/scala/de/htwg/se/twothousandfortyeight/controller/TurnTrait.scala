@@ -5,22 +5,22 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
 trait TurnTrait:
   var game: Game
 
-  def turnLeft: Int
+  def turnLeft: 0 | 1 | 2
 
-  def turnRight: Int
+  def turnRight: 0 | 1 | 2
 
-  def turnUp: Int
+  def turnUp: 0 | 1 | 2
 
-  def turnDown: Int
+  def turnDown: 0 | 1 | 2
 
-  def turnUndo: Int
+  def turnUndo: 0 | 1 | 2
 
-  def turnReset: Int
+  def turnReset: 0 | 1 | 2
 
-  def turnSave: Int
+  def turnSave: 0 | 1 | 2
 
-  def turnLoad: Int
+  def turnLoad: 0 | 1 | 2
 
-  def turnExit: Int
+  def turnExit: 0
 
-  def evaluate: Int
+  def evaluate: 0 | 1 | 2
