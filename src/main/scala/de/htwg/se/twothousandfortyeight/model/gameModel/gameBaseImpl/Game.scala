@@ -10,11 +10,9 @@ case class Game(grid: Array[Tile] =
                   new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()))),
                 score: Score = new Score):
 
-  def reset: Game = {
-    new Game()
-  }
+  def reset: Game = new Game()
 
-  def rotate: Game = {
+  def rotate: Game =
     val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
     val oX = TwoThousandFortyEight.FIELD_SIZE - 1
     val oY = 0
@@ -33,9 +31,9 @@ case class Game(grid: Array[Tile] =
     }
 
     return new Game(newTiles, this.score)
-  }
 
-  def left: Game = {
+
+  def left: Game =
     var needsATile = false
     var gameNew = new Game
     val scoreOld = this.score.value
@@ -61,21 +59,15 @@ case class Game(grid: Array[Tile] =
     }
 
     return gameNew
-  }
 
-  def right: Game = {
-    this.rotate.rotate.left.rotate.rotate
-  }
 
-  def up: Game = {
-    this.rotate.rotate.rotate.left.rotate
-  }
+  def right: Game = this.rotate.rotate.left.rotate.rotate
 
-  def down: Game = {
-    this.rotate.left.rotate.rotate.rotate
-  }
+  def up: Game = this.rotate.rotate.rotate.left.rotate
 
-  def moveSingleLine: Game = {
+  def down: Game = this.rotate.left.rotate.rotate.rotate
+
+  def moveSingleLine: Game =
     val oldLine = this.grid
     val helperList = new LinkedList[Tile]
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
@@ -99,9 +91,8 @@ case class Game(grid: Array[Tile] =
 
       return new Game(newLine, this.score)
     }
-  }
 
-  def mergeSingleLine: Game = {
+  def mergeSingleLine: Game =
     val oldLine = this.grid
     val helperList = new LinkedList[Tile]
     var scoreNew = this.score
@@ -129,9 +120,8 @@ case class Game(grid: Array[Tile] =
 
       return new Game(helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)), scoreNew)
     }
-  }
 
-  def getSingleLine(index: Int): Game = {
+  def getSingleLine(index: Int): Game =
     val singleLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
@@ -139,9 +129,8 @@ case class Game(grid: Array[Tile] =
     }
 
     return new Game(singleLine, this.score)
-  }
 
-  override def toString(): String = {
+  override def toString(): String =
     val sb = new StringBuilder
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
@@ -156,4 +145,3 @@ case class Game(grid: Array[Tile] =
     }
 
     return sb.toString
-  }
