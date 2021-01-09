@@ -1,17 +1,14 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
-import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
-import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
+import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
 
 @Inject
 class Turn extends TurnTrait {
-  val injector = Guice.createInjector(new TwoThousandFortyEightModule)
-  val fileIo = injector.instance[FileIoTrait]
-
+val fileIo = new FileIo
   var game = new Game
   var undoGame = game
 
@@ -70,7 +67,7 @@ class Turn extends TurnTrait {
     return 0
   }
 
-  def evaluate(): Int = {
+  def evaluate: Int = {
     if (game.grid contains new Tile(2048)) {
       return 1 // won
     } else if (!Operations.canBeMoved(game.grid)) {

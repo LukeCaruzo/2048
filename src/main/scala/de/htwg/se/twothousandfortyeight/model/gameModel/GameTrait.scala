@@ -11,7 +11,7 @@ trait GameTrait {
 trait TileTrait {
   val value: Int
 
-  def isEmpty(): Boolean
+  def isEmpty: Boolean
 
   def toString(): String
 }

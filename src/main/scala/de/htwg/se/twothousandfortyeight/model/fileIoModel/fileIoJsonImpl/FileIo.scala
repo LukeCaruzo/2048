@@ -10,7 +10,7 @@ import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 class FileIo extends FileIoTrait {
-  def save(filename: String, game: Game) {
+  def save(filename: String, game: Game): Unit = {
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
