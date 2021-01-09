@@ -4,7 +4,7 @@ import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 
-class Turn extends TurnTrait:
+class Turn extends TurnTrait :
   val fileIo = new FileIo
   var game = new Game
   var undoGame = game
@@ -42,24 +42,22 @@ class Turn extends TurnTrait:
     evaluate
 
   def turnLoad =
-    fileIo.load("save.2048") match {
+    fileIo.load("save.2048") match
       case Some(game) =>
         this.game = game
       case None =>
         println("No save found!")
         println()
-    }
     evaluate
 
-  def turnExit: Int =
+  def turnExit: 0 =
     sys.exit()
     return 0
 
-  def evaluate: Int =
-    if (game.grid contains new Tile(2048)) {
+  def evaluate: 0 | 1 | 2 =
+    if (game.grid contains new Tile(2048))
       return 1 // won
-    } else if (!Operations.canBeMoved(game.grid)) {
+    else if (!Operations.canBeMoved(game.grid))
       return 2 // lost
-    } else {
+    else
       return 0
-    }
