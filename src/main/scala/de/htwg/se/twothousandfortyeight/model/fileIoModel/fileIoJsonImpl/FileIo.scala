@@ -10,30 +10,23 @@ import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 class FileIo extends FileIoTrait :
-  def save(filename: String, game: Game): Unit = {
+  def save(filename: String, game: Game): Unit =
     val file = new File(filename + ".json")
     val bw = new BufferedWriter(new FileWriter(file))
 
     bw.write(serialize(game))
     bw.close()
-  }
 
-  def serialize(game: Game): String = {
+  def serialize(game: Game): String =
     val gson = new Gson
     gson.toJson(game)
-  }
 
-  def load(filename: String): Option[Game] = {
-    val data =
-      Try(Source.fromFile(filename + ".json").mkString) match {
+  def load(filename: String): Option[Game] =
+    return Try(Source.fromFile(filename + ".json").mkString) match {
         case Success(lines) => Some(deserialize(lines))
         case Failure(_) => None
       }
 
-    return data
-  }
-
-  def deserialize(json: String): Game = {
+  def deserialize(json: String): Game = 
     val gson = new Gson
     gson.fromJson(json, classOf[Game])
-  }
