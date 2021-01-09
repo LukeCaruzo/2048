@@ -3,7 +3,7 @@ package de.htwg.se.twothousandfortyeight.util
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
 
-object Utils {
+object Utils:
   def processAction(turn: TurnTrait, action: String): Int = {
     action match {
       case "left" => turn.turnLeft
@@ -33,4 +33,4 @@ object Utils {
 
     return sb.toString
   }
-}
+
