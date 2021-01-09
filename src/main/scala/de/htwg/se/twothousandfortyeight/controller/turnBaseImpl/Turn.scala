@@ -1,12 +1,9 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
-import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.fileIoJsonImpl.FileIo
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
-import net.codingwell.scalaguice.InjectorExtensions._
 
-@Inject
 class Turn extends TurnTrait {
 val fileIo = new FileIo
   var game = new Game
