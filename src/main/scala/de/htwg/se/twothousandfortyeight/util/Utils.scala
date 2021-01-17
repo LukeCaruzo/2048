@@ -4,7 +4,6 @@ import de.htwg.se.twothousandfortyeight.controller.{TurnResult, TurnTrait}
 
 object Utils {
 
-
   def processAction(turn: TurnTrait, action: String): TurnResult.Value = {
     action match {
       case "left" => turn.turnLeft
@@ -21,17 +20,14 @@ object Utils {
     }
   }
 
-  def help: String = {
-    val newline = "\n"
-    val sb = new StringBuilder
+  def help: String =
+    """----------------HELP----------------
+      || W - up    | Q - undo | R - reset |
+      || A - left  | Z - save | T - exit  |
+      || S - down  | U - load |           |
+      || D - right |          |           |
+      |------------------------------------
+      |"""
+      .stripMargin
 
-    sb.append("----------------HELP----------------" + newline)
-    sb.append("| W - up    | Q - undo | R - reset |" + newline)
-    sb.append("| A - left  | Z - save | T - exit  |" + newline)
-    sb.append("| S - down  | U - load |           |" + newline)
-    sb.append("| D - right |          |           |" + newline)
-    sb.append("------------------------------------" + newline)
-
-    return sb.toString
-  }
 }
