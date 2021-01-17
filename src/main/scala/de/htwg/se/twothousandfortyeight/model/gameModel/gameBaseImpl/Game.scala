@@ -30,7 +30,7 @@ case class Game(grid: Array[Tile] =
       }
     }
 
-    return new Game(newTiles, this.score)
+    Game(newTiles, this.score)
   }
 
   def left: Game = {
