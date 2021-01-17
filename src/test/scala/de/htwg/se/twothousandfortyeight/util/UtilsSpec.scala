@@ -1,5 +1,6 @@
 package de.htwg.se.twothousandfortyeight.util
 
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, TURN_FINISHED}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -10,29 +11,29 @@ class UtilsSpec extends AnyWordSpec with Matchers {
       "have a processAction method" in {
         val turn = new Turn
 
-        Utils.processAction(turn, "left") should be(0)
-        Utils.processAction(turn, "right") should be(0)
-        Utils.processAction(turn, "down") should be(0)
-        Utils.processAction(turn, "up") should be(0)
-        Utils.processAction(turn, "undo") should be(0)
-        Utils.processAction(turn, "reset") should be(0)
-        Utils.processAction(turn, "save") should be(0)
-        Utils.processAction(turn, "load") should be(0)
-        Utils.processAction(turn, "help") should be(3)
-        Utils.processAction(turn, "blank") should be(0)
+        Utils.processAction(turn, "left") should be(TURN_FINISHED)
+        Utils.processAction(turn, "right") should be(TURN_FINISHED)
+        Utils.processAction(turn, "down") should be(TURN_FINISHED)
+        Utils.processAction(turn, "up") should be(TURN_FINISHED)
+        Utils.processAction(turn, "undo") should be(TURN_FINISHED)
+        Utils.processAction(turn, "reset") should be(TURN_FINISHED)
+        Utils.processAction(turn, "save") should be(TURN_FINISHED)
+        Utils.processAction(turn, "load") should be(TURN_FINISHED)
+        Utils.processAction(turn, "help") should be(HELP)
+        Utils.processAction(turn, "blank") should be(TURN_FINISHED)
       }
       "have a help method" in {
-        val newline = "\n"
-        val sb = new StringBuilder
+        val help =
+          """----------------HELP----------------
+            || W - up    | Q - undo | R - reset |
+            || A - left  | Z - save | T - exit  |
+            || S - down  | U - load |           |
+            || D - right |          |           |
+            |------------------------------------
+            |"""
+            .stripMargin
 
-        sb.append("----------------HELP----------------" + newline)
-        sb.append("| W - up    | Q - undo | R - reset |" + newline)
-        sb.append("| A - left  | Z - save | T - exit  |" + newline)
-        sb.append("| S - down  | U - load |           |" + newline)
-        sb.append("| D - right |          |           |" + newline)
-        sb.append("------------------------------------" + newline)
-
-        Utils.help should be(sb.toString)
+        Utils.help should be(help)
       }
     }
   }
