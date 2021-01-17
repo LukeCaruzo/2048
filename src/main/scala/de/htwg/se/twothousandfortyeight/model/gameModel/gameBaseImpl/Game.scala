@@ -7,7 +7,7 @@ import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Operations.
 
 case class Game(grid: Array[Tile] =
                 Operations.addTile(Operations.addTile(
-                  new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()))),
+                  new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => Tile()))),
                 score: Score = new Score) {
 
   def reset: Game = Game()
@@ -52,10 +52,10 @@ case class Game(grid: Array[Tile] =
       }
     }
 
-    gameNew = new Game(this.grid, new Score(score + scoreOld))
+    gameNew = Game(this.grid, Score(score + scoreOld))
 
     if (needsATile) {
-      gameNew = new Game(addTile(gameNew.grid), gameNew.score)
+      gameNew = Game(addTile(gameNew.grid), gameNew.score)
     }
 
     return gameNew
@@ -83,7 +83,7 @@ case class Game(grid: Array[Tile] =
     }
 
     if (helperList.size() == 0) {
-      return new Game(oldLine, this.score)
+      return Game(oldLine, this.score)
     } else {
       val newLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)
 
@@ -95,7 +95,7 @@ case class Game(grid: Array[Tile] =
         newLine(i) = helperList.removeFirst()
       }
 
-      return new Game(newLine, this.score)
+      return Game(newLine, this.score)
     }
   }
 
@@ -109,23 +109,23 @@ case class Game(grid: Array[Tile] =
       var oldValue = oldLine(i).value
       if (i < (TwoThousandFortyEight.FIELD_SIZE - 1) && oldLine(i).value == oldLine(i + 1).value) {
         oldValue *= 2
-        scoreNew = new Score(this.score.value + oldValue)
+        scoreNew = Score(this.score.value + oldValue)
 
         i = i + 1
       }
 
-      helperList.add(new Tile(oldValue))
+      helperList.add(Tile(oldValue))
       i = i + 1
     }
 
     if (helperList.size() == 0) {
-      return new Game(oldLine, scoreNew)
+      return Game(oldLine, scoreNew)
     } else {
       while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) {
-        helperList.add(new Tile())
+        helperList.add(Tile())
       }
 
-      return new Game(helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)), scoreNew)
+      return Game(helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)), scoreNew)
     }
   }
 
@@ -136,7 +136,7 @@ case class Game(grid: Array[Tile] =
       singleLine(i) = getPositionOfTile(this.grid, i, index)
     }
 
-    return new Game(singleLine, this.score)
+    return Game(singleLine, this.score)
   }
 
   override def toString(): String = {
