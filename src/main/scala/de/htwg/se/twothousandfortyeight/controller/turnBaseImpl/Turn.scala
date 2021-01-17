@@ -21,40 +21,40 @@ class Turn extends TurnTrait {
     evaluate
   }
 
-  def turnRight = {
+  def turnRight: Int = {
     undoGame = game
     game = game.right
     evaluate
   }
 
-  def turnUp = {
+  def turnUp: Int = {
     undoGame = game
     game = game.up
     evaluate
   }
 
-  def turnDown = {
+  def turnDown: Int = {
     undoGame = game
     game = game.down
     evaluate
   }
 
-  def turnUndo = {
+  def turnUndo: Int = {
     game = undoGame
     evaluate
   }
 
-  def turnReset = {
+  def turnReset: Int = {
     game = game.reset
     evaluate
   }
 
-  def turnSave = {
+  def turnSave: Int = {
     fileIo.save("save.2048", game)
     evaluate
   }
 
-  def turnLoad = {
+  def turnLoad: Int = {
     fileIo.load("save.2048") match {
       case Some(game) =>
         this.game = game
@@ -67,10 +67,10 @@ class Turn extends TurnTrait {
 
   def turnExit: Int = {
     sys.exit()
-    return 0
+    EXIT
   }
 
-  def evaluate(): Int = {
+  def evaluate: Int = {
     if (game.grid contains new Tile(2048)) {
       return 1 // won
     } else if (!Operations.canBeMoved(game.grid)) {
