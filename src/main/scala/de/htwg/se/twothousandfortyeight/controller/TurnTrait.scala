@@ -1,7 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-import de.htwg.se.twothousandfortyeight.controller.{TurnResult}
 trait TurnTrait {
   var game: Game
 
