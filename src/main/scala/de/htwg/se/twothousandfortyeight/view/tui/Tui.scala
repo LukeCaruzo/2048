@@ -26,7 +26,7 @@ class Tui(turn: TurnTrait) {
   }
 
   def processInput(line: String): String = {
-    line.charAt(0) match {
+    line.charAt(0).toLower match {
       case 'a' => "left"
       case 'd' => "right"
       case 's' => "down"
