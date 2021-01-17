@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller.actorInternalDslImpl
 
-import akka.actor.Props
+import akka.actor.{ActorRef, Props}
 import akka.pattern.ask
 import de.htwg.se.twothousandfortyeight.controller.TurnResult
 import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, LOSE, TURN_FINISHED, WIN}
@@ -17,7 +17,7 @@ class MoveActor(actorName: String) {
   val newline = "\n"
   val turn = new Turn
   val turnAsInstance: TurnAsInstance = new TurnAsInstance(turn)
-  val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)
+  val cmdActor: ActorRef = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)
 
   def move(command: String): Any = {
     Await.result(cmdActor ? Command(command), 5 seconds) match {
