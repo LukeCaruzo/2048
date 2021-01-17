@@ -14,7 +14,7 @@ case class Game(grid: Array[Tile] =
     new Game()
   }
 
-  def rotate(): Game = {
+  def rotate: Game = {
     val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
     val oX = TwoThousandFortyEight.FIELD_SIZE - 1
     val oY = 0
@@ -35,7 +35,7 @@ case class Game(grid: Array[Tile] =
     return new Game(newTiles, this.score)
   }
 
-  def left(): Game = {
+  def left: Game = {
     var needsATile = false
     var gameNew = new Game
     val scoreOld = this.score.value
@@ -63,15 +63,15 @@ case class Game(grid: Array[Tile] =
     return gameNew
   }
 
-  def right(): Game = {
+  def right: Game = {
     this.rotate.rotate.left.rotate.rotate
   }
 
-  def up(): Game = {
+  def up: Game = {
     this.rotate.rotate.rotate.left.rotate
   }
 
-  def down(): Game = {
+  def down: Game = {
     this.rotate.left.rotate.rotate.rotate
   }
 
@@ -101,7 +101,7 @@ case class Game(grid: Array[Tile] =
     }
   }
 
-  def mergeSingleLine(): Game = {
+  def mergeSingleLine: Game = {
     val oldLine = this.grid
     val helperList = new LinkedList[Tile]
     var scoreNew = this.score
