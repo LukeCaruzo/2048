@@ -20,7 +20,7 @@ class MoveActor(actorName: String) {
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)
 
   def move(command: String): Any = {
-    Await.result((cmdActor ? Command(command)), 5 seconds) match {
+    Await.result(cmdActor ? Command(command), 5 seconds) match {
       case TURN_FINISHED => print(printTui)
       case WIN => printWin
       case LOSE => printLose
