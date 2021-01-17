@@ -1,6 +1,6 @@
 package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
-import com.google.inject.{Guice, Inject}
+import com.google.inject.{Guice, Inject, Injector}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
 import de.htwg.se.twothousandfortyeight.controller.TurnResult.{LOSE, TURN_FINISHED, WIN}
 import de.htwg.se.twothousandfortyeight.controller.{TurnResult, TurnTrait}
@@ -10,12 +10,12 @@ import net.codingwell.scalaguice.InjectorExtensions._
 
 @Inject
 class Turn extends TurnTrait {
-  val injector = Guice.createInjector(new TwoThousandFortyEightModule)
-  val fileIo = injector.instance[FileIoTrait]
-  val tile2048 = Tile(2048)
+  val injector: Injector = Guice.createInjector(new TwoThousandFortyEightModule)
+  val fileIo: FileIoTrait = injector.instance[FileIoTrait]
+  val tile2048: Tile = Tile(2048)
 
   var game = new Game
-  var undoGame = game
+  var undoGame: Game = game
 
   def turnLeft: TurnResult.Value = {
     undoGame = game
