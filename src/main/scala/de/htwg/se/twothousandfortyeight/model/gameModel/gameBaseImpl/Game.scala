@@ -1,9 +1,9 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-import java.util.LinkedList
-
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Operations.{addTile, compareLines, getPositionOfTile}
+
+import java.util
 
 case class Game(grid: Array[Tile] =
                 Operations.addTile(Operations.addTile(
@@ -41,7 +41,7 @@ case class Game(grid: Array[Tile] =
     var score = 0
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       val singleLine = this.getSingleLine(i)
-      val mergedLine = new Game(singleLine.grid, new Score).moveSingleLine.mergeSingleLine
+      val mergedLine = Game(singleLine.grid, new Score).moveSingleLine.mergeSingleLine
 
       System.arraycopy(mergedLine.grid, 0, this.grid, i * TwoThousandFortyEight.FIELD_SIZE, TwoThousandFortyEight.FIELD_SIZE)
 
@@ -58,7 +58,7 @@ case class Game(grid: Array[Tile] =
       gameNew = Game(addTile(gameNew.grid), gameNew.score)
     }
 
-    return gameNew
+    gameNew
   }
 
   def right: Game = {
@@ -73,9 +73,9 @@ case class Game(grid: Array[Tile] =
     this.rotate.left.rotate.rotate.rotate
   }
 
-  def moveSingleLine(): Game = {
+  def moveSingleLine: Game = {
     val oldLine = this.grid
-    val helperList = new LinkedList[Tile]
+    val helperList = new util.LinkedList[Tile]
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
       if (!oldLine(i).isEmpty) {
         helperList.addLast(oldLine(i))
@@ -83,25 +83,25 @@ case class Game(grid: Array[Tile] =
     }
 
     if (helperList.size() == 0) {
-      return Game(oldLine, this.score)
+      Game(oldLine, this.score)
     } else {
       val newLine = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)
 
       while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) {
-        helperList.add(new Tile())
+        helperList.add(Tile())
       }
 
       for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
         newLine(i) = helperList.removeFirst()
       }
 
-      return Game(newLine, this.score)
+      Game(newLine, this.score)
     }
   }
 
   def mergeSingleLine: Game = {
     val oldLine = this.grid
-    val helperList = new LinkedList[Tile]
+    val helperList = new util.LinkedList[Tile]
     var scoreNew = this.score
 
     var i = 0
@@ -119,13 +119,13 @@ case class Game(grid: Array[Tile] =
     }
 
     if (helperList.size() == 0) {
-      return Game(oldLine, scoreNew)
+      Game(oldLine, scoreNew)
     } else {
       while (helperList.size != TwoThousandFortyEight.FIELD_SIZE) {
         helperList.add(Tile())
       }
 
-      return Game(helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)), scoreNew)
+      Game(helperList.toArray(new Array[Tile](TwoThousandFortyEight.FIELD_SIZE)), scoreNew)
     }
   }
 
@@ -136,10 +136,10 @@ case class Game(grid: Array[Tile] =
       singleLine(i) = getPositionOfTile(this.grid, i, index)
     }
 
-    return Game(singleLine, this.score)
+    Game(singleLine, this.score)
   }
 
-  override def toString(): String = {
+  override def toString: String = {
     val sb = new StringBuilder
 
     for (i <- 0 until TwoThousandFortyEight.FIELD_SIZE) {
@@ -153,6 +153,6 @@ case class Game(grid: Array[Tile] =
       }
     }
 
-    return sb.toString
+    sb.toString
   }
 }
