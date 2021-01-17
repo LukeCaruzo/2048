@@ -39,21 +39,21 @@ class TurnSpec extends AnyWordSpec with Matchers {
         turn.evaluate should be(TURN_FINISHED)
       }
       "have a way to win" in {
-        val winArray = Array[Tile](new Tile(2), new Tile(1024), new Tile(1024),
-          new Tile(2), new Tile(2), new Tile(2), new Tile(2), new Tile(2),
-          new Tile(2), new Tile(2), new Tile(2), new Tile(2),
-          new Tile(2), new Tile(2), new Tile(2), new Tile(2))
-        turn.game = new Game(winArray)
+        val winArray = Array[Tile](Tile(2), Tile(1024), Tile(1024),
+          Tile(2), Tile(2), Tile(2), Tile(2), Tile(2),
+          Tile(2), Tile(2), Tile(2), Tile(2),
+          Tile(2), Tile(2), Tile(2), Tile(2))
+        turn.game = Game(winArray)
         turn.turnRight should be(WIN)
         turn.evaluate should be(WIN)
       }
       "have a way to lose" in {
         val loseArray = Array[Tile](
-          new Tile(2), new Tile(4), new Tile(8), new Tile(16),
-          new Tile(16), new Tile(8), new Tile(4), new Tile(2),
-          new Tile(32), new Tile(64), new Tile(128), new Tile(256),
-          new Tile(256), new Tile(128), new Tile(64), new Tile(32))
-        turn.game = new Game(loseArray)
+          Tile(2), Tile(4), Tile(8), Tile(16),
+          Tile(16), Tile(8), Tile(4), Tile(2),
+          Tile(32), Tile(64), Tile(128), Tile(256),
+          Tile(256), Tile(128), Tile(64), Tile(32))
+        turn.game = Game(loseArray)
         turn.turnRight should be(LOSE)
         turn.evaluate should be(LOSE)
       }
