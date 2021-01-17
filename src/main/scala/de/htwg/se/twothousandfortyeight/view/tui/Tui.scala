@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, LOSE, TURN_FINISHED, WIN}
+import de.htwg.se.twothousandfortyeight.controller.{TurnResult, TurnTrait}
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class Tui(turn: TurnTrait) {
@@ -13,10 +14,10 @@ class Tui(turn: TurnTrait) {
       val line = scanner.nextLine
       if (!line.isEmpty) {
         Utils.processAction(turn, processInput(line)) match {
-          case 0 => printTui
-          case 1 => printWin
-          case 2 => printLose
-          case 3 => printHelp
+          case TURN_FINISHED => printTui
+          case WIN => printWin
+          case LOSE => printLose
+          case HELP => printHelp
         }
       }
     } catch {
@@ -25,18 +26,18 @@ class Tui(turn: TurnTrait) {
   }
 
   def processInput(line: String): String = {
-    line.charAt(0) match {
-      case 'a' => return "left"
-      case 'd' => return "right"
-      case 's' => return "down"
-      case 'w' => return "up"
-      case 'q' => return "undo"
-      case 'r' => return "reset"
-      case 'z' => return "save"
-      case 'u' => return "load"
-      case 't' => return "exit"
-      case 'h' => return "help"
-      case _ => return "blank"
+    line.charAt(0).toLower match {
+      case 'a' => "left"
+      case 'd' => "right"
+      case 's' => "down"
+      case 'w' => "up"
+      case 'q' => "undo"
+      case 'r' => "reset"
+      case 'z' => "save"
+      case 'u' => "load"
+      case 't' => "exit"
+      case 'h' => "help"
+      case _ => "blank"
     }
   }
 

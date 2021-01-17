@@ -1,13 +1,13 @@
 package de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl
 
-import java.util.ArrayList
-
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEight
+
+import java.util
 
 object Operations {
   def addTile(tiles: Array[Tile]): Array[Tile] = {
     val newTiles = tiles
-    val emptyIndices = new ArrayList[Int]
+    val emptyIndices = new util.ArrayList[Int]
 
     for (i <- newTiles.indices) {
       if (newTiles(i).isEmpty) {
@@ -17,10 +17,10 @@ object Operations {
 
     if (!emptyIndices.isEmpty) {
       val emptyTileValue = if (Math.random() < 0.9) 2 else 4
-      newTiles(emptyIndices.get((Math.random() * emptyIndices.size()).asInstanceOf[Int] % emptyIndices.size())) = new Tile(emptyTileValue)
+      newTiles(emptyIndices.get((Math.random() * emptyIndices.size()).asInstanceOf[Int] % emptyIndices.size())) = Tile(emptyTileValue)
     }
 
-    return newTiles
+    newTiles
   }
 
   def compareLines(line1: Array[Tile], line2: Array[Tile]): Boolean = {
@@ -36,11 +36,11 @@ object Operations {
       }
     }
 
-    return true
+    true
   }
 
   def getPositionOfTile(tiles: Array[Tile], x: Int, y: Int): Tile = {
-    return tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
+    tiles(x + y * TwoThousandFortyEight.FIELD_SIZE)
   }
 
   def canBeMoved(tiles: Array[Tile]): Boolean = {
@@ -58,12 +58,12 @@ object Operations {
       }
     }
 
-    return false
+    false
   }
 
   def isFull(tiles: Array[Tile]): Boolean = {
     tiles.foreach(tile => if (tile.isEmpty) return false)
 
-    return true
+    true
   }
 }

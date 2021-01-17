@@ -4,14 +4,15 @@ import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
 
+import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 package object actorInternalDslImpl {
-  implicit val timeout = Timeout(5 seconds)
-  implicit val system = ActorSystem("system")
-  implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
+  implicit val timeout: Timeout = Timeout(5 seconds)
+  implicit val system: ActorSystem = ActorSystem("system")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
+  implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
   val Player = new Player
 
