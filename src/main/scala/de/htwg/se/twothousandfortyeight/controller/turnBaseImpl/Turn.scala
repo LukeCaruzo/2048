@@ -15,7 +15,12 @@ class Turn extends TurnTrait {
   var game = new Game
   var undoGame = game
 
-  def turnLeft = {
+  val EXIT = 0
+  val WON = 1
+  val LOST = 2
+
+
+  def turnLeft: Int = {
     undoGame = game
     game = game.left
     evaluate
@@ -72,11 +77,11 @@ class Turn extends TurnTrait {
 
   def evaluate: Int = {
     if (game.grid contains new Tile(2048)) {
-      return 1 // won
+      WON
     } else if (!Operations.canBeMoved(game.grid)) {
-      return 2 // lost
+      LOST
     } else {
-      return 0
+      EXIT
     }
   }
 }

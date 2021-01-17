@@ -4,6 +4,9 @@ import de.htwg.se.twothousandfortyeight.controller.TurnTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.TileTrait
 
 object Utils {
+
+  val HELP = 3
+
   def processAction(turn: TurnTrait, action: String): Int = {
     action match {
       case "left" => turn.turnLeft
@@ -15,7 +18,7 @@ object Utils {
       case "save" => turn.turnSave
       case "load" => turn.turnLoad
       case "exit" => turn.turnExit
-      case "help" => return 3
+      case "help" => HELP
       case _ => turn.evaluate
     }
   }
