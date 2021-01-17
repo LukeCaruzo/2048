@@ -10,9 +10,7 @@ case class Game(grid: Array[Tile] =
                   new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE).map(_ => new Tile()))),
                 score: Score = new Score) {
 
-  def reset: Game = {
-    new Game()
-  }
+  def reset: Game = Game()
 
   def rotate: Game = {
     val newTiles = new Array[Tile](TwoThousandFortyEight.FIELD_SIZE * TwoThousandFortyEight.FIELD_SIZE)
