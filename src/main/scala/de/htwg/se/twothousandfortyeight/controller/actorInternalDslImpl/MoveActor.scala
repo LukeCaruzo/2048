@@ -2,6 +2,8 @@ package de.htwg.se.twothousandfortyeight.controller.actorInternalDslImpl
 
 import akka.actor.Props
 import akka.pattern.ask
+import de.htwg.se.twothousandfortyeight.controller.TurnResult
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, LOSE, TURN_FINISHED, WIN}
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
@@ -18,11 +20,11 @@ class MoveActor(actorName: String) {
   val cmdActor = system.actorOf(Props(classOf[CommandActor], turnAsInstance.turn), actorName)
 
   def move(command: String): Any = {
-    Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
-      case 0 => print(printTui)
-      case 1 => printWin
-      case 2 => printLose
-      case 3 => printHelp
+    Await.result((cmdActor ? Command(command)), 5 seconds) match {
+      case TURN_FINISHED => print(printTui)
+      case WIN => printWin
+      case LOSE => printLose
+      case HELP => printHelp
     }
   }
 

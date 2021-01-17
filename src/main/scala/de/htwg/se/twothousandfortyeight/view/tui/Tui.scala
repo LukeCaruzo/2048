@@ -1,6 +1,7 @@
 package de.htwg.se.twothousandfortyeight.view.tui
 
-import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, LOSE, TURN_FINISHED, WIN}
+import de.htwg.se.twothousandfortyeight.controller.{TurnResult, TurnTrait}
 import de.htwg.se.twothousandfortyeight.util.Utils
 
 class Tui(turn: TurnTrait) {
@@ -13,10 +14,10 @@ class Tui(turn: TurnTrait) {
       val line = scanner.nextLine
       if (!line.isEmpty) {
         Utils.processAction(turn, processInput(line)) match {
-          case 0 => printTui
-          case 1 => printWin
-          case 2 => printLose
-          case 3 => printHelp
+          case TURN_FINISHED => printTui
+          case WIN => printWin
+          case LOSE => printLose
+          case HELP => printHelp
         }
       }
     } catch {
