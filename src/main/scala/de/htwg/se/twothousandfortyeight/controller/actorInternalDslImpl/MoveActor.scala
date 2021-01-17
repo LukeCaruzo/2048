@@ -2,8 +2,7 @@ package de.htwg.se.twothousandfortyeight.controller.actorInternalDslImpl
 
 import akka.actor.{ActorRef, Props}
 import akka.pattern.ask
-import de.htwg.se.twothousandfortyeight.controller.TurnResult
-import de.htwg.se.twothousandfortyeight.controller.TurnResult.{HELP, LOSE, TURN_FINISHED, WIN}
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{LOSE, TURN_FINISHED, WIN}
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
