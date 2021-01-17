@@ -61,17 +61,11 @@ case class Game(grid: Array[Tile] =
     gameNew
   }
 
-  def right: Game = {
-    this.rotate.rotate.left.rotate.rotate
-  }
+  def right: Game = this.rotate.rotate.left.rotate.rotate
 
-  def up: Game = {
-    this.rotate.rotate.rotate.left.rotate
-  }
+  def up: Game = this.rotate.rotate.rotate.left.rotate
 
-  def down: Game = {
-    this.rotate.left.rotate.rotate.rotate
-  }
+  def down: Game = this.rotate.left.rotate.rotate.rotate
 
   def moveSingleLine: Game = {
     val oldLine = this.grid
