@@ -13,11 +13,6 @@ import scala.util.{Failure, Success, Try}
 class DslFileIo extends FileIoTrait {
   override def save(filename: String, game: Game) {
     Files.write(Paths.get(filename + ".dsl"), util.Arrays.asList(serialize(game)))
-    //    val file = new File(filename + ".2048")
-    //    val bw = new BufferedWriter(new FileWriter(file))
-    //
-    //    bw.write(serialize(game))
-    //    bw.close()
   }
 
   override def serialize(game: Game): String = game.toString()
@@ -27,7 +22,6 @@ class DslFileIo extends FileIoTrait {
       case Success(lines) => Some(deserialize(lines))
       case Failure(_) => None
     }
-
 
   override def deserialize(text: String): Game = {
     val parser = new Parser()
