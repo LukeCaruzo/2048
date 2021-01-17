@@ -2,7 +2,8 @@ package de.htwg.se.twothousandfortyeight.controller.turnBaseImpl
 
 import com.google.inject.{Guice, Inject}
 import de.htwg.se.twothousandfortyeight.TwoThousandFortyEightModule
-import de.htwg.se.twothousandfortyeight.controller.TurnTrait
+import de.htwg.se.twothousandfortyeight.controller.TurnResult.{LOSE, TURN_FINISHED, WIN}
+import de.htwg.se.twothousandfortyeight.controller.{TurnResult, TurnTrait}
 import de.htwg.se.twothousandfortyeight.model.fileIoModel.FileIoTrait
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.{Game, Operations, Tile}
 import net.codingwell.scalaguice.InjectorExtensions._
@@ -11,55 +12,51 @@ import net.codingwell.scalaguice.InjectorExtensions._
 class Turn extends TurnTrait {
   val injector = Guice.createInjector(new TwoThousandFortyEightModule)
   val fileIo = injector.instance[FileIoTrait]
+  val tile2048 = Tile(2048)
 
   var game = new Game
   var undoGame = game
 
-  val EXIT = 0
-  val WON = 1
-  val LOST = 2
-
-
-  def turnLeft: Int = {
+  def turnLeft: TurnResult.Value = {
     undoGame = game
     game = game.left
     evaluate
   }
 
-  def turnRight: Int = {
+  def turnRight: TurnResult.Value = {
     undoGame = game
     game = game.right
     evaluate
   }
 
-  def turnUp: Int = {
+  def turnUp: TurnResult.Value = {
     undoGame = game
     game = game.up
     evaluate
   }
 
-  def turnDown: Int = {
+  def turnDown: TurnResult.Value = {
     undoGame = game
     game = game.down
     evaluate
   }
 
-  def turnUndo: Int = {
+  def turnUndo: TurnResult.Value = {
     game = undoGame
     evaluate
   }
 
-  def turnReset: Int = {
+  def turnReset: TurnResult.Value = {
     game = game.reset
     evaluate
   }
 
-  def turnSave: Int = {
+  def turnSave: TurnResult.Value = {
     fileIo.save("save.2048", game)
     evaluate
   }
 
-  def turnLoad: Int = {
+  def turnLoad: TurnResult.Value = {
     fileIo.load("save.2048") match {
       case Some(game) =>
         this.game = game
@@ -70,18 +67,18 @@ class Turn extends TurnTrait {
     evaluate
   }
 
-  def turnExit: Int = {
+  def turnExit: TurnResult.Value = {
     sys.exit()
-    EXIT
+    TURN_FINISHED
   }
 
-  def evaluate: Int = {
-    if (game.grid contains new Tile(2048)) {
-      WON
+  def evaluate: TurnResult.Value = {
+    if (game.grid contains tile2048) {
+      WIN
     } else if (!Operations.canBeMoved(game.grid)) {
-      LOST
+      LOSE
     } else {
-      EXIT
+      TURN_FINISHED
     }
   }
 }
