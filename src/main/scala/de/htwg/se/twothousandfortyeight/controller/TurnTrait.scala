@@ -1,27 +1,27 @@
 package de.htwg.se.twothousandfortyeight.controller
 
 import de.htwg.se.twothousandfortyeight.model.gameModel.gameBaseImpl.Game
-
+import de.htwg.se.twothousandfortyeight.controller.{TurnResult}
 trait TurnTrait {
   var game: Game
 
-  def turnLeft: Int
+  def turnLeft: TurnResult.Value
 
-  def turnRight: Int
+  def turnRight: TurnResult.Value
 
-  def turnUp: Int
+  def turnUp: TurnResult.Value
 
-  def turnDown: Int
+  def turnDown: TurnResult.Value
 
-  def turnUndo: Int
+  def turnUndo: TurnResult.Value
 
-  def turnReset: Int
+  def turnReset: TurnResult.Value
 
-  def turnSave: Int
+  def turnSave: TurnResult.Value
 
-  def turnLoad: Int
+  def turnLoad: TurnResult.Value
 
-  def turnExit: Int
+  def turnExit: TurnResult.Value
 
-  def evaluate: Int
+  def evaluate: TurnResult.Value
 }
