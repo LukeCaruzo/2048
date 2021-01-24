@@ -11,7 +11,7 @@ object Spark {
     val n = 100
 
     val winCount = spark.sparkContext.parallelize(1 to n).map { i =>
-      stream(false, true)
+      stream(false, false)
     }.filter(x => x == 1).fold(0)((acc: Int, element: Int) => acc + element)
 
     println(s"Wins: ${winCount}")

@@ -4,6 +4,7 @@ import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.pattern.ask
 import akka.stream.scaladsl.{Flow, Sink, Source}
 import akka.util.Timeout
+import de.htwg.se.twothousandfortyeight.controller.TurnResult
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.CommandMessage.Command
 import de.htwg.se.twothousandfortyeight.controller.actorBaseImpl.{CommandActor, TurnAsInstance}
 import de.htwg.se.twothousandfortyeight.controller.turnBaseImpl.Turn
@@ -20,7 +21,7 @@ object Streams {
   implicit val executionContext = system.dispatcher
 
   val newline = "\n"
-  
+
   def main(args: Array[String]): Unit = {
     val n = 100
 
@@ -62,10 +63,10 @@ object Streams {
   }
 
   def singleStream(cmdActor: ActorRef, turn: Turn, command: String, p: Boolean): Int = {
-    Await.result((cmdActor ? Command(command)).mapTo[Int], 5 seconds) match {
-      case 0 => if(p) print(printTui(turn)); 0
-      case 1 => if(p) print(printWin(turn)); 1
-      case 2 => if(p) print(printLose(turn)); 2
+    Await.result((cmdActor ? Command(command)).mapTo[TurnResult.Value], 5 seconds) match {
+      case TurnResult.TURN_FINISHED => if(p) print(printTui(turn)); 0
+      case TurnResult.WIN => if(p) print(printWin(turn)); 1
+      case TurnResult.LOSE => if(p) print(printLose(turn)); 2
     }
   }
 
